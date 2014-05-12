@@ -3,7 +3,8 @@
 	src: url('../font/FZZhengHeiS-M-GB.woff') format('woff'),
 }
 @red: #f8269d;
-@blue: #37e1c6;
+@blue: #46d8d6;
+
 ::selection {
 	color: #FFF;
 	background: @red;
@@ -12,104 +13,170 @@
 ::-webkit-scrollbar-track-piece{background-color: #EEE;}
 ::-webkit-scrollbar{width: 8px;}
 ::-webkit-scrollbar-thumb{background:#999;}
-
-html{
-	height: 400%;
-}
 body{
-	height: 100%;
-}
-section{
-	width: 100%;
-	height: 25%;
-}
-#page1{
 	background-color: @red;
-	#sloagns{
-		position: absolute;
-		top: -50%;
-		margin-left: 6%;
-		img{
-			vertical-align: top;
-			transition: all 0.1s;
+}
+#sloagns{
+	position: absolute;
+	top: -10%;
+	margin-left: 6%;
+	img{
+		vertical-align: top;
+		transition: all 0.1s;
+	}
+}
+#stripes{
+	position: absolute;
+	top: 0;
+	right: 8%;
+	width: 35%;
+	path{
+		stroke-dasharray: 450;
+		fill: none;
+	}
+	#layer1{
+		-webkit-animation: layer1 4s ease-in 0;
+		animation: layer1 4s ease-in 0;
+	}
+	#layer2{
+		-webkit-animation: layer2 4s ease-in 0;
+		animation: layer2 4s ease-in 0;
+	}
+	@-webkit-keyframes layer1 {
+		0%{
+			stroke-dashoffset: 500;
 		}
-		img:hover{
-			-webkit-transform: rotate(30deg);
-			transform: rotate(30deg);
+		100%{
+			stroke-dashoffset: 0;
 		}
 	}
-	#stripes{
-		position: absolute;
-		top: 0;
-		right: 8%;
-		width: 35%;
-		path{
-			stroke-dasharray: 450;
-			fill: none;
+	@keyframes layer1 {
+		0%{
+			stroke-dashoffset: 500;
 		}
-		#layer1{
-			-webkit-animation: layer1 4s ease-in 0;
-			animation: layer1 4s ease-in 0;
+		30%{
+			stroke-dashoffset: 500;
 		}
-		#layer2{
-			-webkit-animation: layer2 4s ease-in 0;
-			animation: layer2 4s ease-in 0;
+		100%{
+			stroke-dashoffset: 0;
 		}
-		@-webkit-keyframes layer1 {
-			0%{
-				stroke-dashoffset: 500;
-			}
-			100%{
-				stroke-dashoffset: 0;
-			}
+	}
+	@-webkit-keyframes layer2 {
+		0%{
+			stroke-dashoffset: 100;
+			opacity: 0;
 		}
-		@keyframes layer1 {
-			0%{
-				stroke-dashoffset: 500;
-			}
-			30%{
-				stroke-dashoffset: 500;
-			}
-			100%{
-				stroke-dashoffset: 0;
-			}
+		20%{
+			stroke-dashoffset: 100;
+			opacity: 0;
 		}
-		@-webkit-keyframes layer2 {
-			0%{
-				stroke-dashoffset: 500;
-				opacity: 0;
-			}
-			20%{
-				stroke-dashoffset: 500;
-				opacity: 0;
-			}
-			100%{
-				stroke-dashoffset: 0;
-				opacity: 1;
-			}
+		100%{
+			stroke-dashoffset: 0;
+			opacity: 1;
 		}
-		@keyframes layer2 {
-			0%{
-				stroke-dashoffset: 500;
-				opacity: 0;
-			}
-			20%{
-				stroke-dashoffset: 500;
-				opacity: 0;
-			}
-			100%{
-				stroke-dashoffset: 0;
-				opacity: 1;
-			}
+	}
+	@keyframes layer2 {
+		0%{
+			stroke-dashoffset: 100;
+			opacity: 0;
+		}
+		20%{
+			stroke-dashoffset: 100;
+			opacity: 0;
+		}
+		100%{
+			stroke-dashoffset: 0;
+			opacity: 1;
 		}
 	}
 }
-#page2{
-	background-color: #555;
+#welcome{
+	padding-top: 26%;
+	margin-left: 6%;
+	color: #FFF;
+	font-size: 2rem;
+	letter-spacing: 0.1rem;
+	font-family: 'FZZhengHeiS-M-GB';
+	p{
+		margin: 1rem 0.5rem;
+	}
+	i{
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		transition: all 0.8s;
+		&:hover{
+			transform: rotate(120deg);
+			-ms-transform: rotate(120deg);		/* IE 9 */
+			-webkit-transform: rotate(120deg);	/* Safari and Chrome */
+			-o-transform: rotate(120deg);		/* Opera */
+			-moz-transform: rotate(120deg);
+			color: @blue;
+		}
+	}
 }
-#page3{
-	background-color: #444;
+
+#updown{
+	padding-top: 0;
+	margin-left: 6%;
+	font-family: 'FZZhengHeiS-M-GB';
+
+	div{
+		display: inline-block;
+		margin: 1rem 0.8rem 0 0;
+		cursor: pointer;
+		transition: all 0.8s;
+		&:hover{
+			border-radius: 0.3rem;
+		}
+		a{
+		display: inline-block;
+			margin: 0.5rem;
+			padding-left: 0.6rem;
+			font-size: 1.5rem;
+			text-decoration: none;
+		}
+	}
+	#download{
+		a{
+			color: #FFF;
+			border-left: 1.8rem solid #FFF;
+		}
+		&:hover{
+			box-shadow: 0 0 4rem #FFF;
+		}
+	};
+	#upload{
+		a{
+			color: @blue;
+			border-left: 1.8rem solid @blue;
+		}
+		&:hover{
+			box-shadow: 0 0 4rem @blue;
+		}
+	};
 }
-#page4{
-	background-color: #333;
+.point{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border-radius: 0.8rem;
+	background-color: #FFF;
+	cursor: pointer;
+	transition: all 0.5s;
+	&:hover{
+		-webkit-transform: scale(2);
+		transform: scale(2);
+		border-radius: 1.6rem;
+	}
+}
+#canvas{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.25;
+	z-index: -10;
 }
