@@ -14,7 +14,8 @@
 ::-webkit-scrollbar{width: 8px;}
 ::-webkit-scrollbar-thumb{background:#999;}
 body{
-	background-color: @red;
+	background-color: #F8264B;
+	overflow: hidden;
 }
 #sloagns{
 	position: absolute;
@@ -25,14 +26,22 @@ body{
 		transition: all 0.1s;
 	}
 }
+
+#stripes_done{
+	position: absolute;
+	display: none;
+	right: 8%;
+	width: 35%;
+	z-index: -10;
+	vertical-align: middle;
+}
+
 #stripes{
 	position: absolute;
-	top: 0;
 	right: 8%;
 	width: 35%;
 	path{
 		stroke-dasharray: 450;
-		fill: none;
 	}
 	#layer1{
 		-webkit-animation: layer1 4s ease-in 0;
@@ -90,6 +99,7 @@ body{
 		}
 	}
 }
+
 #welcome{
 	padding-top: 26%;
 	margin-left: 6%;
@@ -159,7 +169,7 @@ body{
 .point{
 	position: absolute;
 	top: 50%;
-	left: 50%;
+	left: 75%;
 	width: 0;
 	height: 0;
 	border-radius: 0.8rem;
@@ -175,7 +185,7 @@ body{
 #canvas{
 	position: absolute;
 	top: 0;
-	width: 100%;
+	width: 125%;
 	height: 100%;
 	opacity: 0.25;
 	z-index: -10;

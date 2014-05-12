@@ -14,7 +14,7 @@
 		<img id="slogan4" class="slogan" src="img/4.svg" />
 	</div>
 	<img id="stripes" class="svg" src="img/stripes.svg" />
-	
+	<img id="stripes_done" src="img/stripes_done.png" />
 	<div id="welcome">
 		<p>设计创新班2014招生</p>
 		<p>就等你来 <i class="icon-play-circle icon-large" onclick="scrollToVideo()"></i></p>

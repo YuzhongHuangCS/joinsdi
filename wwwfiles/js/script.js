@@ -17,7 +17,17 @@ $(function(){
 		});
 	});
 
-	$('#sloagns').animate({"top": "12%"}, 300, function(){
+	//change stripes_done's size
+	$(window).on('load resize', function(){
+		var space =  document.body.scrollHeight - $('#stripes_done').height();	
+		$('#stripes_done').css('top', space/2);
+	})
+
+	setTimeout(function(){
+		$('#stripes_done').fadeIn(1500);
+	}, 4000);
+
+	$('#sloagns').animate({"top": "12%"}, 500, function(){
 		showPoint(1);
 	});
 
@@ -55,6 +65,11 @@ $(function(){
 		} else{
 			$(this).css({"-webkit-transform": "rotate(0deg)", "transform": "rotate(0deg)"});
 		}
+	});
+	
+	$(document).mousemove(function(event) {
+		var left = -(event.pageX / 4);
+		$("#canvas").css('left', left);
 	});
 });
 /*
@@ -138,19 +153,6 @@ function onloadHandler()
    
    // create the Plasma object
    g_plasma = new Plasma();
-   
-   // create the GUI controls
-   var gui = new DAT.GUI(); // height of 30px per control ish
-   gui.domElement.style.opacity = "0.75";
-   gui.add(g_plasma, "PaletteIndex").min(0).max(4).step(1);
-   gui.add(g_plasma, "CycleSpeed").min(0).max(8).step(1);
-   gui.add(g_plasma, "PlasmaDensity").min(16).max(256).step(16);
-   gui.add(g_plasma, "PlasmaFunction").min(0).max(1).step(1);
-   gui.add(g_plasma, "TimeFunction").min(64).max(640).step(64);
-   gui.add(g_plasma, "Jitter").min(0).max(16).step(1);
-   gui.add(g_plasma, "Alpha").min(0.1).max(1.0).step(0.1);
-   gui.add(g_plasma, "ShowFPS");
-   gui.close();
    
    // init the animation loop
    g_framestart = Date.now();

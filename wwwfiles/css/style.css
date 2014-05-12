@@ -2,9 +2,10 @@
 ::-webkit-scrollbar-track-piece{background-color:#eee}
 ::-webkit-scrollbar{width:8px}
 ::-webkit-scrollbar-thumb{background:#999}
-body{background-color:#f8269d}
+body{background-color:#f8264b;overflow:hidden}
 #sloagns{position:absolute;top:-10%;margin-left:6%}#sloagns img{vertical-align:top;transition:all .1s}
-#stripes{position:absolute;top:0;right:8%;width:35%}#stripes path{stroke-dasharray:450;fill:none}
+#stripes_done{position:absolute;display:none;right:8%;width:35%;z-index:-10;vertical-align:middle}
+#stripes{position:absolute;right:8%;width:35%}#stripes path{stroke-dasharray:450}
 #stripes #layer1{-webkit-animation:layer1 4s ease-in 0;animation:layer1 4s ease-in 0}
 #stripes #layer2{-webkit-animation:layer2 4s ease-in 0;animation:layer2 4s ease-in 0}
 @-webkit-keyframes layer1{0%{stroke-dashoffset:500} 100%{stroke-dashoffset:0}}@keyframes layer1{0%{stroke-dashoffset:500} 30%{stroke-dashoffset:500} 100%{stroke-dashoffset:0}}@-webkit-keyframes layer2{0%{stroke-dashoffset:100;opacity:0} 20%{stroke-dashoffset:100;opacity:0} 100%{stroke-dashoffset:0;opacity:1}}@keyframes layer2{0%{stroke-dashoffset:100;opacity:0} 20%{stroke-dashoffset:100;opacity:0} 100%{stroke-dashoffset:0;opacity:1}}
@@ -16,5 +17,5 @@ body{background-color:#f8269d}
 #updown #download:hover{box-shadow:0 0 4rem #fff}
 #updown #upload a{color:#46d8d6;border-left:1.8rem solid #46d8d6}
 #updown #upload:hover{box-shadow:0 0 4rem #46d8d6}
-.point{position:absolute;top:50%;left:50%;width:0;height:0;border-radius:.8rem;background-color:#fff;cursor:pointer;transition:all .5s}.point:hover{-webkit-transform:scale(2);transform:scale(2);border-radius:1.6rem}
-#canvas{position:absolute;top:0;width:100%;height:100%;opacity:.25;z-index:-10}
+.point{position:absolute;top:50%;left:75%;width:0;height:0;border-radius:.8rem;background-color:#fff;cursor:pointer;transition:all .5s}.point:hover{-webkit-transform:scale(2);transform:scale(2);border-radius:1.6rem}
+#canvas{position:absolute;top:0;width:125%;height:100%;opacity:.25;z-index:-10}
