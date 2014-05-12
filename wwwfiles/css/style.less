@@ -25,45 +25,81 @@ section{
 }
 #page1{
 	background-color: @red;
+	#sloagns{
+		position: absolute;
+		top: -50%;
+		margin-left: 6%;
+		img{
+			vertical-align: top;
+			transition: all 0.1s;
+		}
+		img:hover{
+			-webkit-transform: rotate(30deg);
+			transform: rotate(30deg);
+		}
+	}
 	#stripes{
 		position: absolute;
 		top: 0;
-		right: 0;
-		width: 60%;
+		right: 8%;
+		width: 35%;
 		path{
-			stroke-dasharray: 500;
-			-webkit-animation: dash 5s linear 0;
-			animation: dash 5s linear 0;
+			stroke-dasharray: 450;
 			fill: none;
 		}
-		@-webkit-keyframes dash {
+		#layer1{
+			-webkit-animation: layer1 4s ease-in 0;
+			animation: layer1 4s ease-in 0;
+		}
+		#layer2{
+			-webkit-animation: layer2 4s ease-in 0;
+			animation: layer2 4s ease-in 0;
+		}
+		@-webkit-keyframes layer1 {
 			0%{
 				stroke-dashoffset: 500;
-				fill-opacity: 0;
-			}
-			60%{
-				fill-opacity: 0;
-			}
-			80%{
-				stroke-dashoffset: 0;
 			}
 			100%{
-				fill-opacity: 1;
+				stroke-dashoffset: 0;
 			}
 		}
-		@keyframes dash {
+		@keyframes layer1 {
 			0%{
 				stroke-dashoffset: 500;
-				fill-opacity: 0;
 			}
-			60%{
-				fill-opacity: 0;
-			}
-			80%{
-				stroke-dashoffset: 0;
+			30%{
+				stroke-dashoffset: 500;
 			}
 			100%{
-				fill-opacity: 1;
+				stroke-dashoffset: 0;
+			}
+		}
+		@-webkit-keyframes layer2 {
+			0%{
+				stroke-dashoffset: 500;
+				opacity: 0;
+			}
+			20%{
+				stroke-dashoffset: 500;
+				opacity: 0;
+			}
+			100%{
+				stroke-dashoffset: 0;
+				opacity: 1;
+			}
+		}
+		@keyframes layer2 {
+			0%{
+				stroke-dashoffset: 500;
+				opacity: 0;
+			}
+			20%{
+				stroke-dashoffset: 500;
+				opacity: 0;
+			}
+			100%{
+				stroke-dashoffset: 0;
+				opacity: 1;
 			}
 		}
 	}

@@ -23,5 +23,13 @@ $(function(){
 			}
 			$img.replaceWith($svg);
 		});
-	});	
-})
+	});
+	showsloagn(1);
+});
+function showsloagn(sloganID){
+	$('#slogan' + sloganID).animate({'margin-top': '75%'}, 250, function() {
+		if((++sloganID) <= 4){
+			showsloagn(sloganID);
+		}
+	});
+}

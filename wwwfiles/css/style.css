@@ -5,8 +5,12 @@
 html{height:400%}
 body{height:100%}
 section{width:100%;height:25%}
-#page1{background-color:#f8269d}#page1 #stripes{position:absolute;top:0;right:0;width:60%}#page1 #stripes path{stroke-dasharray:500;-webkit-animation:dash 5s linear 0;animation:dash 5s linear 0;fill:none}
-@-webkit-keyframes dash{0%{stroke-dashoffset:500;fill-opacity:0} 60%{fill-opacity:0} 80%{stroke-dashoffset:0} 100%{fill-opacity:1}}@keyframes dash{0%{stroke-dashoffset:500;fill-opacity:0} 60%{fill-opacity:0} 80%{stroke-dashoffset:0} 100%{fill-opacity:1}}
+#page1{background-color:#f8269d}#page1 #sloagns{position:absolute;top:-50%;margin-left:6%}#page1 #sloagns img{vertical-align:top;transition:all .1s}
+#page1 #sloagns img:hover{-webkit-transform:rotate(30deg);transform:rotate(30deg)}
+#page1 #stripes{position:absolute;top:0;right:8%;width:35%}#page1 #stripes path{stroke-dasharray:450;fill:none}
+#page1 #stripes #layer1{-webkit-animation:layer1 4s ease-in 0;animation:layer1 4s ease-in 0}
+#page1 #stripes #layer2{-webkit-animation:layer2 4s ease-in 0;animation:layer2 4s ease-in 0}
+@-webkit-keyframes layer1{0%{stroke-dashoffset:500} 100%{stroke-dashoffset:0}}@keyframes layer1{0%{stroke-dashoffset:500} 30%{stroke-dashoffset:500} 100%{stroke-dashoffset:0}}@-webkit-keyframes layer2{0%{stroke-dashoffset:500;opacity:0} 20%{stroke-dashoffset:500;opacity:0} 100%{stroke-dashoffset:0;opacity:1}}@keyframes layer2{0%{stroke-dashoffset:500;opacity:0} 20%{stroke-dashoffset:500;opacity:0} 100%{stroke-dashoffset:0;opacity:1}}
 #page2{background-color:#555}
 #page3{background-color:#444}
 #page4{background-color:#333}

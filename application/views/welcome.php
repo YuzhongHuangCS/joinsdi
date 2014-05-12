@@ -8,7 +8,13 @@
 </head>
 <body>
 <section id="page1">
-	<img id='stripes' class='svg' src='img/stripes.svg'/>
+	<div id="sloagns">
+		<img id="slogan1" class="slogan" src="img/1.svg" />
+		<img id="slogan2" class="slogan" src="img/2.svg" />
+		<img id="slogan3" class="slogan" src="img/3.svg" />
+		<img id="slogan4" class="slogan" src="img/4.svg" />
+	</div>
+	<img id="stripes" class="svg" src="img/stripes.svg" />
 </section>
 <section id="page2">
 </section>
