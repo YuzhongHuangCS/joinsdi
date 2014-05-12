@@ -354,3 +354,16 @@ window.requestAnimFrame = (function()
                window.setTimeout(callback, 1000 / 60);
            };
 })();
+
+//detailPage
+
+$('.point').click(function(event) {
+	$(this).animate({
+		"top": 0,
+		"left": 0,
+		"width": "100%",
+		"height": "100%"
+	}, 150, function() {
+		/* stuff to do after animation is complete */
+	});
+});
