@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
 	<title>有处可逃·设计创新班2014招生</title>
 	<link rel="stylesheet" href="css/plugin.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div id="index">
 	<div id="sloagns">
 		<img id="slogan1" class="slogan" src="img/1.svg" />
 		<img id="slogan2" class="slogan" src="img/2.svg" />
@@ -36,7 +39,7 @@
 	<div class="point" id="point5"></div>
 
 	<canvas id="canvas"></canvas>
-
+</div>
 <script src="js/plugin.js"></script>
 <script src="js/script.js"></script>
 </body>
