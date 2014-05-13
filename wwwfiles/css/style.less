@@ -3,7 +3,7 @@
 	src: url('../font/FZZhengHeiS-M-GB.woff') format('woff'),
 }
 @red: #f8269d;
- @blue: #46d8d6;
+@blue: #46d8d6;
  ::selection {
 	color: #FFF;
 	background: @red;
@@ -21,6 +21,7 @@ html, body {
 	height: 100%;
 	font-family:'FZZhengHeiS-M-GB';
 	background-color: #EEE;
+	overflow-x: hidden;
 }
 #index {
 	position: absolute;
@@ -186,11 +187,11 @@ html, body {
 		background-color: #FFF;
 		cursor: pointer;
 		transition: all 0.5s;
-		&:hover {
+		/*&:hover {
 			-webkit-transform: scale(2);
 			transform: scale(2);
 			border-radius: 1.6rem;
-		}
+		}*/
 	}
 	#canvas {
 		position: absolute;
@@ -285,6 +286,7 @@ html, body {
 		}
 	}
 	#section4 {
+		background-color: #EEE;
 		#comment_text{
 			margin: 0 0 0 8%;
 			padding-top: 5%;

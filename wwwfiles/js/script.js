@@ -46,7 +46,7 @@ $(function() {
 
         /** the angle and the direction from where the mouse came in/went out clockwise (TRBL=0123);**/
         /** first calculate the angle of the point, add 180 deg to get rid of the negative values divide by 90 to get the quadrant
-	 	add 3 and do a modulo by 4  to shift the quadrants to a proper clockwise TRBL (top/right/bottom/left) **/
+        add 3 and do a modulo by 4  to shift the quadrants to a proper clockwise TRBL (top/right/bottom/left) **/
         var direction = Math.round((((Math.atan2(y, x) * (180 / Math.PI)) + 180) / 90) + 3) % 4;
 
         /** do your animations here **/
@@ -80,32 +80,16 @@ $(function() {
         var left = -(event.pageX / 5);
         $("#canvas").css('left', left);
     });
-
-    function showTimeLine(i) {
-        $('#timepoint' + i).animate({
-            opacity: 0.8
-        }, 300, 'linear', function() {
-            $('#line' + i).animate({
-                opacity: 0.8,
-                width: 50
-            }, 200, function() {
-                if (++i <= 7) {
-                    showTimeLine(i);
-                }
-            });
-        });
-    };
-    showTimeLine(1);
 });
 /*
 function showSloagn(sloganID){
   $('#slogan' + sloganID).animate({'top': '30%'}, 250, function() {
-	if((++sloganID) <= 4){
-	  showSloagn(sloganID);
-	}
-	else{
-	  showPoint(1);
-	}
+    if((++sloganID) <= 4){
+      showSloagn(sloganID);
+    }
+    else{
+      showPoint(1);
+    }
   });
 }*/
 window.points = [{}, {
@@ -362,17 +346,41 @@ $('.point').click(function(event) {
         "top": 0,
         "left": 0,
         "width": "100%",
-        "height": "100%"
+        "height": "500%",
+        "z-index": "25"
     }, 150, function() {
+        var target = $(this);
         $.get('/joinus/detail', function(data) {
-           $('#point1').html(data);
+            target.html(data);
+            loadDetail();
         });
     });
 });
 
-jwplayer("jwvideo").setup({
-    file: "video/preview.mp4",
-    image: "img/cover.png",
-    height: window.screen.availHeight - 350,
-    width: window.screen.availWidth - 550
-});
+function loadDetail() {
+    $.getScript("js/jwplayer.js", function() {
+        showTimeLine(1);
+        jwplayer.key="JP1TQQO7k/D2GehXErMBy4/PDqp9JqxfkW5bIA==";
+        jwplayer("jwvideo").setup({
+            file: "video/preview.mp4",
+            image: "img/cover.png",
+            height: window.screen.availHeight - 350,
+            width: window.screen.availWidth - 550
+        });
+    });
+}
+
+function showTimeLine(i) {
+    $('#timepoint' + i).animate({
+        opacity: 0.8
+    }, 300, 'linear', function() {
+        $('#line' + i).animate({
+            opacity: 0.8,
+            width: 50
+        }, 200, function() {
+            if (++i <= 7) {
+                showTimeLine(i);
+            }
+        });
+    });
+};
