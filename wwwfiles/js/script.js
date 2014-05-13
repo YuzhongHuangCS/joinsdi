@@ -25,6 +25,7 @@ $(function() {
 
     setTimeout(function() {
         $('#stripes_done').fadeIn(1500);
+        $('#layer2 path').fadeOut(1500);
     }, 4000);
 
     $('#sloagns').animate({
@@ -182,19 +183,6 @@ function loop() {
 
     g_plasma.frame.call(g_plasma)
 
-    if (g_plasma.ShowFPS) {
-        var g = g_canvas.getContext('2d');
-        g.save();
-        g.globalAlpha = 1;
-        g.fillStyle = "#000";
-        g.fillRect(0, 26, 72, 16);
-        g.font = "12pt Courier New";
-        g.fillStyle = "#FFF";
-        g.fillText("FPS: " + Math.round(1000 / (frameStart - g_framestart)), 0, 38);
-        g_framestart = frameStart;
-        g.restore();
-    }
-
     requestAnimFrame(loop);
 }
 
@@ -202,6 +190,9 @@ function loop() {
     Plasma = function() {
         // generate some palettes
         function rgb(r, g, b) {
+            r = Math.max(r, 125);
+
+            b = Math.min(b, 125);
             return "rgb(" + r.toString() + "," + g.toString() + "," + b.toString() + ")";
         }
 
@@ -212,6 +203,7 @@ function loop() {
             palette.push(rgb(i, i, i));
         }
         this.palettes.push(palette);
+        console.log(this.palettes);
 
         palette = [];
         for (var i = 0; i < 128; i++) {
@@ -372,10 +364,10 @@ function loadDetail() {
 
 function showTimeLine(i) {
     $('#timepoint' + i).animate({
-        opacity: 0.8
+        opacity: 0.9
     }, 300, 'linear', function() {
         $('#line' + i).animate({
-            opacity: 0.8,
+            opacity: 0.9,
             width: 50
         }, 200, function() {
             if (++i <= 7) {
