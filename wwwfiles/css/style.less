@@ -2,12 +2,9 @@
     font-family:'FZZhengHeiS-M-GB';
     src: url('../font/FZZhengHeiS-M-GB.woff') format('woff'),
 }
-@font-face {
-    font-family:'DFPLiYuan-XB';
-    src: url('../font/DFPLiYuan-XB.ttf'),
-}
+@green: #21EEAC;
 @red: #F8269D;
- @blue: #46d8d6;
+@blue: #46d8d6;
  ::selection {
     color: #FFF;
     background: @red;
@@ -25,6 +22,7 @@ html, body {
     height: 100%;
     background-color: #EEE;
     overflow-x: hidden;
+    font-family:'FZZhengHeiS-M-GB';
 }
 #nav {
     position: fixed;
@@ -41,7 +39,6 @@ html, body {
     background-size: cover;
     z-index: 0;
     overflow: hidden;
-    font-family:'DFPLiYuan-XB';
     #sloagns {
         position: absolute;
         top: -30%;
@@ -127,13 +124,13 @@ html, body {
         }
     }
     #welcome {
-        padding-top: 30%;
+        padding-top: 32%;
         margin-left: 6%;
         color: #333;
         font-size: 2rem;
         letter-spacing: 0.1rem;
         p {
-            margin: 1rem 0.5rem;
+            margin: 0.5rem;
         }
         i {
             display: inline-block;
@@ -156,7 +153,6 @@ html, body {
     #updown {
         padding-top: 0;
         margin-left: 6%;
-        font-family:'DFPLiYuan-XB';
         div {
             display: inline-block;
             margin: 1rem 0.8rem 0 0;
@@ -179,30 +175,30 @@ html, body {
                 border-left: 1.8rem solid #333;
             }
             &:hover {
-                box-shadow: 0 0 4rem #333;
+                box-shadow: 0 0 4rem @blue;
             }
         }
         ;
         #upload {
             a {
-                color: @blue;
-                border-left: 1.8rem solid @blue;
+                color: @green;
+                border-left: 1.8rem solid @green;
             }
             &:hover {
-                box-shadow: 0 0 4rem @blue;
+                box-shadow: 0 0 4rem @green;
             }
         }
         ;
     }
     .point {
         position: absolute;
-        top: 30%;
-        left: 72%;
+        top: 60%;
+        left: 85%;
         border-radius: 0.8rem;
         background-color: #000;
         cursor: pointer;
-        font-family:'FZZhengHeiS-M-GB';
-        .entry {
+        z-index: 25;
+        .entry{
             display: none;
             font-size: 1.2rem;
             color: #FFF;
@@ -210,19 +206,10 @@ html, body {
             text-align: center;
         }
     }
-    #canvas {
-        position: absolute;
-        top: 0;
-        width: 120%;
-        height: 100%;
-        opacity: 0.1;
-        z-index: -10;
-    }
 }
 #detail {
     width: 100%;
     height: 100%;
-    font-family:'FZZhengHeiS-M-GB';
     section {
         width: 100%;
         height: 25%;

@@ -13,7 +13,7 @@
 <div id="index">
 	<div id="welcome">
 		<p>2014</p>
-		<p>設創招生進行時</p>
+		<p>设创招生进行时</p>
 	</div>
 	<div id="sloagns">
 		<img id="slogan1" class="slogan" src="img/1.svg" />
@@ -26,17 +26,17 @@
 
 	<div id="updown">
 		<div id="download">
-			<a href="download">下載報名表</a>
+			<a href="download">下载报名表</a>
 		</div>
 		<div id="upload">
-			<a onclick="upload()">報名表回收</a>
+			<a onclick="upload()">报名表回收</a>
 		</div>
 	</div>
 
-	<div class="point" id="point1"><p class="entry">招生<br/>时间线</p></div>
-	<div class="point" id="point2"><p class="entry">先行版<br/>视频</p></div>
-	<div class="point" id="point3"><p class="entry">关于<br/>设创</p></div>
-	<div class="point" id="point4"><p class="entry">想说<br/>什么</p></div>
+	<div class="point" id="point1" hash="#timeline"><p class="entry">招生<br/>时间线</p></div>
+	<div class="point" id="point2" hash="#video"><p class="entry">先行版<br/>视频</p></div>
+	<div class="point" id="point3" hash="#about"><p class="entry">关于<br/>设创</p></div>
+	<div class="point" id="point4" hash="#comment"><p class="entry">想说<br/>什么</p></div>
 
 </div>
 <script src="js/plugin.js"></script>
