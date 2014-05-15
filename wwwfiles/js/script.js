@@ -20,18 +20,11 @@ $(function() {
     $(window).on('load hashchange', function(event) {
         //mini route
         switch (window.location.hash) {
-            case '#timeline':
-                detailController(1);
-                break;
-            case '#video':
-                detailController(2);
-                break
-
-            case '#about':
-                detailController(3);
-                break;
+            case '#timeline':;
+            case '#video':;
+            case '#about':;
             case '#comment':
-                detailController(4);
+                detailController();
                 break;
             default:
                 if (event.type === 'load') {
@@ -42,7 +35,6 @@ $(function() {
                 }
         }
     });
-
 
     function indexController() {
         //Replace all SVG images with inline SVG
@@ -176,7 +168,7 @@ $(function() {
         })
     };
 
-    function detailController(tmp) {
+    function detailController() {
         $('.point').off('click mouseleave mouseenter');
         $('#index').css('overflow', 'visible');
         $('.point').css('cursor', 'auto');
@@ -186,9 +178,6 @@ $(function() {
         var target = $('#point1');
         $.get('detail.html', function(data) {
             target.html(data);
-            window.section = 1;
-            window.scrolling = 0;
-            scrollControl(tmp);
         });
         $('#point1').animate({
             "top": 0,
@@ -211,85 +200,6 @@ $(function() {
             });
         });
 
-        function scrollControl(targetID) {
-            if (window.scrolling === 0) {
-                window.scrolling = 1;
-                var scrollTo = $('#section' + targetID).offset().top;
-                console.log(scrollTo);
-                if (targetID > window.section) {
-                    $('html,body').animate({
-                        "scrollTop": scrollTo
-                    }, 1000, 'easeOutCubic', function() {
-                    	window.scrolling = 0;
-                        switch (targetID) {
-                            //scroll down animation
-                            case 2:
-                                $('#timeline').css({
-                                    "opacity": "0",
-                                    "margin-top": "10%"
-                                });
-                                break;
-                            case 3:
-                                $('#sdi').animate({
-                                    "opacity": "1",
-                                    "margin-top": "8%"
-                                }, 600, 'easeOutCubic', function() {
-                                    /* stuff to do after animation is complete */
-                                });
-                                break;
-                            case 4:
-                                $('#uyan_frame').animate({
-                                        "opacity": "1",
-                                        "margin-top": "3%"
-                                    },
-                                    600, 'easeOutCubic', function() {
-                                        /* stuff to do after animation is complete */
-                                    });
-                                $('#sdi').css({
-                                    "opacity": "0",
-                                    "margin-top": "10%"
-                                });
-                                break;
-                        }
-                        $('#order' + window.section).removeClass('current');
-                        window.section = targetID;
-                        $('#order' + targetID).addClass('current');
-                    });
-                };
-                if (window.section > targetID) {
-                    $('html,body').animate({
-                        "scrollTop": scrollTo
-                    }, 1000, 'easeOutCubic', function() {
-                        switch (window.section) {
-                            //scroll up animation
-                            case 1:
-                                $('#timeline').animate({
-                                        "margin-top": "6%",
-                                        "opacity": "1"
-                                    },
-                                    600, 'easeOutCubic', function() {
-                                        /* stuff to do after animation is complete */
-                                    });
-                                break;
-                            case 3:
-                                $('#sdi').animate({
-                                    "opacity": "1",
-                                    "margin-top": "8%"
-                                }, 400, 'easeOutCubic', function() {
-                                    /* stuff to do after animation is complete */
-                                });
-                                break;
-                        }
-                        window.scrolling = 0;
-                        $('#order' + window.section).removeClass('current');
-                        window.section = targetID;
-                        $('#order' + targetID).addClass('current');
-                    });
-                }
-            }
-
-        }
-
         function initDetailView() {
             $('#timeline').delay(500).animate({
                     "margin-top": "6%",
@@ -298,36 +208,131 @@ $(function() {
                 600, 'easeOutCubic', function() {
                     /* stuff to do after animation is complete */
                 });
+            window.section = 1;
+            window.scrolling = 0;
 
-            $(window).mousewheel(function(event) {
-                event.preventDefault();
-                var targetID;
-                if (event.deltaY === -1) {
-                    if (window.section >= 4) {
-                        targetID = 4;
-                    } else {
-                        targetID = ++window.section;
-                    }
-                    //console.log(targetID);
-                    scrollControl(targetID);
-                };
-                if (event.deltaY === 1) {
-                    if (window.section <= 1) {
-                        targetID = 1;
-                    } else {
-                        targetID = --window.section;
-                    }
-                    //console.log(targetID);
-                    scrollControl(targetID);
+            if (sectionID >= window.section) {
+                window.scrolling = 1;
+                window.section = sectionID;
+                $('#order' + window.section).addClass('current');
+                var scrollTo = $('#section' + window.section).offset().top;
+                $('html,body').animate({
+                    "scrollTop": scrollTo
+                }, 1000, 'easeOutCubic', function() {
+                    scrollDownControl();
+                    window.scrolling = 0;
+                });
+            }
+
+            $('#flag li').click(function(event) {
+                target = $(this).index() + 1;
+                if (target > window.section) {
+                    scrollDown();
+                }
+                if (target < window.section) {
+                    scrollUp();
+                }
+            });
+        }
+        $(window).mousewheel(function(event) {
+            event.preventDefault();
+            if (event.deltaY == -1) {
+                scrollDown();
+            };
+            if (event.deltaY == 1) {
+                scrollUp();
+            }
+        });
+    };
+
+    function scrollDown() {
+        if (window.scrolling === 0) {
+            window.scrolling = 1;
+            $('#flag li').removeClass('current');
+            $('#order' + window.section).addClass('current');
+            var scrollTo = $('#section' + (1 + window.section)).offset().top;
+            $('html,body').animate({
+                "scrollTop": scrollTo
+            }, 1000, 'easeOutCubic', function() {
+                scrollDownControl();
+                if ((++window.section) >= 4) {
+                    window.section = 4;
                 }
             });
         };
+    };
 
-        $('#flag li').click(function(event) {
-            console.log('200');
-            targetID = $(this).index() + 1;
-            scrollControl(targetID);
-            console.log(targetID);
-        });
+    function scrollDownControl() {
+        switch (window.section) {
+            //scroll down animation
+            case 2:
+                $('#timeline').css({
+                    "opacity": "0",
+                    "margin-top": "10%"
+                });
+                break;
+            case 3:
+                $('#sdi').animate({
+                    "opacity": "1",
+                    "margin-top": "8%"
+                }, 600, 'easeOutCubic', function() {
+                    /* stuff to do after animation is complete */
+                });
+                break;
+            case 4:
+                $('#uyan_frame').animate({
+                        "opacity": "1",
+                        "margin-top": "3%"
+                    },
+                    600, 'easeOutCubic', function() {
+                        /* stuff to do after animation is complete */
+                    });
+                $('#sdi').css({
+                    "opacity": "0",
+                    "margin-top": "10%"
+                });
+                break;
+        }
+        window.scrolling = 0;
+    }
+
+    function scrollUp() {
+        if (window.scrolling === 0) {
+            $('#flag li').removeClass('current');
+            $('#order' + window.section).addClass('current');
+            var scrollTo = $('#section' + (window.section - 1)).offset().top;
+            $('html,body').animate({
+                "scrollTop": scrollTo
+            }, 1000, 'easeOutCubic', function() {
+                scrollUpControl();
+                if ((--window.section) <= 1) {
+                    window.section = 1;
+                }
+            });
+        };
+    };
+
+    function scrollUpControl() {
+        switch (window.section) {
+            //scroll up animation
+            case 1:
+                $('#timeline').animate({
+                        "margin-top": "6%",
+                        "opacity": "1"
+                    },
+                    600, 'easeOutCubic', function() {
+                        /* stuff to do after animation is complete */
+                    });
+                break;
+            case 3:
+                $('#sdi').animate({
+                    "opacity": "1",
+                    "margin-top": "8%"
+                }, 400, 'easeOutCubic', function() {
+                    /* stuff to do after animation is complete */
+                });
+                break;
+        }
+        window.scrolling = 0;
     }
 });
