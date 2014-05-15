@@ -9,7 +9,12 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div id="nav"></div>
 <div id="index">
+	<div id="welcome">
+		<p>2014</p>
+		<p>設創招生進行時</p>
+	</div>
 	<div id="sloagns">
 		<img id="slogan1" class="slogan" src="img/1.svg" />
 		<img id="slogan2" class="slogan" src="img/2.svg" />
@@ -18,25 +23,21 @@
 	</div>
 	<img id="stripes" class="svg" src="img/stripes.svg" />
 	<img id="stripes_done" src="img/stripes_done.png" />
-	<div id="welcome">
-		<p>设计创新班2014招生</p>
-		<p>就等你来 <i class="icon-play-circle icon-large" onclick="scrollToVideo()"></i></p>
-	</div>
 
 	<div id="updown">
 		<div id="download">
-			<a href="download">下载报名表</a>
+			<a href="download">下載報名表</a>
 		</div>
 		<div id="upload">
-			<a onclick="upload()">报名表回收</a>
+			<a onclick="upload()">報名表回收</a>
 		</div>
 	</div>
 
-	<div class="point" id="point1"></div>
-	<div class="point" id="point2"></div>
-	<div class="point" id="point3"></div>
-	<div class="point" id="point4"></div>
-	<div class="point" id="point5"></div>
+	<div class="point" id="point1"><p class="entry">設創Woo展</p></div>
+	<div class="point" id="point2"><p class="entry">設創Woo展</p></div>
+	<div class="point" id="point3"><p class="entry">設創Woo展</p></div>
+	<div class="point" id="point4"><p class="entry">設創Woo展</p></div>
+	<div class="point" id="point5"><p class="entry">設創Woo展</p></div>
 
 	<canvas id="canvas"></canvas>
 </div>
