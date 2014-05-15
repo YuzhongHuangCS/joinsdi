@@ -32,12 +32,12 @@ $(function() {
             })
             //switch the stripe
             setTimeout(function() {
-                $('#stripes_done').fadeIn(1500);
+                $('#stripes_done').fadeIn(2500);
                 $('#layer2 path').fadeOut(1500);
             }, 4000);
             //show slogan
             $('#sloagns').animate({
-                "top": "12%"
+                "top": "15%"
             }, 500, function() {
                 //show five point
                 showPoint(1);
@@ -56,7 +56,7 @@ $(function() {
 
                 /** the angle and the direction from where the mouse came in/went out clockwise (TRBL=0123);**/
                 /** first calculate the angle of the point, add 180 deg to get rid of the negative values divide by 90 to get the quadrant
-        add 3 and do a modulo by 4  to shift the quadrants to a proper clockwise TRBL (top/right/bottom/left) **/
+		add 3 and do a modulo by 4  to shift the quadrants to a proper clockwise TRBL (top/right/bottom/left) **/
                 var direction = Math.round((((Math.atan2(y, x) * (180 / Math.PI)) + 180) / 90) + 3) % 4;
 
                 /** do your animations here **/
@@ -88,24 +88,16 @@ $(function() {
             //points data
             var points = [{}, {
                 "top": "40%",
-                "left": "30%",
-                "text": "Woo展"
+                "left": "9%"
             }, {
-                "top": "80%",
-                "left": "50%",
-                "text": "Woo展"
+                "top": "40%",
+                "left": "21.5%"
             }, {
-                "top": "25%",
-                "left": "56%",
-                "text": "Woo展"
+                "top": "40%",
+                "left": "33.5%"
             }, {
-                "top": "55%",
-                "left": "60%",
-                "text": "Woo展"
-            }, {
-                "top": "60%",
-                "left": "44%",
-                "text": "Woo展"
+                "top": "40%",
+                "left": "46%"
             }];
             //show point TimeFunction
 
@@ -113,37 +105,39 @@ $(function() {
                 var point = points[pointID];
 
                 $('#point' + pointID).animate({
+                	"width": "1.6rem",
+                	"height": "1.6rem",
+                	"border-radius": "0.8rem",
                     "top": point.top,
-                    "left": point.left,
-                    "width": "1.6rem",
-                    "height": "1.6rem",
-                    "border-radius": "0.8rem"
+                    "left": point.left
                 }, 250, function() {
-                    if ((++pointID) <= 5) {
+                    if ((++pointID) <= 4) {
                         showPoint(pointID);
                     }
                 });
             };
             //point hover
             $('.point').on('mouseenter', function(event) {
-                $(this).css({
+                $(this).animate({
                     "width": "4.8rem",
                     "height": "4.8rem",
                     "border-radius": "2.4rem",
                     "margin-left": "-1.6rem",
                     "margin-top": "-1.6rem"
-                });
-                $(this).children('p').delay(250).fadeIn();
+                }, 'normal');
+                $(this).children('p').fadeIn('fast');
             });
             $('.point').on('mouseleave', function(event) {
-                $(this).children('.entry').fadeOut(100);
-                $(this).css({
-                    "width": "1.6rem",
-                    "height": "1.6rem",
-                    "border-radius": "0.8rem",
-                    "margin-left": "0",
-                    "margin-top": "0"
+                $(this).children('.entry').fadeOut('fast', function() {
+                    $(this).parent().animate({
+                        "width": "1.6rem",
+                        "height": "1.6rem",
+                        "border-radius": "0.8rem",
+                        "margin-left": "0",
+                        "margin-top": "0"
+                    }, 'normal');
                 });
+
             });
             //interaction with mouse
             $(document).mousemove(function(event) {
@@ -160,6 +154,9 @@ $(function() {
     function detailController() {
         $('.point').off('click mouseleave mouseenter');
         $('#nav').hide();
+        $('.point').css({
+            'cursor': 'auto'
+        });
         $('#point1').animate({
             "top": 0,
             "left": 0,
@@ -168,12 +165,12 @@ $(function() {
             "z-index": "25",
             "margin-top": "0",
             "margin-left": "0"
-        }, 150, function() {
+        }, 'normal', function() {
             $('#index').css('overflow', 'visible');
             var target = $('#point1');
             $.get('/joinus/detail', function(data) {
                 target.html(data);
-                initdetailView();
+                initDetailView();
             });
         });
 
@@ -181,62 +178,129 @@ $(function() {
             jwplayer.key = "JP1TQQO7k/D2GehXErMBy4/PDqp9JqxfkW5bIA==";
             setTimeout(function() {
                 jwplayer("jwvideo").setup({
-                    file: "video/preview.mp4",
+                    file: "video/prevue.f4v",
                     image: "img/cover.png",
-                    height: window.screen.availHeight - 350,
+                    height: window.screen.availHeight - 300,
                     width: window.screen.availWidth - 550
                 });
             }, 1000);
         });
-        window.section = 1;
-        window.scrolling = 0;
-        function initdetailView() {
+
+        function initDetailView() {
             $('#timeline').delay(500).animate({
-                    "margin-top": "8%",
+                    "margin-top": "6%",
                     "opacity": "1"
                 },
-                500, function() {
+                600, 'easeOutCubic', function() {
                     /* stuff to do after animation is complete */
                 });
+            window.section = 1;
+            window.scrolling = 0;
+            $('#order' + window.section).addClass('current');
+            $('#flag li').click(function(event) {
+                target = $(this).index() + 1;
+                if (target > window.section) {
+                    scrollDown();
+                }
+                if (target < window.section) {
+                    scrollUp();
+                }
+            });
         }
         $(window).mousewheel(function(event) {
             event.preventDefault();
-            if (window.scrolling === 0) {
-                window.scrolling = 1;
-                if (event.deltaY == -1) {
-                    if ((++window.section) > 4) {
-                        window.section = 4;
-                    }
-                    var scrollTo = $('#section' + window.section).offset().top;
-                    $('html,body').animate({
-                        "scrollTop": scrollTo
-                    }, 700, function() {
-                        if (window.section == 3) {
-                            $('#sdi').animate({
-                                    "opacity": "1",
-                                    "margin-top": "8%"
-                                },
-                                600, function() {
-                                    /* stuff to do after animation is complete */
-                                });
-                        }
-                        window.scrolling = 0;
-                    });
-                };
-                if (event.deltaY == 1) {
-                    if ((--window.section) < 1) {
-                        window.section = 1;
-                    }
-                    var scrollTo = $('#section' + window.section).offset().top;
-                    $('html,body').animate({
-                        "scrollTop": scrollTo
-                    }, 700, function() {
-                        window.scrolling = 0;
-                    });
-                }
+            if (event.deltaY == -1) {
+                scrollDown();
+            };
+            if (event.deltaY == 1) {
+                scrollUp();
             }
         });
     };
+
+    function scrollDown() {
+        if (window.scrolling === 0) {
+            window.scrolling = 1;
+            if ((++window.section) > 4) {
+                window.section = 4;
+            }
+            $('#flag li').removeClass('current');
+            $('#order' + window.section).addClass('current');
+            var scrollTo = $('#section' + window.section).offset().top;
+            $('html,body').animate({
+                "scrollTop": scrollTo
+            }, 1000, 'easeOutCubic', function() {
+                switch (window.section) {
+                    //scroll down animation
+                    case 2:
+                        $('#timeline').css({
+                            "opacity": "0",
+                            "margin-top": "10%"
+                        });
+                        break;
+                    case 3:
+                        $('#sdi').animate({
+                            "opacity": "1",
+                            "margin-top": "8%"
+                        }, 600, 'easeOutCubic', function() {
+                            /* stuff to do after animation is complete */
+                        });
+                        break;
+                    case 4:
+                        $('#uyan_frame').animate({
+                                "opacity": "1",
+                                "margin-top": "3%"
+                            },
+                            600, 'easeOutCubic', function() {
+                                /* stuff to do after animation is complete */
+                            });
+                        $('#sdi').css({
+                            "opacity": "0",
+                            "margin-top": "10%"
+                        });
+                        break;
+                }
+                window.scrolling = 0;
+            });
+        };
+    };
+
+    function scrollUp() {
+        if (window.scrolling === 0) {
+            if ((--window.section) < 1) {
+                window.section = 1;
+            }
+            $('#flag li').removeClass('current');
+            $('#order' + window.section).addClass('current');
+            var scrollTo = $('#section' + window.section).offset().top;
+            $('html,body').animate({
+                "scrollTop": scrollTo
+            }, 1000, 'easeOutCubic', function() {
+                switch (window.section) {
+                    //scroll up animation
+                    case 1:
+                        $('#timeline').animate({
+                                "margin-top": "6%",
+                                "opacity": "1"
+                            },
+                            600, 'easeOutCubic', function() {
+                                /* stuff to do after animation is complete */
+                            });
+                        break;
+                    case 3:
+                        $('#sdi').animate({
+                            "opacity": "1",
+                            "margin-top": "8%"
+                        }, 400, 'easeOutCubic', function() {
+                            /* stuff to do after animation is complete */
+                        });
+                        break;
+                }
+                window.scrolling = 0;
+            });
+        };
+    };
+
     $(window).on('hashchange', function() {
         var hash = window.location.hash;
         if (hash == '#detail') {
@@ -246,14 +310,3 @@ $(function() {
         }
     });
 });
-/*
-function showSloagn(sloganID){
-  $('#slogan' + sloganID).animate({'top': '30%'}, 250, function() {
-    if((++sloganID) <= 4){
-      showSloagn(sloganID);
-    }
-    else{
-      showPoint(1);
-    }
-  });
-}*/

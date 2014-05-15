@@ -1,26 +1,36 @@
 <div id="detail">
+	<div id="flag">
+		<ul>
+			<li id="order1"></li>
+			<li id="order2"></li>
+			<li id="order3"></li>
+			<li id="order4"></li>
+		</ul>
+	</div>
 	<section id="section1">
 		<p id="timeline_text">招生时间线 //</p>
+		<hr/>
 		<div id="timeline">
-			<div class="timepoint" id="timepoint1"><p>设创<br/>Woo展<br/>4.12</p></div><div class="line" id="line1"></div>
-			<div class="timepoint" id="timepoint2"><p>线上<br/>宣传启动<br/>5.12</p></div><div class="line" id="line2"></div>
-			<div class="timepoint" id="timepoint3"><p>文广<br/>现场宣传<br/>5.18</p></div><div class="line" id="line3"></div>
-			<div class="timepoint" id="timepoint4"><p>发放<br/>报名表<br/>5.18</p></div><div class="line" id="line4"></div>
-			<div class="timepoint" id="timepoint5"><p>回收<br/>报名表<br/>5.27</p></div><div class="line" id="line5"></div>
-			<div class="timepoint" id="timepoint6"><p>进行<br/>workshop<br/>6.1</p></div><div class="line" id="line6"></div>
-			<div class="timepoint" id="timepoint7"><p>最终<br/>面试环节<br/>6.7</p></div>
+			<div class="timepoint" id="timepoint1"><p>报名表<br/>发布<br/>5.16</p></div><div class="line" id="line1"></div>
+			<div class="timepoint" id="timepoint2"><p>宣传片<br/>发布<br/>5.20</p></div><div class="line" id="line2"></div>
+			<div class="timepoint" id="timepoint3"><p>文广<br/>现宣<br/>5.21</p></div><div class="line" id="line3"></div>
+			<div class="timepoint" id="timepoint4"><p>招生<br/>宣讲会<br/>5.23</p></div><div class="line" id="line4"></div>
+			<div class="timepoint" id="timepoint5"><p>报名表<br/>回收<br/>5.27</p></div><div class="line" id="line5"></div>
+			<div class="timepoint" id="timepoint6"><p>进行<br/>workshop<br/>6.1-6.7</p></div>
 		</div>
 	</section>
 	<section id="section2">
 		<p id="video_text">招生视频先行版 //</p>
+		<hr/>
 		<div id="jwvideo">正在加载视频...</div>
 	</section>
 	<section id="section3">
 		<p id="intro_text">关于设创 //</p>
+		<hr/>
 		<img id="sdi" src="img/sdi.svg">
 	</section>
 	<section id="section4">
-		<p id="comment_text">有什么想说的 ?</p>
+		<p id="comment_text">说点什么?</p>
 		<hr/>
 		<!-- UY BEGIN -->
 		<div id="uyan_frame">
@@ -30,3 +40,9 @@
 	</section>
 
 </div>
+<style>
+    .uyan_cmt_utname{color: #D0D0D0}
+    .uyan_cmt_txt{color: #D0D0D0}
+    .uyan_cmt_exp div{color: #D0D0D0}
+    .uyan_cmt_exp a{color: #D0D0D0}
+</style>

@@ -33,13 +33,11 @@
 		</div>
 	</div>
 
-	<div class="point" id="point1"><p class="entry">設創Woo展</p></div>
-	<div class="point" id="point2"><p class="entry">設創Woo展</p></div>
-	<div class="point" id="point3"><p class="entry">設創Woo展</p></div>
-	<div class="point" id="point4"><p class="entry">設創Woo展</p></div>
-	<div class="point" id="point5"><p class="entry">設創Woo展</p></div>
+	<div class="point" id="point1"><p class="entry">招生<br/>时间线</p></div>
+	<div class="point" id="point2"><p class="entry">先行版<br/>视频</p></div>
+	<div class="point" id="point3"><p class="entry">关于<br/>设创</p></div>
+	<div class="point" id="point4"><p class="entry">想说<br/>什么</p></div>
 
-	<canvas id="canvas"></canvas>
 </div>
 <script src="js/plugin.js"></script>
 <script src="js/script.js"></script>
