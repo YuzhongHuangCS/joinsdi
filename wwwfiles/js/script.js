@@ -3,36 +3,18 @@ $(function() {
         //change stripes_done's size
         var space = document.body.scrollHeight - $('#stripes_done').height();
         $('#stripes_done').css('top', space / 2);
-    });
-    window.anchor = [{}, {
-        "id": "1",
-        "hash": "#timeline"
-    }, {
-        "id": "2",
-        "hash": "#video"
-    }, {
-        "id": "3",
-        "hash": "#about"
-    }, {
-        "id": "4",
-        "hash": "#comment"
-    }];
+    })
     $(window).on('load hashchange', function(event) {
         //mini route
-        switch (window.location.hash) {
-            case '#timeline':;
-            case '#video':;
-            case '#about':;
-            case '#comment':
-                detailController();
-                break;
-            default:
-                if (event.type === 'load') {
-                    indexController();
-                } else {
-                    window.location.hash = '';
-                    location.reload();
-                }
+        if (window.location.hash == '#detail') {
+            detailController()
+        } else {
+            if (event.type === 'load') {
+                indexController();
+            } else {
+                window.location.hash = '';
+                location.reload();
+            }
         }
     });
 
@@ -54,6 +36,7 @@ $(function() {
                 $img.replaceWith($svg);
             });
         });
+
         //switch the stripe
         setTimeout(function() {
             $('#stripes_done').fadeIn(2000);
@@ -62,7 +45,7 @@ $(function() {
         //show slogan
         $('#sloagns').animate({
             "top": "15%"
-        }, 'normal', function() {
+        }, 500, function() {
             //show five point
             showPoint(1);
         });
@@ -80,7 +63,7 @@ $(function() {
 
             /** the angle and the direction from where the mouse came in/went out clockwise (TRBL=0123);**/
             /** first calculate the angle of the point, add 180 deg to get rid of the negative values divide by 90 to get the quadrant
-		add 3 and do a modulo by 4  to shift the quadrants to a proper clockwise TRBL (top/right/bottom/left) **/
+        add 3 and do a modulo by 4  to shift the quadrants to a proper clockwise TRBL (top/right/bottom/left) **/
             var direction = Math.round((((Math.atan2(y, x) * (180 / Math.PI)) + 180) / 90) + 3) % 4;
 
             /** do your animations here **/
@@ -123,7 +106,7 @@ $(function() {
             "top": "40%",
             "left": "46%"
         }];
-        //show point 
+        //show point TimeFunction
 
         function showPoint(pointID) {
             var point = points[pointID];
@@ -141,7 +124,7 @@ $(function() {
             });
         };
         //point hover
-        $('.point').mouseenter(function(event) {
+        $('.point').on('mouseenter', function(event) {
             $(this).animate({
                 "width": "4.8rem",
                 "height": "4.8rem",
@@ -151,7 +134,7 @@ $(function() {
             }, 'normal');
             $(this).children('p').fadeIn('fast');
         });
-        $('.point').mouseleave(function(event) {
+        $('.point').on('mouseleave', function(event) {
             $(this).children('.entry').fadeOut('fast', function() {
                 $(this).parent().animate({
                     "width": "1.6rem",
@@ -161,20 +144,22 @@ $(function() {
                     "margin-top": "0"
                 }, 'normal');
             });
+
         });
-        //point click
-        $('.point').click(function() {
-            location.href = $(this).attr('hash');
-        })
+        //loadDetailPage
+        $('.point').on('click', function(event) {
+            window.location.hash = '#detail';
+        });
     };
 
     function detailController() {
         $('.point').off('click mouseleave mouseenter');
         $('#index').css('overflow', 'visible');
         $('.point').css('cursor', 'auto');
-        $('#point1').css('z-index', '50');
-        $('#index').css('overflow', 'visible');
         $('#nav').hide();
+        $('.point').css({
+            'cursor': 'auto'
+        });
         var target = $('#point1');
         $.get('detail.html', function(data) {
             target.html(data);
@@ -184,6 +169,7 @@ $(function() {
             "left": 0,
             "width": "100%",
             "height": "500%",
+            "z-index": "50",
             "margin-top": "0",
             "margin-left": "0"
         }, 'normal', function() {
@@ -210,20 +196,14 @@ $(function() {
                 });
             window.section = 1;
             window.scrolling = 0;
-
-            if (sectionID >= window.section) {
-                window.scrolling = 1;
-                window.section = sectionID;
-                $('#order' + window.section).addClass('current');
-                var scrollTo = $('#section' + window.section).offset().top;
-                $('html,body').animate({
-                    "scrollTop": scrollTo
-                }, 1000, 'easeOutCubic', function() {
-                    scrollDownControl();
-                    window.scrolling = 0;
+            $('#order' + window.section).addClass('current');
+            $('#timeline').animate({
+                    "margin-top": "6%",
+                    "opacity": "1"
+                },
+                600, 'easeOutCubic', function() {
+                    /* stuff to do after animation is complete */
                 });
-            }
-
             $('#flag li').click(function(event) {
                 target = $(this).index() + 1;
                 if (target > window.section) {
@@ -242,97 +222,100 @@ $(function() {
             if (event.deltaY == 1) {
                 scrollUp();
             }
+        });　　
+        $(document).keydown(function(event) {　　
+            //event.preventDefault();
+            var downArray = [32, 34, 39, 40];
+            var upArray = [33, 37, 38];　　
+            if ($.inArray(event.keyCode, downArray) != -1) {
+                scrollDown(); 
+            };
+            if ($.inArray(event.keyCode, upArray) != -1) {
+                scrollUp();
+            };
         });
     };
 
     function scrollDown() {
         if (window.scrolling === 0) {
             window.scrolling = 1;
+            if ((++window.section) > 4) {
+                window.section = 4;
+            }
             $('#flag li').removeClass('current');
             $('#order' + window.section).addClass('current');
-            var scrollTo = $('#section' + (1 + window.section)).offset().top;
+            var scrollTo = $('#section' + window.section).offset().top;
             $('html,body').animate({
                 "scrollTop": scrollTo
             }, 1000, 'easeOutCubic', function() {
-                scrollDownControl();
-                if ((++window.section) >= 4) {
-                    window.section = 4;
+                switch (window.section) {
+                    //scroll down animation
+                    case 2:
+                        $('#timeline').css({
+                            "opacity": "0",
+                            "margin-top": "10%"
+                        });
+                        break;
+                    case 3:
+                        $('#sdi').animate({
+                            "opacity": "1",
+                            "margin-top": "8%"
+                        }, 600, 'easeOutCubic', function() {
+                            /* stuff to do after animation is complete */
+                        });
+                        break;
+                    case 4:
+                        $('#uyan_frame').animate({
+                                "opacity": "1",
+                                "margin-top": "3%"
+                            },
+                            600, 'easeOutCubic', function() {
+                                /* stuff to do after animation is complete */
+                            });
+                        $('#sdi').css({
+                            "opacity": "0",
+                            "margin-top": "10%"
+                        });
+                        break;
                 }
+                window.scrolling = 0;
             });
         };
     };
-
-    function scrollDownControl() {
-        switch (window.section) {
-            //scroll down animation
-            case 2:
-                $('#timeline').css({
-                    "opacity": "0",
-                    "margin-top": "10%"
-                });
-                break;
-            case 3:
-                $('#sdi').animate({
-                    "opacity": "1",
-                    "margin-top": "8%"
-                }, 600, 'easeOutCubic', function() {
-                    /* stuff to do after animation is complete */
-                });
-                break;
-            case 4:
-                $('#uyan_frame').animate({
-                        "opacity": "1",
-                        "margin-top": "3%"
-                    },
-                    600, 'easeOutCubic', function() {
-                        /* stuff to do after animation is complete */
-                    });
-                $('#sdi').css({
-                    "opacity": "0",
-                    "margin-top": "10%"
-                });
-                break;
-        }
-        window.scrolling = 0;
-    }
 
     function scrollUp() {
         if (window.scrolling === 0) {
+            if ((--window.section) < 1) {
+                window.section = 1;
+            }
             $('#flag li').removeClass('current');
             $('#order' + window.section).addClass('current');
-            var scrollTo = $('#section' + (window.section - 1)).offset().top;
+            var scrollTo = $('#section' + window.section).offset().top;
             $('html,body').animate({
                 "scrollTop": scrollTo
             }, 1000, 'easeOutCubic', function() {
-                scrollUpControl();
-                if ((--window.section) <= 1) {
-                    window.section = 1;
+                switch (window.section) {
+                    //scroll up animation
+                    case 1:
+                        $('#timeline').animate({
+                                "margin-top": "6%",
+                                "opacity": "1"
+                            },
+                            600, 'easeOutCubic', function() {
+                                /* stuff to do after animation is complete */
+                            });
+                        break;
+                    case 3:
+                        $('#sdi').animate({
+                            "opacity": "1",
+                            "margin-top": "8%"
+                        }, 400, 'easeOutCubic', function() {
+                            /* stuff to do after animation is complete */
+                        });
+                        break;
                 }
+                window.scrolling = 0;
             });
         };
     };
-
-    function scrollUpControl() {
-        switch (window.section) {
-            //scroll up animation
-            case 1:
-                $('#timeline').animate({
-                        "margin-top": "6%",
-                        "opacity": "1"
-                    },
-                    600, 'easeOutCubic', function() {
-                        /* stuff to do after animation is complete */
-                    });
-                break;
-            case 3:
-                $('#sdi').animate({
-                    "opacity": "1",
-                    "margin-top": "8%"
-                }, 400, 'easeOutCubic', function() {
-                    /* stuff to do after animation is complete */
-                });
-                break;
-        }
-        window.scrolling = 0;
-    }
 });
