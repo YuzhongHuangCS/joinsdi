@@ -25,11 +25,11 @@
 	<img id="stripes_done" src="img/stripes_done.png" />
 
 	<div id="updown">
-		<div id="download">
-			<a href="download">下载报名表</a>
+		<div id="download" onclick="download()">
+			<a>下载报名表</a>
 		</div>
-		<div id="upload">
-			<a onclick="upload()">报名表回收</a>
+		<div id="upload" onclick="upload()">
+			<a>报名表回收</a>
 		</div>
 	</div>
 
@@ -38,6 +38,7 @@
 	<div class="point" id="point3" hash="#about"><p class="entry">关于<br/>设创</p></div>
 	<div class="point" id="point4" hash="#comment"><p class="entry">想说<br/>什么</p></div>
 
+	<div id="myalert"></div>
 </div>
 <script src="js/plugin.js"></script>
 <script src="js/script.js"></script>

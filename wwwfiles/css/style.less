@@ -3,11 +3,11 @@
     src: url('../font/FZZhengHeiS-M-GB.woff') format('woff'),
 }
 @green: #21EEAC;
-@red: #F8269D;
-@blue: #46d8d6;
+ @red: #F8269D;
+ @blue: #46d8d6;
  ::selection {
     color: #FFF;
-    background: @red;
+    background: @blue;
 }
 ::-webkit-scrollbar-track-piece {
     background-color: #EEE;
@@ -198,13 +198,32 @@ html, body {
         background-color: #000;
         cursor: pointer;
         z-index: 25;
-        .entry{
+        .entry {
             display: none;
             font-size: 1.2rem;
             color: #FFF;
             margin-top: 1rem;
             text-align: center;
         }
+    }
+    #myalert{
+        position: absolute;
+        top: 32%;
+        margin-left: 30%;
+        width: 30%;
+        height: 25%;
+        background-color: #333;
+        opacity: 0.9;
+        border-radius: 1rem;
+        color: #FFF;
+        display: none;
+        font-size: 1.6rem;
+        padding: 2rem;
+        z-index: 30;
+        text-align: center;
+        padding-top: 6rem;
+        line-height: 3rem;
+        letter-spacing: 0.2rem;
     }
 }
 #detail {
@@ -332,11 +351,12 @@ html, body {
             font-size: 2.5rem;
             letter-spacing: 0.05rem;
         }
-        #uyan_frame {
+        .ds-thread {
             margin: 5% 0 0 8%;
             padding: 1rem;
             width: 82%;
-            opacity: 0;
+            opacity: 1;
+            background-color: #EEE;
         }
     }
 }

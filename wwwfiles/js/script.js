@@ -228,7 +228,7 @@ $(function() {
             var downArray = [32, 34, 39, 40];
             var upArray = [33, 37, 38];　　
             if ($.inArray(event.keyCode, downArray) != -1) {
-                scrollDown(); 
+                scrollDown();
             };
             if ($.inArray(event.keyCode, upArray) != -1) {
                 scrollUp();
@@ -265,7 +265,7 @@ $(function() {
                         });
                         break;
                     case 4:
-                        $('#uyan_frame').animate({
+                        $('.ds-threa').animate({
                                 "opacity": "1",
                                 "margin-top": "3%"
                             },
@@ -319,3 +319,46 @@ $(function() {
         };
     };
 });
+
+function currentTime() {
+    var d = new Date(),
+        str = '';
+    str += d.getFullYear() + '年';
+    str += d.getMonth() + '月';
+    str += d.getDate() + '日';
+    str += d.getHours() + '时';
+    str += d.getMinutes() + '分';
+    str += d.getSeconds() + '秒';
+    return str;
+}
+//setInterval(function(){$('#myalert').html(currentTime)},1000);
+
+function download() {
+    $('#myalert').fadeIn();
+    var d = new Date();
+    if ((d.getFullYear() === 2014) && (d.getMonth() >= 2) && (d.getDate() >= 16) && (d.getHours() > 12)) {
+        window.location.href = 'download';
+    } else {
+        handle = setInterval(function() {
+            var hour, miniute, second, string;
+            d = new Date();
+            hour = 11 - d.getHours();
+            miniute = 60 - d.getMinutes();
+            second = 60 - d.getSeconds();
+            string = '设创与你的距离<br/><span style="color: #21EEAC">' + hour + '</span>小时<span style="color: #46d8d6">' + miniute + '</span>分钟<span style="color: #F8269D">' + second + '</span>秒';
+            $('#myalert').html(string);
+        }, 1000)
+    }
+    $('#myalert').click(function(event) {
+        $('#myalert').fadeOut();
+        clearInterval(handle);
+    });
+}
+
+function upload() {
+    $('#myalert').fadeIn();
+    $('#myalert').html('你不会这么快就填好了表了吧<br/>慢慢来,别急');
+    $('#myalert').click(function(event) {
+        $('#myalert').fadeOut();
+    });
+}
