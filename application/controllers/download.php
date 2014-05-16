@@ -7,7 +7,6 @@ class download extends CI_Controller {
 		$this->load->library('user_agent');
 		$this->load->library('encrypt');
 		$this->load->helper('cookie');
-		$this->load->helper('download');
 
 		$rawCookie = $this->input->cookie('vistorID', TRUE);
 		$vistorID = $this->encrypt->decode($rawCookie);
@@ -27,8 +26,6 @@ class download extends CI_Controller {
 			$this->input->set_cookie($cookie);
 		}
 
-		$data = file_get_contents('paper/application.docx');
-		$name = '设计创新班2014年招生报名表.docx';
-		force_download($name, $data);
+		header('Location: http://www.idi.zju.edu.cn/joinsdi/paper/%E8%AE%BE%E8%AE%A1%E5%88%9B%E6%96%B0%E7%8F%AD2014%E5%B9%B4%E6%8B%9B%E7%94%9F%E6%8A%A5%E5%90%8D%E8%A1%A8.docx'); 
 	}
 }

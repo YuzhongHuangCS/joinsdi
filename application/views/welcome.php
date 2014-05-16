@@ -25,7 +25,7 @@
 	<img id="stripes_done" src="img/stripes_done.png" />
 
 	<div id="updown">
-		<div id="download" onclick="download()">
+		<div id="download" onclick="location.href='download'">
 			<a>下载报名表</a>
 		</div>
 		<div id="upload" onclick="upload()">

@@ -1,4 +1,4 @@
 RewriteEngine on
 RewriteCond $1 !^(index\.php|images|robots\.txt|detail\.html)
-RewriteCond %{REQUEST_URI} !\.(css|gif|ico|jpg|js|png|swf|txt|woff|ttf|f4v|svg)
+RewriteCond %{REQUEST_URI} !\.(css|gif|ico|jpg|js|png|swf|txt|woff|ttf|f4v|svg|docx)
 RewriteRule ^(.*)$ /joinus/index.php/$1 [L]

@@ -214,17 +214,29 @@ $(function() {
                 }
             });
         }
-        $(window).mousewheel(function(event) {
+        $(window).mousewheel(function scrollAction(event) {
             event.preventDefault();
             if (event.deltaY == -1) {
                 scrollDown();
-            };
+                if(window.section == 4){
+                    $('#timeline').css({
+                        "margin-top": "6%",
+                        "opacity": "1"
+                    });
+                    $('#sdi').css({
+                        "opacity": "1",
+                        "margin-top": "8%"
+                    });
+                    $(window).off('mousewheel');
+                }
+            }
             if (event.deltaY == 1) {
                 scrollUp();
             }
-        });　　
+        });
+
         $(document).keydown(function(event) {　　
-            //event.preventDefault();
+
             var downArray = [32, 34, 39, 40];
             var upArray = [33, 37, 38];　　
             if ($.inArray(event.keyCode, downArray) != -1) {
@@ -260,22 +272,16 @@ $(function() {
                         $('#sdi').animate({
                             "opacity": "1",
                             "margin-top": "8%"
-                        }, 600, 'easeOutCubic', function() {
-                            /* stuff to do after animation is complete */
-                        });
+                        }, 600, 'easeOutCubic');
                         break;
                     case 4:
-                        $('.ds-threa').animate({
+                        $('.ds-thread').animate({
                                 "opacity": "1",
                                 "margin-top": "3%"
                             },
                             600, 'easeOutCubic', function() {
                                 /* stuff to do after animation is complete */
                             });
-                        $('#sdi').css({
-                            "opacity": "0",
-                            "margin-top": "10%"
-                        });
                         break;
                 }
                 window.scrolling = 0;
@@ -285,6 +291,7 @@ $(function() {
 
     function scrollUp() {
         if (window.scrolling === 0) {
+            window.scrolling = 1;
             if ((--window.section) < 1) {
                 window.section = 1;
             }
@@ -319,41 +326,6 @@ $(function() {
         };
     };
 });
-
-function currentTime() {
-    var d = new Date(),
-        str = '';
-    str += d.getFullYear() + '年';
-    str += d.getMonth() + '月';
-    str += d.getDate() + '日';
-    str += d.getHours() + '时';
-    str += d.getMinutes() + '分';
-    str += d.getSeconds() + '秒';
-    return str;
-}
-//setInterval(function(){$('#myalert').html(currentTime)},1000);
-
-function download() {
-    $('#myalert').fadeIn();
-    var d = new Date();
-    if ((d.getFullYear() === 2014) && (d.getMonth() >= 2) && (d.getDate() >= 16) && (d.getHours() > 12)) {
-        window.location.href = 'download';
-    } else {
-        handle = setInterval(function() {
-            var hour, miniute, second, string;
-            d = new Date();
-            hour = 11 - d.getHours();
-            miniute = 60 - d.getMinutes();
-            second = 60 - d.getSeconds();
-            string = '设创与你的距离<br/><span style="color: #21EEAC">' + hour + '</span>小时<span style="color: #46d8d6">' + miniute + '</span>分钟<span style="color: #F8269D">' + second + '</span>秒';
-            $('#myalert').html(string);
-        }, 1000)
-    }
-    $('#myalert').click(function(event) {
-        $('#myalert').fadeOut();
-        clearInterval(handle);
-    });
-}
 
 function upload() {
     $('#myalert').fadeIn();

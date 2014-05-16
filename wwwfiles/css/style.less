@@ -231,7 +231,7 @@ html, body {
     height: 100%;
     section {
         width: 100%;
-        height: 25%;
+        min-height: 25%;
     }
     hr {
         margin: 0 0 0 8%;
@@ -264,39 +264,41 @@ html, body {
             margin: 0 0 0 8%;
             padding-top: 12%;
             color: #FFF;
-            font-size: 2.5rem;
-            letter-spacing: 0.05rem;
+            font-size: 2.5vw;
+            letter-spacing: 0.05vw;
         }
         #timeline {
             margin: 8% auto 0;
-            width: 80%;
+            width: 90%;
             opacity: 0;
             text-align: center;
             .timepoint {
                 display: inline-block;
-                width: 7rem;
-                height: 7rem;
+                width: 8vw;
+                height: 8vw;
                 background-color: #FFF;
-                border-radius: 3.5rem;
+                border-radius: 4vw;
                 cursor: pointer;
                 vertical-align: middle;
                 transition: box-shadow 0.8s;
                 p {
-                    font-size: 1.2rem;
+                    font-size: 1.25vw;
                     color: #111;
-                    margin-top: 1.25rem;
-                    line-height: 1.5rem;
+                    margin-top: 1.5vw;
+                    line-height: 1.8vw;
+                    text-align: center;
+                    white-space: 0.2vw;
                 }
                 &:hover {
-                    box-shadow: 0 0 4rem rgba(255, 255, 255, 0.5);
+                    box-shadow: 0 0 4vw rgba(255, 255, 255, 0.5);
                 }
             }
             .line {
-                margin-right: -8px;
+                margin: 0 -1vw;
                 display: inline-block;
                 vertical-align: middle;
-                width: 5rem;
-                height: 0.15rem;
+                width: 6vw;
+                height: 0.15vw;
                 background-color: #FFF;
             }
         }
@@ -315,18 +317,18 @@ html, body {
             letter-spacing: 0.05rem;
         }
         #jwvideo {
-            margin: 4% auto 0;
+            margin: 8% auto 0;
             width: 100%;
             height: 100%;
             border-radius: 0.3125rem;
             padding: 1rem;
             box-shadow: 0 0 4rem rgba(255, 255, 255, 0.4);
-            opacity: 1;
         }
     }
     #section3 {
         background: url(../img/detail3.jpg) no-repeat fixed top;
         background-size: 100% 100%;
+        height: 25%;
         #intro_text {
             margin: 0 0 0 8%;
             padding-top: 5%;
@@ -343,7 +345,7 @@ html, body {
     }
     #section4 {
         background: url(../img/detail4.jpg) no-repeat fixed center;
-        background-size: 100% 100%;
+        background-size: cover;
         #comment_text {
             margin: 0 0 0 8%;
             padding-top: 5%;
@@ -355,7 +357,7 @@ html, body {
             margin: 5% 0 0 8%;
             padding: 1rem;
             width: 82%;
-            opacity: 1;
+            opacity: 0;
             background-color: #EEE;
         }
     }
