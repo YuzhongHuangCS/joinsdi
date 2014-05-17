@@ -26,6 +26,6 @@ class download extends CI_Controller {
 			$this->input->set_cookie($cookie);
 		}
 
-		header('Location: http://www.idi.zju.edu.cn/joinsdi/paper/%E8%AE%BE%E8%AE%A1%E5%88%9B%E6%96%B0%E7%8F%AD2014%E5%B9%B4%E6%8B%9B%E7%94%9F%E6%8A%A5%E5%90%8D%E8%A1%A8.docx'); 
+		header('Location: http://www.idi.zju.edu.cn/joinsdi/paper/2013级设计创新班招生报名表.docx'); 
 	}
 }

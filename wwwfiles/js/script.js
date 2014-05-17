@@ -329,7 +329,7 @@ $(function() {
 
 function upload() {
     $('#myalert').fadeIn();
-    $('#myalert').html('你不会这么快就填好了表了吧<br/>慢慢来,别急');
+    $('#myalert').html('你不会这么快就填好表了吧<br/>慢慢来,别急');
     $('#myalert').click(function(event) {
         $('#myalert').fadeOut();
     });
