@@ -328,7 +328,11 @@ $(function() {
 });
 
 function upload() {
-    $('#myalert').fadeIn();
+    $('#myalert').fadeIn('normal', function(){
+        setTimeout(function(){
+            $('#myalert').fadeOut(1250);
+        }, 3000);
+    });
     $('#myalert').html('你不会这么快就填好表了吧<br/>慢慢来,别急');
     $('#myalert').click(function(event) {
         $('#myalert').fadeOut();
