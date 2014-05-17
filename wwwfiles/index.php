@@ -56,7 +56,7 @@ if (defined('ENVIRONMENT'))
  * as this file.
  *
  */
-	$system_path = '/srv/www/joinus/system';
+	$system_path = '/home/joinus/system';
 
 /*
  *---------------------------------------------------------------
@@ -72,7 +72,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = '/srv/www/joinus/application';
+	$application_folder = '/home/joinus/application';
 
 /*
  * --------------------------------------------------------------------
