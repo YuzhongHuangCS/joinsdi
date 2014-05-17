@@ -225,7 +225,7 @@ $(function() {
                     });
                     $('#sdi').css({
                         "opacity": "1",
-                        "margin-top": "8%"
+                        "margin-top": "3%"
                     });
                     $(window).off('mousewheel');
                 }
@@ -271,7 +271,7 @@ $(function() {
                     case 3:
                         $('#sdi').animate({
                             "opacity": "1",
-                            "margin-top": "8%"
+                            "margin-top": "3%"
                         }, 600, 'easeOutCubic');
                         break;
                     case 4:
@@ -315,7 +315,7 @@ $(function() {
                     case 3:
                         $('#sdi').animate({
                             "opacity": "1",
-                            "margin-top": "8%"
+                            "margin-top": "3%"
                         }, 400, 'easeOutCubic', function() {
                             /* stuff to do after animation is complete */
                         });
@@ -333,7 +333,7 @@ function upload() {
             $('#myalert').fadeOut(1250);
         }, 3000);
     });
-    $('#myalert').html('你不会这么快就填好表了吧<br/>慢慢来,别急');
+    $('#myalert').html('你不会这么快就填好表了吧<br/>慢慢来，别急');
     $('#myalert').click(function(event) {
         $('#myalert').fadeOut();
     });
