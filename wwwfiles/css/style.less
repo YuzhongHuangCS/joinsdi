@@ -9,14 +9,8 @@
     color: #FFF;
     background: @blue;
 }
-::-webkit-scrollbar-track-piece {
-    background-color: #EEE;
-}
 ::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-thumb {
-    background:#999;
+    width: 0;
 }
 html, body {
     height: 100%;
@@ -42,12 +36,12 @@ html, body {
     #sloagns {
         position: absolute;
         top: -30%;
+        width: 100%;
         margin-left: 6%;
-        z-index: 10;
         img {
-            width: 10vw;
-            height: 10vw;
-            margin-right: 2.5vw;
+            width: 10%;
+            height: 10%;
+            margin-right: 2%;
             vertical-align: top;
             transition: all 0.1s;
         }
@@ -70,13 +64,43 @@ html, body {
         }
         #layer1 {
             -webkit-animation: layer1 4s ease-in-out 0;
+            -moz-animation: layer1 4s ease-in-out 0;
+            -o-animation: layer1 4s ease-in-out 0;
+            -ms-animation: layer1 4s ease-in-out 0;
             animation: layer1 4s ease-in-out 0;
         }
         #layer2 {
             -webkit-animation: layer2 3s ease-in-out 0;
+            -moz-animation: layer2 3s ease-in-out 0;
+            -o-animation: layer2 3s ease-in-out 0;
+            -ms-animation: layer2 3s ease-in-out 0;
             animation: layer2 3s ease-in-out 0;
         }
         @-webkit-keyframes layer1 {
+            0% {
+                stroke-dashoffset: 500;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        @-moz-keyframes layer1 {
+            0% {
+                stroke-dashoffset: 500;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        @-o-keyframes layer1 {
+            0% {
+                stroke-dashoffset: 500;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        @-ms-keyframes layer1 {
             0% {
                 stroke-dashoffset: 500;
             }
@@ -96,6 +120,48 @@ html, body {
             }
         }
         @-webkit-keyframes layer2 {
+            0% {
+                stroke-dashoffset: 100;
+                opacity: 0;
+            }
+            20% {
+                stroke-dashoffset: 100;
+                opacity: 0;
+            }
+            100% {
+                stroke-dashoffset: 0;
+                opacity: 1;
+            }
+        }
+        @-moz-keyframes layer2 {
+            0% {
+                stroke-dashoffset: 100;
+                opacity: 0;
+            }
+            20% {
+                stroke-dashoffset: 100;
+                opacity: 0;
+            }
+            100% {
+                stroke-dashoffset: 0;
+                opacity: 1;
+            }
+        }
+        @-o-keyframes layer2 {
+            0% {
+                stroke-dashoffset: 100;
+                opacity: 0;
+            }
+            20% {
+                stroke-dashoffset: 100;
+                opacity: 0;
+            }
+            100% {
+                stroke-dashoffset: 0;
+                opacity: 1;
+            }
+        }
+        @-ms-keyframes layer2 {
             0% {
                 stroke-dashoffset: 100;
                 opacity: 0;
@@ -198,7 +264,6 @@ html, body {
         border-radius: 0.8rem;
         background-color: #000;
         cursor: pointer;
-        z-index: 25;
         .entry {
             display: none;
             font-size: 1.2rem;
@@ -223,7 +288,7 @@ html, body {
         text-align: center;
         line-height: 3vw;
         letter-spacing: 0.2vw;
-        z-index: 30;
+        z-index: 25;
         cursor: pointer;
     }
 }
