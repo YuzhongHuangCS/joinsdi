@@ -21,7 +21,7 @@
 		<img id="slogan3" class="slogan" src="img/3.svg" />
 		<img id="slogan4" class="slogan" src="img/4.svg" />
 	</div>
-	<img id="stripes"/>
+	<img id="stripes" class="svg" src="img/stripes.svg" />
 	<img id="stripes_done" src="img/stripes_done.png" />
 
 	<div id="updown">
