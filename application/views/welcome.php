@@ -25,12 +25,12 @@
 	<img id="stripes_done" src="img/stripes_done.png" />
 
 	<div id="updown">
-		<div id="download" onclick="location.href='download'">
-			<a>下载报名表</a>
-		</div>
-		<div id="upload" onclick="upload()">
-			<a>报名表回收</a>
-		</div>
+		<a id="download" href="download">
+			<p>下载报名表</p>
+		</a>
+		<a id="upload" onclick="upload()">
+			<p>报名表回收</p>
+		</a>
 	</div>
 
 	<div class="point" id="point1" hash="#timeline"><p class="entry">招生<br/>时间线</p></div>
