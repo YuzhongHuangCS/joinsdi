@@ -171,9 +171,6 @@ $(function() {
         $('#index').css('overflow', 'visible');
         $('.point').css('cursor', 'auto');
         $('#nav').hide();
-        $('.point').css({
-            'cursor': 'auto'
-        });
 
         var target = $('#point1');
         if (typeof window.detailData === 'undefined') {
@@ -184,12 +181,14 @@ $(function() {
         } else{
             target.html(window.detailData);
         }
+        $('#point1').css({
+            'z-index': '50'
+        });
         $('#point1').animate({
             "top": 0,
             "left": 0,
             "width": "100%",
             "height": "500%",
-            "z-index": "50",
             "margin-top": "0",
             "margin-left": "0"
         }, 'normal', function() {
