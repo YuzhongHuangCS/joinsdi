@@ -12,7 +12,7 @@
 <div id="nav"></div>
 <div id="index">
 	<div id="welcome">
-		<p>2014</p>
+		<p>2013级</p>
 		<p>设创招生进行时</p>
 	</div>
 	<div id="sloagns">
@@ -21,7 +21,7 @@
 		<img id="slogan3" class="slogan" src="img/3.svg" />
 		<img id="slogan4" class="slogan" src="img/4.svg" />
 	</div>
-	<img id="stripes" class="svg" src="img/stripes.svg" />
+	<img id="stripes" />
 	<img id="stripes_done" src="img/stripes_done.png" />
 
 	<div id="updown">

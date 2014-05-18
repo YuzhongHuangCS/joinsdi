@@ -19,22 +19,18 @@ $(function() {
     });
 
     function indexController() {
-        //Replace all SVG images with inline SVG
-        $('img.svg').each(function() {
-            var $img = $(this);
-            var imgID = $img.attr('id');
-            var imgClass = $img.attr('class');
-            var imgStyle = $img.attr('style');
-            var imgURL = $img.attr('src');
-            $.get(imgURL, function(data) {
-                // Get the SVG tag, ignore the rest
-                var $svg = $(data).find('svg');
+        //Replace SVG images with inline SVG
+        var $img = $('#stripes');
+        var imgID = $img.attr('id');
+        var imgStyle = $img.attr('style');
+        var imgURL = 'img/stripes.svg';
+        $.get(imgURL, function(data) {
+            // Get the SVG tag, ignore the rest
+            var $svg = $(data).find('svg');
 
-                $svg.attr('id', imgID);
-                $svg.attr('class', imgClass + ' replaced-svg');
-                $svg.attr('style', imgStyle);
-                $img.replaceWith($svg);
-            });
+            $svg.attr('id', imgID);
+            $svg.attr('style', imgStyle);
+            $img.replaceWith($svg);
         });
 
         //switch the stripe
@@ -95,16 +91,16 @@ $(function() {
         //points data
         var points = [{}, {
             "top": "40%",
-            "left": "9%"
+            "left": "10%"
         }, {
             "top": "40%",
-            "left": "21.5%"
+            "left": "22.5%"
         }, {
             "top": "40%",
-            "left": "33.5%"
+            "left": "34%"
         }, {
             "top": "40%",
-            "left": "46%"
+            "left": "47.5%"
         }];
         //show point TimeFunction
 
@@ -112,12 +108,12 @@ $(function() {
             var point = points[pointID];
 
             $('#point' + pointID).animate({
-                "width": "1.6rem",
-                "height": "1.6rem",
-                "border-radius": "0.8rem",
+                "width": "2vw",
+                "height": "2vw",
+                "border-radius": "1vw",
                 "top": point.top,
                 "left": point.left
-            }, 250, function() {
+            }, 'normal', function() {
                 if ((++pointID) <= 4) {
                     showPoint(pointID);
                 } else {
@@ -136,11 +132,11 @@ $(function() {
         //point hover
         $('.point').on('mouseenter', function(event) {
             $(this).animate({
-                "width": "4.8rem",
-                "height": "4.8rem",
-                "border-radius": "2.4rem",
-                "margin-left": "-1.6rem",
-                "margin-top": "-1.6rem"
+                "width": "6vw",
+                "height": "6vw",
+                "border-radius": "3vw",
+                "margin-left": "-2vw",
+                "margin-top": "-2vw"
             }, 'normal');
             $(this).children('p').fadeIn('fast');
             if (typeof window.detailData === 'undefined') {
@@ -152,9 +148,9 @@ $(function() {
         $('.point').on('mouseleave', function(event) {
             $(this).children('.entry').fadeOut('fast', function() {
                 $(this).parent().animate({
-                    "width": "1.6rem",
-                    "height": "1.6rem",
-                    "border-radius": "0.8rem",
+                    "width": "2vw",
+                    "height": "2vw",
+                    "border-radius": "1vw",
                     "margin-left": "0",
                     "margin-top": "0"
                 }, 'normal');
@@ -178,7 +174,7 @@ $(function() {
                 window.detailData = data;
                 target.html(data);
             });
-        } else{
+        } else {
             target.html(window.detailData);
         }
         $('#point1').css({
