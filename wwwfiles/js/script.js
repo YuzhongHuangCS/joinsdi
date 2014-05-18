@@ -290,7 +290,7 @@ $(function() {
                     case 3:
                         $('#sdi').animate({
                             "opacity": "1",
-                            "margin-top": "3%"
+                            "margin-top": "3vw"
                         }, 600, 'easeOutCubic');
                         break;
                     case 4:
