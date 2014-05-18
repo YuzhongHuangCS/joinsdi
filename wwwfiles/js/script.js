@@ -19,19 +19,24 @@ $(function() {
     });
 
     function indexController() {
+        //Replace all SVG images with inline SVG
+        $('img.svg').each(function() {
+            var $img = $(this);
+            var imgID = $img.attr('id');
+            var imgClass = $img.attr('class');
+            var imgStyle = $img.attr('style');
+            var imgURL = $img.attr('src');
+            $.get(imgURL, function(data) {
+                // Get the SVG tag, ignore the rest
+                var $svg = $(data).find('svg');
 
-        //showStripe
-        var $img = $('#stripes');
-        var imgID = $img.attr('id');
-        var imgStyle = $img.attr('style');
-        var imgURL = 'img/stripes.svg';
-        $.get(imgURL, function(data) {
-            // Get the SVG tag, ignore the rest
-            var $svg = $(data).find('svg');
-            $svg.attr('id', imgID);
-            $svg.attr('style', imgStyle);
-            $img.replaceWith($svg);
+                $svg.attr('id', imgID);
+                $svg.attr('class', imgClass + ' replaced-svg');
+                $svg.attr('style', imgStyle);
+                $img.replaceWith($svg);
+            });
         });
+
         //switch the stripe
         setTimeout(function() {
             $('#stripes_done').fadeIn(2000);
@@ -40,11 +45,9 @@ $(function() {
         //show slogan
         $('#sloagns').animate({
             "top": "15%"
-        }, 'normal', function() {
-            //show four point
-            setTimeout(function(){
-                showPoint(1);
-            }, 1500);
+        }, 500, function() {
+            //show five point
+            showPoint(1);
         });
         //slogan animate
         $(".slogan").bind("mouseenter mouseleave", function(e) {
@@ -175,7 +178,7 @@ $(function() {
                 window.detailData = data;
                 target.html(data);
             });
-        } else {
+        } else{
             target.html(window.detailData);
         }
         $('#point1').css({
