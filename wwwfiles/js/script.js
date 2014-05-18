@@ -133,11 +133,6 @@ $(function() {
                 "margin-top": "-1.6rem"
             }, 'normal');
             $(this).children('p').fadeIn('fast');
-            if (!window.detailData) {
-                $.get('detail.html', function(data) {
-                    window.detailData = data;
-                });
-            }
         });
         $('.point').on('mouseleave', function(event) {
             $(this).children('.entry').fadeOut('fast', function() {
@@ -166,14 +161,9 @@ $(function() {
             'cursor': 'auto'
         });
         var target = $('#point1');
-        if(window.detailData){
-            target.html(windw.detailData);
-        } else{
-            $.get('detail.html', function(data) {
-                target.html(data);
-            });
-        }
-
+        $.get('detail.html', function(data) {
+            target.html(data);
+        });
         $('#point1').animate({
             "top": 0,
             "left": 0,
@@ -228,7 +218,7 @@ $(function() {
             event.preventDefault();
             if (event.deltaY == -1) {
                 scrollDown();
-                if (window.section == 4) {
+                if(window.section == 4){
                     $('#timeline').css({
                         "margin-top": "6%",
                         "opacity": "1"
@@ -338,8 +328,8 @@ $(function() {
 });
 
 function upload() {
-    $('#myalert').fadeIn('normal', function() {
-        setTimeout(function() {
+    $('#myalert').fadeIn('normal', function(){
+        setTimeout(function(){
             $('#myalert').fadeOut(1250);
         }, 3000);
     });
