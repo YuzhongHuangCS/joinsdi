@@ -256,8 +256,8 @@ $(function() {
 
         $(document).keydown(function(event) {　　
 
-            var downArray = [32, 34, 39, 40];
-            var upArray = [33, 37, 38];　　
+            var downArray = [32, 34, 40];
+            var upArray = [33, 38];　　
             if ($.inArray(event.keyCode, downArray) != -1) {
                 scrollDown();
             };
