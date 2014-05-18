@@ -120,6 +120,16 @@ $(function() {
             }, 250, function() {
                 if ((++pointID) <= 4) {
                     showPoint(pointID);
+                } else {
+                    //point tip
+                    $(window).mousewheel(function pointTip(event) {
+                        if (event.deltaY === -1) {
+                            $('.point').mouseover()
+                        }
+                        if (event.deltaY === 1) {
+                            $('.point').mouseleave()
+                        }
+                    });
                 }
             });
         };
@@ -133,6 +143,11 @@ $(function() {
                 "margin-top": "-1.6rem"
             }, 'normal');
             $(this).children('p').fadeIn('fast');
+            if (typeof window.detailData === 'undefined') {
+                $.get('detail.html', function(data) {
+                    window.detailData = data;
+                });
+            }
         });
         $('.point').on('mouseleave', function(event) {
             $(this).children('.entry').fadeOut('fast', function() {
@@ -144,7 +159,6 @@ $(function() {
                     "margin-top": "0"
                 }, 'normal');
             });
-
         });
         //loadDetailPage
         $('.point').on('click', function(event) {
@@ -160,10 +174,16 @@ $(function() {
         $('.point').css({
             'cursor': 'auto'
         });
+
         var target = $('#point1');
-        $.get('detail.html', function(data) {
-            target.html(data);
-        });
+        if (typeof window.detailData === 'undefined') {
+            $.get('detail.html', function(data) {
+                window.detailData = data;
+                target.html(data);
+            });
+        } else{
+            target.html(window.detailData);
+        }
         $('#point1').animate({
             "top": 0,
             "left": 0,
@@ -218,7 +238,7 @@ $(function() {
             event.preventDefault();
             if (event.deltaY == -1) {
                 scrollDown();
-                if(window.section == 4){
+                if (window.section == 4) {
                     $('#timeline').css({
                         "margin-top": "6%",
                         "opacity": "1"
@@ -328,8 +348,8 @@ $(function() {
 });
 
 function upload() {
-    $('#myalert').fadeIn('normal', function(){
-        setTimeout(function(){
+    $('#myalert').fadeIn('normal', function() {
+        setTimeout(function() {
             $('#myalert').fadeOut(1250);
         }, 3000);
     });
