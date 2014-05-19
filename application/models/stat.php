@@ -11,7 +11,7 @@ class stat extends CI_Model {
 		$startDate = array(
 			"Y" => "2014",
 			"m" => "05",
-			"d" => "07"
+			"d" => "16"
 		);
 		$endDate = array(
 			"Y" => date("Y"),
