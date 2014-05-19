@@ -5,13 +5,17 @@ class welcome extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('visit');
+		$this->load->library('encrypt');
+		$this->load->helper('cookie');
+		$this->load->library('user_agent');
 	}
 
 	public function index() {
-		$this->load->view('welcome.php');
-
-		$this->load->library('encrypt');
-		$this->load->helper('cookie');
+		if(($this->agent->is_browser('Internet Explorer')) && ($this->agent->version() <= 8)){
+			$this->load->view('bsie.php');
+		} else{
+			$this->load->view('welcome.php');
+		}
 
 		$rawCookie = $this->input->cookie('vistorID', TRUE);
 		$vistorID = $this->encrypt->decode($rawCookie);

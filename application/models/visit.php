@@ -20,4 +20,20 @@ class visit extends CI_Model {
 
 		return $this->db->insert_id();
 	}
+
+	public function download($vistorID){
+		$sql = 'UPDATE `vistor` SET `download` = CURRENT_TIMESTAMP WHERE `id` = ?';
+		$this->db->query($sql, $vistorID);
+
+		return ;
+	}
+
+	public function directDownload(){
+		$this->load->library('user_agent');
+
+		$sql = 'INSERT INTO `vistor` (`id`, `first`, `download`, `refer`, `ua`) VALUES (NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?)';
+		$this->db->query($sql, array($this->agent->referrer(), $this->agent->agent_string()));
+
+		return $this->db->insert_id();
+	}
 }
