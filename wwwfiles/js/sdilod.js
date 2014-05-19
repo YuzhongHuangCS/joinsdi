@@ -67,7 +67,9 @@ $(function() {
                 if(val.refer == ''){
                     data[index].refer = '直接访问'
                 }
-                html += '<p style="color:' +  data[index].color +'; border-color:' + data[index].color +'">' + val.refer + ':' + val.count +'次访问</p>'           
+                if(val.count >= 5){
+                    html += '<p style="color:' +  data[index].color +'; border-color:' + data[index].color +'">' + val.refer + ':' + val.count +'次访问</p>'           
+                }
                 var refer = {
                 'value': val.count,
                 'color': data[index].color
