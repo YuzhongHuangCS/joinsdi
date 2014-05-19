@@ -330,12 +330,11 @@ sub {
 td, th {
     padding: 0;
 }
-
 //Style Write For SDILOD
-@green: #21EEAC;
-@red: #F8269D;
-@blue: #46d8d6;
-header {
+ @red: #F8269D;
+ @blue: #46d8d6;
+ @green: #21EEAC;
+ header {
     text-align: center;
     line-height: 5rem;
     color: #FFF;
@@ -343,29 +342,82 @@ header {
     background-color: #3F3E40;
     letter-spacing: 0.1rem;
 }
+html {
+    height: 100%;
+}
 body {
-    background-color: #F8F8F8;
+    background-color: #F4F4F4;
+    height: 100%;
+}
+section {
+    width: 100%;
+    height: 100%;
+}
+hr {
+    width: 80%;
 }
 #dayStat {
     #dayStatChart {
-        margin: 5% 0 0 5%;
+        margin: 6% 0 0 5%;
     }
-    #dayStatDesc{
-    	display: inline-block;
-    	vertical-align: top;
-    	margin: 10% 0 0 3%;
-    	p{
-    		font-size: 1.2rem;
-    	}
-    	p:first-child{
-    		color: @blue;
-    		padding-left: 0.5rem;
-    		border-left: 0.5rem solid @blue;
-    	}
-    	p:last-child{
-    		color: #C08DB8;
-    		padding-left: 0.5rem;
-    		border-left: 0.5rem solid #C08DB8;
-    	}
+    #dayStatDesc {
+        display: inline-block;
+        vertical-align: top;
+        margin: 16% 0 0 3%;
+        p {
+            font-size: 1.2rem;
+        }
+        p:first-child {
+            color: @blue;
+            padding-left: 0.5rem;
+            border-left: 0.5rem solid @blue;
+        }
+        p:last-child {
+            color: #C08DB8;
+            padding-left: 0.5rem;
+            border-left: 0.5rem solid #C08DB8;
+        }
+    }
+}
+#aggrStat {
+    #aggrStatChart {
+        margin: 6% 0 0 5%;
+    }
+    #aggrStatDesc {
+        display: inline-block;
+        vertical-align: top;
+        margin: 10% 0 0 1%;
+        p {
+        	color: #666;
+        	padding-left: 0.5rem;
+            font-size: 1.2rem;
+            border-left: 0.5rem solid #666;
+        }
+        p:first-child{
+        	padding-left: 0;
+        	border: 0;
+        	font-size: 2rem;
+        }
+    }
+}
+#refer {
+    #referChart {
+        margin: 6% 0 0 5%;
+    }
+    #referDesc {
+        display: inline-block;
+        vertical-align: top;
+        margin: 10% 0 0 1%;
+        p {
+        	color: #666;
+        	padding-left: 0.5rem;
+            font-size: 1.2rem;
+            border-left: 0.5rem solid #666;
+        }
+        p:first-child{
+        	padding-left: 0;
+        	border: 0;
+        	font-size: 2rem;
+        }
     }
 }

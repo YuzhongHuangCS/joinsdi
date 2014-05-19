@@ -46,6 +46,11 @@ class stat extends CI_Model {
 	public function getAggrStat() {
 		$stat = array();
 
+		$sql = 'SELECT SUM(count) AS `totalPV` FROM `vistor`';
+		$query = $this->db->query($sql);
+		$stat['totalPV'] = $query->result()[0]->totalPV;
+		$query->free_result();
+
 		$sql = 'SELECT COUNT(*) AS `totalUV` FROM `vistor`';
 		$query = $this->db->query($sql);
 		$stat['totalUV'] = $query->result()[0]->totalUV;
@@ -54,11 +59,6 @@ class stat extends CI_Model {
 		$sql = 'SELECT COUNT(*) AS `totalDL` FROM `vistor` WHERE `download` != "0000-00-00 00:00:00"';
 		$query = $this->db->query($sql);
 		$stat['totalDL'] = $query->result()[0]->totalDL;
-		$query->free_result();
-
-		$sql = 'SELECT SUM(count) AS `totalPV` FROM `vistor`';
-		$query = $this->db->query($sql);
-		$stat['totalPV'] = $query->result()[0]->totalPV;
 		$query->free_result();
 				
 		$sql = 'SELECT COUNT(*) AS `todayNewUV` FROM `vistor` WHERE `first` LIKE ?';
