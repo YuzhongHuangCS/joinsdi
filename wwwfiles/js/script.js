@@ -113,7 +113,7 @@ $(function() {
                 "border-radius": "1vw",
                 "top": point.top,
                 "left": point.left
-            }, 'normal', function() {
+            }, 'fast', function() {
                 if ((++pointID) <= 4) {
                     showPoint(pointID);
                 } else {
