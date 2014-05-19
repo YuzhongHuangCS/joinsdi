@@ -59,14 +59,22 @@ $(function() {
     });
 
     $.get('portal?action=getRefer', function(data) {
-        var refer = [];
-        var count = [];
+        var refers = [];
+        var html = '<p>来源网址</p>';
 
         $.each(data, function(index, val) {
-            refer.push[val.refer];
-            count.push[val.count];
+                data[index].color = 'rgba(' + Math.floor(Math.random()*256) + ',' + Math.floor(Math.random()*256) + ',' + Math.floor(Math.random()*256) + ',0.5)'
+                if(val.refer == ''){
+                    data[index].refer = '直接访问'
+                }
+                html += '<p style="color:' +  data[index].color +'; border-color:' + data[index].color +'">' + val.refer + '</p>'           
+                var refer = {
+                'value': val.count,
+                'color': data[index].color
+            };
+            refers.push(refer);
         })
-
-        
+        new Chart(document.getElementById("referChart").getContext("2d")).Doughnut(refers);
+        $('#referDesc').html(html);
     });
 })
