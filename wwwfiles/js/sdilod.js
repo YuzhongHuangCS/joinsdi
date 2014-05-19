@@ -8,7 +8,7 @@ $(function() {
         'height': h / 1.7
     });
 
-    $.get('portal?action=getDayStat', function(data) {
+    $.getJSON('portal?action=getDayStat', function(data) {
         var date = [];
         var uv = [];
         var dl = [];
@@ -38,7 +38,7 @@ $(function() {
         new Chart($("#dayStatChart").get(0).getContext("2d")).Line(getDayStat);
     });
 
-    $.get('portal?action=getAggrStat', function(data) {
+    $.getJSON('portal?action=getAggrStat', function(data) {
         var labels = [];
         var datasets = [];
 
@@ -58,7 +58,7 @@ $(function() {
         new Chart($("#aggrStatChart").get(0).getContext("2d")).Bar(getAggrStat);
     });
 
-    $.get('portal?action=getRefer', function(data) {
+    $.getJSON('portal?action=getRefer', function(data) {
         var refers = [];
         var html = '<p>来源网址</p>';
 
@@ -77,6 +77,6 @@ $(function() {
             refers.push(refer);
         })
         new Chart(document.getElementById("referChart").getContext("2d")).Doughnut(refers);
-        $('#referDesc').html(html);
+        $('#referDesc').prepend(html);
     });
 })

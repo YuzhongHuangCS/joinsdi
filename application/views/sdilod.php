@@ -18,8 +18,8 @@
 		<div id="dayStatDesc" class="desc">
 			<p>每日新增覆盖人数</p>
 			<p>每日新增下载量</p>
+			<a href="portal?action=getDayStat" target="_blank" ><button>查看原始JSON数据</button></a>
 		</div>
-		<a href="portal?action=getDayStat" target="_blank" ><button>查看原始JSON数据</button></a>
 	</section>
 	<hr/>
 	<section id="aggrStat">
@@ -39,8 +39,8 @@
 	<section id="refer">
 		<canvas id="referChart" class="chart"></canvas>
 		<div id="referDesc" class="desc">
-		</div>
 		<a href="portal?action=getRefer" target="_blank" ><button>查看原始JSON数据</button></a>
+		</div>
 	</section>
 	<footer>
 		查看原始访问数据
