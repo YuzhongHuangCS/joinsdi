@@ -7,6 +7,7 @@ class download extends CI_Controller {
 		$this->load->model('visit');
 		$this->load->library('encrypt');
 		$this->load->helper('cookie');
+		$this->load->helper('file');
 	}
 
 	public function index() {
@@ -26,6 +27,20 @@ class download extends CI_Controller {
 			$this->input->set_cookie($cookie);
 		}
 
-		header('Location: http://www.idi.zju.edu.cn/joinsdi/paper/2013级设计创新班招生报名表.docx'); 
+		//force download
+		$path = '/home/joinus/wwwfiles/paper/2013级设计创新班招生报名表.docx';
+		$info = get_file_info($path);
+		$size = $info['size'];
+		$encoded_name = rawurlencode($info['name']);
+		$mime_type = get_mime_by_extension($encoded_name);
+		if ( $mime_type == '' ) {
+			$mime_type = 'application/octet-stream';
+		}
+		header('Pragma: public');
+		header('Cache-control: public');
+		header("Content-Type: $mime_type");
+		header("Content-Disposition: attachment; filename=\"$encoded_name\"; filename*=utf-8''$encoded_name");
+		header("Content-Length: $size");
+		readfile($path);
 	}
 }
