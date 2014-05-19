@@ -82,7 +82,7 @@ class stat extends CI_Model {
 	public function getRefer() {
 		$data = array();
 
-		$sql = 'SELECT `refer`, COUNT(*) AS `count` FROM `vistor` GROUP BY `refer`';
+		$sql = 'SELECT `refer`, COUNT(*) AS `count` FROM `vistor` GROUP BY `refer` ORDER BY COUNT(*)';
 		$query = $this->db->query($sql);
 
 		foreach($query->result_array() as $row){
