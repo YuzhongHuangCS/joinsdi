@@ -74,6 +74,7 @@ class stat extends CI_Model {
 		$sql = 'SELECT COUNT(*) AS `todayUV` FROM `vistor` WHERE `last` LIKE ?';
 		$query = $this->db->query($sql, date("Y-m-d") . '%');
 		$stat['todayUV'] = $query->result()[0]->todayUV;
+		$stat['todayUV'] += $stat['todayNewUV'];
 		$query->free_result();
 
 		return $stat;
