@@ -261,6 +261,7 @@ $(function() {
 
         //touch detect
         if ('ontouchstart' in document.documentElement) {
+            alert('200');
             $('#sdi').css({
                 "opacity": "1",
                 "margin-top": "3vw"
