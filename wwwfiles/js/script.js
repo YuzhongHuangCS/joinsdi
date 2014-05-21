@@ -259,7 +259,7 @@ $(function() {
             }
         });
         //touch detect
-        /*
+        
         $(window).on("touchstart", function(e) {
             e.preventDefault();
             startY = e.originalEvent.changedTouches[0].pageY;
@@ -274,7 +274,8 @@ $(function() {
             if((Y < 0) && (Math.abs(Y) > 50)){
                 scrollUp();
             }
-        });*/
+        });
+
         $(document).keydown(function(event) {　　
 
             var downArray = [32, 34, 40];
