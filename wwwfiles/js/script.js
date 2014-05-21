@@ -121,8 +121,8 @@ $(function() {
                     var tip = 1;
                     handle = setInterval(function() {
                         $('#point' + tip).mouseover();
-                        $('#point' + (tip-1)).mouseleave();
-                        if(++tip >= 6){
+                        $('#point' + (tip - 1)).mouseleave();
+                        if (++tip >= 6) {
                             clearInterval(handle);
                         }
                     }, 200);
@@ -258,23 +258,18 @@ $(function() {
                 scrollUp();
             }
         });
+
         //touch detect
-        
-        $(window).on("touchstart", function(e) {
-            e.preventDefault();
-            startY = e.originalEvent.changedTouches[0].pageY;
-        });
-        $(window).on("touchmove", function(e) {
-            e.preventDefault();
-            moveEndY = e.originalEvent.changedTouches[0].pageY;
-            Y = moveEndY - startY;
-            if((Y < 0) && (Math.abs(Y) > 10)){
-                scrollDown();
-            }
-            if((Y > 0) && (Math.abs(Y) > 10)){
-                scrollUp();
-            }
-        });
+        if ('ontouchstart' in document.documentElement) {
+            $('#sdi').css({
+                "opacity": "1",
+                "margin-top": "3vw"
+            });
+            $('.ds-thread').css({
+                "opacity": "1",
+                "margin-top": "3%"
+            });
+        }
 
         $(document).keydown(function(event) {　　
 
@@ -317,12 +312,9 @@ $(function() {
                         break;
                     case 4:
                         $('.ds-thread').animate({
-                                "opacity": "1",
-                                "margin-top": "3%"
-                            },
-                            600, 'easeOutCubic', function() {
-                                /* stuff to do after animation is complete */
-                            });
+                            "opacity": "1",
+                            "margin-top": "3%"
+                        }, 600, 'easeOutCubic');
                         break;
                 }
                 window.scrolling = 0;
