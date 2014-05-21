@@ -237,6 +237,17 @@ $(function() {
                     scrollUp();
                 }
             });
+            //touch detect
+            if ('ontouchstart' in document.documentElement) {
+                $('#sdi').css({
+                    "opacity": "1",
+                    "margin-top": "3vw"
+                });
+                $('.ds-thread').css({
+                    "opacity": "1",
+                    "margin-top": "3%"
+                });
+            }
         }
         $(window).mousewheel(function scrollAction(event) {
             event.preventDefault();
@@ -258,19 +269,6 @@ $(function() {
                 scrollUp();
             }
         });
-
-        //touch detect
-        if ('ontouchstart' in document.documentElement) {
-            alert('200');
-            $('#sdi').css({
-                "opacity": "1",
-                "margin-top": "3vw"
-            });
-            $('.ds-thread').css({
-                "opacity": "1",
-                "margin-top": "3%"
-            });
-        }
 
         $(document).keydown(function(event) {　　
 
