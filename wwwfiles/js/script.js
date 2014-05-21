@@ -268,10 +268,10 @@ $(function() {
             e.preventDefault();
             moveEndY = e.originalEvent.changedTouches[0].pageY;
             Y = moveEndY - startY;
-            if((Y > 0) && (Math.abs(Y) > 50)){
+            if(Y > 0){
                 scrollDown();
             }
-            if((Y < 0) && (Math.abs(Y) > 50)){
+            if(Y < 0){
                 scrollUp();
             }
         });
