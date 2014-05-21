@@ -125,7 +125,7 @@ $(function() {
                         if(++tip >= 6){
                             clearInterval(handle);
                         }
-                    }, 250);
+                    }, 200);
                     //mousewheel tip
                     $(window).mousewheel(function pointTip(event) {
                         if (event.deltaY === -1) {
