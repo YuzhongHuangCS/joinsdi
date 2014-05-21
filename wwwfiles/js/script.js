@@ -118,6 +118,15 @@ $(function() {
                     showPoint(pointID);
                 } else {
                     //point tip
+                    var tip = 1;
+                    handle = setInterval(function() {
+                        $('#point' + tip).mouseover();
+                        $('#point' + (tip-1)).mouseleave();
+                        if(++tip >= 6){
+                            clearInterval(handle);
+                        }
+                    }, 250);
+                    //mousewheel tip
                     $(window).mousewheel(function pointTip(event) {
                         if (event.deltaY === -1) {
                             $('.point').mouseover()
