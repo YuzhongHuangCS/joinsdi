@@ -35,8 +35,9 @@ $(function() {
 
         //switch the stripe
         setTimeout(function() {
-            $('#stripes_done').fadeIn(4000);
-            $('#layer2 path').fadeOut(2000);
+            $('#stripes_done').fadeIn(4000, function(){
+                $('#stripes').fadeOut();
+            });
         }, 4000);
         //show slogan
         $('#sloagns').animate({
