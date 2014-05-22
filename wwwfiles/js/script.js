@@ -4,7 +4,7 @@ $(function() {
         var space = document.body.scrollHeight - $('#stripes_done').height();
         $('#stripes_done').css('top', space / 2);
     })
-    $(window).on('load hashchange', function() {
+    $(window).on('load hashchange', function(event) {
         //mini route
         if (window.location.hash == '#detail') {
             detailController()
