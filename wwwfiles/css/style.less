@@ -208,7 +208,7 @@ html, body {
     background-color: #888;
     section {
         width: 100%;
-        min-height: 25%;
+        min-height: 100%;
     }
     hr {
         margin: auto;
@@ -260,6 +260,10 @@ html, body {
         vertical-align: bottom;
     }
     #section1 {
+        @media (orientation: portrait) {
+            width: 100%;
+            min-height: 50%;
+        }
         background: url(../img/detail1.jpg) no-repeat fixed center;
         background-size: 100% 100%;
         #timeline_text {
@@ -352,10 +356,10 @@ html, body {
             vertical-align: middle;
             .summary {
                 margin: 0;
-                font-size: 4vh;
+                font-size: 150%;
             }
             .content {
-                font-size: 3vh;
+                font-size: 125%;
             }
         }
     }

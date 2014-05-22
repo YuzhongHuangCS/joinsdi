@@ -194,7 +194,7 @@ $(function() {
             "top": 0,
             "left": 0,
             "width": "100%",
-            "height": "500%",
+            "height": "100%",
             "margin-top": "0",
             "margin-left": "0"
         }, 'normal', function() {
