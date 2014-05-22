@@ -4,7 +4,7 @@ $(function() {
         var space = document.body.scrollHeight - $('#stripes_done').height();
         $('#stripes_done').css('top', space / 2);
     })
-    $(window).on('load hashchange', function(event) {
+    $(window).on('load hashchange', function() {
         //mini route
         if (window.location.hash == '#detail') {
             detailController()
@@ -47,7 +47,7 @@ $(function() {
             showPoint(1);
         });
         //slogan animate
-        $(".slogan").bind("mouseenter mouseleave", function(e) {
+        $(".slogan").on("mouseenter mouseleave", function(e) {
 
             /** the width and height of the current div **/
             var w = $(this).width();
@@ -140,7 +140,7 @@ $(function() {
             });
         };
         //point hover
-        $('.point').on('mouseenter', function(event) {
+        $('.point').on('mouseenter', function() {
             $(this).animate({
                 "width": "6vw",
                 "height": "6vw",
@@ -155,7 +155,7 @@ $(function() {
                 });
             }
         });
-        $('.point').on('mouseleave', function(event) {
+        $('.point').on('mouseleave', function() {
             $(this).children('.entry').fadeOut('fast', function() {
                 $(this).parent().animate({
                     "width": "2vw",
@@ -167,7 +167,7 @@ $(function() {
             });
         });
         //loadDetailPage
-        $('.point').on('click', function(event) {
+        $('.point').on('click', function() {
             window.location.hash = '#detail';
         });
     };
@@ -229,7 +229,7 @@ $(function() {
                 600, 'easeOutCubic', function() {
                     /* stuff to do after animation is complete */
                 });
-            $('#flag li').click(function(event) {
+            $('#flag li').click(function() {
                 target = $(this).index() + 1;
                 if (target > window.section) {
                     scrollDown();
@@ -367,7 +367,7 @@ function upload() {
         }, 3000);
     });
     $('#myalert').html('你不会这么快就填好表了吧<br/>慢慢来，别急');
-    $('#myalert').click(function(event) {
+    $('#myalert').click(function() {
         $('#myalert').fadeOut();
     });
 }
