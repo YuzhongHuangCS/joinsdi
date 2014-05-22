@@ -259,10 +259,6 @@ $(function() {
                         "margin-top": "6%",
                         "opacity": "1"
                     });
-                    $('#sdi').css({
-                        "opacity": "1",
-                        "margin-top": "3%"
-                    });
                     $(window).off('mousewheel');
                 }
             }
@@ -307,7 +303,7 @@ $(function() {
                     case 3:
                         $('#sdi').animate({
                             "opacity": "1",
-                            "margin-top": "3vw"
+                            "margin-top": "0"
                         }, 600, 'easeOutCubic');
                         break;
                     case 4:
@@ -338,20 +334,9 @@ $(function() {
                     //scroll up animation
                     case 1:
                         $('#timeline').animate({
-                                "margin-top": "6%",
-                                "opacity": "1"
-                            },
-                            600, 'easeOutCubic', function() {
-                                /* stuff to do after animation is complete */
-                            });
-                        break;
-                    case 3:
-                        $('#sdi').animate({
-                            "opacity": "1",
-                            "margin-top": "3%"
-                        }, 400, 'easeOutCubic', function() {
-                            /* stuff to do after animation is complete */
-                        });
+                            "margin-top": "6%",
+                            "opacity": "1"
+                        }, 600, 'easeOutCubic');
                         break;
                 }
                 window.scrolling = 0;
