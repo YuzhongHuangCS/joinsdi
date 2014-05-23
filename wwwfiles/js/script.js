@@ -179,6 +179,10 @@ $(function() {
                 }, 'normal');
             });
         });
+        //click
+        $('.point').on('click', function(){
+            window.location.hash = $(this).attr('hash');
+        })
     };
 
     function detailController(toSection) {
