@@ -32,6 +32,8 @@
 			<p>todayNewUV: 今天新增的访问招生页面的用户数</p>
 			<p>todayDL: 今天报名表的下载次数</p>
 			<p>todayUV: 今天访问招生页面的用户数</p>
+			<table id="table"></table>
+			<br/>
 			<a href="portal?action=getAggrStat" target="_blank" ><button>查看原始JSON数据</button></a>
 		</div>
 	</section>

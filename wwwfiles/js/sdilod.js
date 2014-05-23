@@ -41,10 +41,13 @@ $(function() {
     $.getJSON('portal?action=getAggrStat', function(data) {
         var labels = [];
         var datasets = [];
-
+        var th = '<tr>';
+        var td = '<tr>';
         $.each(data, function(index, val) {
             labels.push(index);
+            th += '<th>' + index + '</th>';
             datasets.push(val);
+            td += '<td>' + val + '</td>';
         })
 
         var getAggrStat = {
@@ -56,6 +59,8 @@ $(function() {
             }]
         }
         new Chart($("#aggrStatChart").get(0).getContext("2d")).Bar(getAggrStat);
+        var table = th + '</tr>' + td + '</tr>';
+        $('#table').html(table);
     });
 
     $.getJSON('portal?action=getRefer', function(data) {
