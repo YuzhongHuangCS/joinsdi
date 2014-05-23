@@ -36,10 +36,10 @@
 		</a>
 	</div>
 
-	<div class="point" id="point1" hash="#timeline"><p class="entry">招生<br/>时间线</p></div>
-	<div class="point" id="point2" hash="#video"><p class="entry">先行版<br/>视频</p></div>
-	<div class="point" id="point3" hash="#about"><p class="entry">关于<br/>设创</p></div>
-	<div class="point" id="point4" hash="#comment"><p class="entry">想说<br/>什么</p></div>
+	<a href="#timeline"><div class="point" id="point1"><p class="entry">招生<br/>时间线</p></div></a>
+	<a href="#video"><div class="point" id="point2"><p class="entry">先行版<br/>视频</p></div></a>
+	<a href="#about"><div class="point" id="point3"><p class="entry">关于<br/>设创</p></div></a>
+	<a href="#comment"><div class="point" id="point4"><p class="entry">想说<br/>什么</p></div></a>
 
 	<a href="http://www.idi.zju.edu.cn" target="_blank"><img id="logo" src="img/logo.svg"></a>
 	<div id="myalert"></div>

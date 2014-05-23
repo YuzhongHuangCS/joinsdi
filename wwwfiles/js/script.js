@@ -6,15 +6,31 @@ $(function() {
     })
     $(window).on('load hashchange', function(event) {
         //mini route
-        if (window.location.hash == '#detail') {
-            detailController()
-        } else {
-            if (event.type === 'load') {
-                indexController();
-            } else {
-                window.location.hash = '';
-                location.reload();
-            }
+        switch (window.location.hash) {
+            case '#detail':
+                ;
+            case '#timeline':
+                detailController(1);
+                break;
+            case '#video':
+                detailController(2);
+                break;
+            case '#about':
+                detailController(3);
+                break;
+            case '#comment':
+                detailController(4);
+                break;
+            case '#index':
+                ;
+            default:
+                if (event.type === 'load') {
+                    indexController();
+                } else {
+                    window.location.hash = '';
+                    location.reload();
+                };
+                break;
         }
     });
 
@@ -35,7 +51,7 @@ $(function() {
 
         //switch the stripe
         setTimeout(function() {
-            $('#stripes_done').fadeIn(4000, function(){
+            $('#stripes_done').fadeIn(4000, function() {
                 $('#stripes').fadeOut();
             });
         }, 4000);
@@ -163,19 +179,32 @@ $(function() {
                 }, 'normal');
             });
         });
-        //loadDetailPage
-        $('.point').on('click', function() {
-            window.location.hash = '#detail';
-        });
     };
 
-    function detailController() {
+    function detailController(toSection) {
         $('.point').off('click mouseleave mouseenter');
         $('#index').css('overflow', 'visible');
         $('.point').css('cursor', 'auto');
         $('#nav').hide();
 
         var target = $('#point1');
+        switch (window.location.hash) {
+            case '#detail':
+                ;
+            case '#timeline':
+                target = $('#point1');
+                break;
+            case '#video':
+                target = $('#point2');
+                break;
+            case '#about':
+                target = $('#point3');
+                break;
+            case '#comment':
+                target = $('#point4');
+                break;
+        }
+
         if (typeof window.detailData === 'undefined') {
             $.get('detail.html', function(data) {
                 window.detailData = data;
@@ -184,10 +213,10 @@ $(function() {
         } else {
             target.html(window.detailData);
         }
-        $('#point1').css({
+        target.css({
             'z-index': '50'
         });
-        $('#point1').animate({
+        target.animate({
             "top": 0,
             "left": 0,
             "width": "100%",
@@ -212,20 +241,15 @@ $(function() {
             $('#timeline').delay(500).animate({
                     "margin-top": "6%",
                     "opacity": "1"
-                },
-                600, 'easeOutCubic', function() {
-                    /* stuff to do after animation is complete */
-                });
+                }, 600, 'easeOutCubic');
             window.section = 1;
             window.scrolling = 0;
             $('#order' + window.section).addClass('current');
             $('#timeline').animate({
                     "margin-top": "6%",
                     "opacity": "1"
-                },
-                600, 'easeOutCubic', function() {
-                    /* stuff to do after animation is complete */
-                });
+                }, 600, 'easeOutCubic');
+            //click function
             $('#flag li').click(function() {
                 target = $(this).index() + 1;
                 if (target > window.section) {
@@ -239,13 +263,15 @@ $(function() {
             if ('ontouchstart' in document.documentElement) {
                 $('#sdi').css({
                     "opacity": "1",
-                    "margin-top": "3vw"
+                    "margin-top": "0"
                 });
                 $('.ds-thread').css({
                     "opacity": "1",
                     "margin-top": "3%"
                 });
             }
+            //init scroll
+            scrollToSection(toSection);
         }
         $(window).mousewheel(function scrollAction(event) {
             event.preventDefault();
@@ -277,6 +303,36 @@ $(function() {
         });
     };
 
+    function scrollToSection(toSection){
+        window.scrolling = 1;
+        var scrollTo = $('#section' + toSection).offset().top;
+        $('html,body').animate({
+                "scrollTop": scrollTo
+            }, 400*toSection, 'easeOutCubic', function() {
+                switch (toSection) {
+                    //scroll down animation
+                    case 2:
+                        $('#timeline').css({
+                            "opacity": "0",
+                            "margin-top": "10%"
+                        });
+                        break;
+                    case 3:
+                        $('#sdi').animate({
+                            "opacity": "1",
+                            "margin-top": "0"
+                        }, 600, 'easeOutCubic');
+                        break;
+                    case 4:
+                        $('.ds-thread').animate({
+                            "opacity": "1",
+                            "margin-top": "3%"
+                        }, 600, 'easeOutCubic');
+                        break;
+                }
+                window.scrolling = 0;
+            });
+    }
     function scrollDown() {
         if (window.scrolling === 0) {
             window.scrolling = 1;
