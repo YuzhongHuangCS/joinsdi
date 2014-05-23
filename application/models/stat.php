@@ -101,7 +101,7 @@ class stat extends CI_Model {
 	public function getRawData() {
 		$data = array();
 
-		$sql = 'SELECT * FROM `vistor`';
+		$sql = 'SELECT * FROM `vistor` LIMIT 100';
 		$query = $this->db->query($sql);
 		foreach($query->result_array() as $row){
 			foreach ($row as $key => $value) {
