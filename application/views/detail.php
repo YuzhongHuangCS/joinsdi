@@ -25,7 +25,7 @@
 			<th ng-click="orderProp = 'ua'; reverse=!reverse">UserAgent</th>
 		</tr>
     	<tr ng-repeat="visitor in visitors | filter:query | orderBy:orderProp:reverse">
-    		<td>{{visitor.id | number}}</td>
+    		<td>{{visitor.id}}</td>
 			<td>{{visitor.count}}</td>
 			<td>{{visitor.first}}</td>	
 			<td>{{visitor.last}}</td>
