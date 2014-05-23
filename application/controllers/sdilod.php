@@ -5,4 +5,8 @@ class sdilod extends CI_Controller {
 	public function index() {
 		$this->load->view('sdilod.php');
 	}
+
+	public function detail(){
+		$this->load->view('detail.php');
+	}
 }
