@@ -111,7 +111,6 @@ $(function() {
             $('#point' + pointID).animate({
                 "width": "2vw",
                 "height": "2vw",
-                "border-radius": "1vw",
                 "top": point.top,
                 "left": point.left
             }, 'fast', function() {
@@ -144,7 +143,6 @@ $(function() {
             $(this).animate({
                 "width": "6vw",
                 "height": "6vw",
-                "border-radius": "3vw",
                 "margin-left": "-2vw",
                 "margin-top": "-2vw"
             }, 'normal');
@@ -160,7 +158,6 @@ $(function() {
                 $(this).parent().animate({
                     "width": "2vw",
                     "height": "2vw",
-                    "border-radius": "1vw",
                     "margin-left": "0",
                     "margin-top": "0"
                 }, 'normal');
