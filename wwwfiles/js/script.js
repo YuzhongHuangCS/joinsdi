@@ -242,7 +242,7 @@ $(function() {
                     "margin-top": "6%",
                     "opacity": "1"
                 }, 600, 'easeOutCubic');
-            window.section = 1;
+            window.section = toSection;
             window.scrolling = 0;
             $('#order' + window.section).addClass('current');
             $('#timeline').animate({
@@ -251,13 +251,8 @@ $(function() {
                 }, 600, 'easeOutCubic');
             //click function
             $('#flag li').click(function() {
-                target = $(this).index() + 1;
-                if (target > window.section) {
-                    scrollDown();
-                }
-                if (target < window.section) {
-                    scrollUp();
-                }
+                var target = $(this).index() + 1;
+                scrollToSection(target);
             });
             //touch detect
             if ('ontouchstart' in document.documentElement) {
@@ -305,10 +300,13 @@ $(function() {
 
     function scrollToSection(toSection){
         window.scrolling = 1;
+        window.section = toSection;
+        $('#flag li').removeClass('current');
+        $('#order' + window.section).addClass('current');
         var scrollTo = $('#section' + toSection).offset().top;
         $('html,body').animate({
                 "scrollTop": scrollTo
-            }, 400*toSection, 'easeOutCubic', function() {
+            }, 1000, 'easeOutCubic', function() {
                 switch (toSection) {
                     //scroll down animation
                     case 2:
