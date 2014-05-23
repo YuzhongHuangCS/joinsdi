@@ -184,7 +184,7 @@ $(function() {
     function detailController(toSection) {
         $('.point').off('click mouseleave mouseenter');
         $('#index').css('overflow', 'visible');
-        $('.point').css('cursor', 'auto');
+        $('.point').css('cursor', 'default');
         $('#nav').hide();
 
         var target = $('#point1');
@@ -235,24 +235,30 @@ $(function() {
                 height: window.screen.availHeight - 300,
                 width: window.screen.availWidth - 550
             });
+            jwplayer("jwvideo2").setup({
+                file: "video/film.mp4",
+                image: "img/cover2.png",
+                height: window.screen.availHeight - 300,
+                width: window.screen.availWidth - 550
+            });
         });
 
         function initDetailView() {
             $('#timeline').delay(500).animate({
-                    "margin-top": "6%",
-                    "opacity": "1"
-                }, 600, 'easeOutCubic');
+                "margin-top": "6%",
+                "opacity": "1"
+            }, 600, 'easeOutCubic');
             window.section = toSection;
             window.scrolling = 0;
             $('#order' + window.section).addClass('current');
             $('#timeline').animate({
-                    "margin-top": "6%",
-                    "opacity": "1"
-                }, 600, 'easeOutCubic');
+                "margin-top": "6%",
+                "opacity": "1"
+            }, 600, 'easeOutCubic');
             //click function
             $('#flag li').click(function() {
                 var target = $(this).index() + 1;
-                scrollToSection(target);
+                scrollToSection(target, 'nav');
             });
             //touch detect
             if ('ontouchstart' in document.documentElement) {
@@ -272,7 +278,7 @@ $(function() {
             event.preventDefault();
             if (event.deltaY == -1) {
                 scrollDown();
-                if (window.section == 4) {
+                if (window.section == 5) {
                     $('#timeline').css({
                         "margin-top": "6%",
                         "opacity": "1"
@@ -298,44 +304,50 @@ $(function() {
         });
     };
 
-    function scrollToSection(toSection){
+    function scrollToSection(toSection, config) {
         window.scrolling = 1;
+        if(config != 'nav'){
+            if(toSection >= 3){
+                toSection++;
+            }
+        }
         window.section = toSection;
         $('#flag li').removeClass('current');
         $('#order' + window.section).addClass('current');
         var scrollTo = $('#section' + toSection).offset().top;
         $('html,body').animate({
-                "scrollTop": scrollTo
-            }, 1000, 'easeOutCubic', function() {
-                switch (toSection) {
-                    //scroll down animation
-                    case 2:
-                        $('#timeline').css({
-                            "opacity": "0",
-                            "margin-top": "10%"
-                        });
-                        break;
-                    case 3:
-                        $('#sdi').animate({
-                            "opacity": "1",
-                            "margin-top": "0"
-                        }, 600, 'easeOutCubic');
-                        break;
-                    case 4:
-                        $('.ds-thread').animate({
-                            "opacity": "1",
-                            "margin-top": "3%"
-                        }, 600, 'easeOutCubic');
-                        break;
-                }
-                window.scrolling = 0;
-            });
+            "scrollTop": scrollTo
+        }, 1000, 'easeOutCubic', function() {
+            switch (toSection) {
+                //scroll down animation
+                case 2:
+                    $('#timeline').css({
+                        "opacity": "0",
+                        "margin-top": "10%"
+                    });
+                    break;
+                case 4:
+                    $('#sdi').animate({
+                        "opacity": "1",
+                        "margin-top": "0"
+                    }, 600, 'easeOutCubic');
+                    break;
+                case 5:
+                    $('.ds-thread').animate({
+                        "opacity": "1",
+                        "margin-top": "3%"
+                    }, 600, 'easeOutCubic');
+                    break;
+            }
+            window.scrolling = 0;
+        });
     }
+
     function scrollDown() {
         if (window.scrolling === 0) {
             window.scrolling = 1;
-            if ((++window.section) > 4) {
-                window.section = 4;
+            if ((++window.section) > 5) {
+                window.section = 5;
             }
             $('#flag li').removeClass('current');
             $('#order' + window.section).addClass('current');
@@ -351,13 +363,13 @@ $(function() {
                             "margin-top": "10%"
                         });
                         break;
-                    case 3:
+                    case 4:
                         $('#sdi').animate({
                             "opacity": "1",
                             "margin-top": "0"
                         }, 600, 'easeOutCubic');
                         break;
-                    case 4:
+                    case 5:
                         $('.ds-thread').animate({
                             "opacity": "1",
                             "margin-top": "3%"
