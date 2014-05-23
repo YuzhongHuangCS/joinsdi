@@ -16,10 +16,10 @@ $(function() {
                 detailController(2);
                 break;
             case '#about':
-                detailController(3);
+                detailController(4);
                 break;
             case '#comment':
-                detailController(4);
+                detailController(5);
                 break;
             case '#index':
                 ;
@@ -262,7 +262,7 @@ $(function() {
             //click function
             $('#flag li').click(function() {
                 var target = $(this).index() + 1;
-                scrollToSection(target, 'nav');
+                scrollToSection(target);
             });
             //touch detect
             if ('ontouchstart' in document.documentElement) {
@@ -308,13 +308,8 @@ $(function() {
         });
     };
 
-    function scrollToSection(toSection, config) {
+    function scrollToSection(toSection) {
         window.scrolling = 1;
-        if(config != 'nav'){
-            if(toSection >= 3){
-                toSection++;
-            }
-        }
         window.section = toSection;
         $('#flag li').removeClass('current');
         $('#order' + window.section).addClass('current');
