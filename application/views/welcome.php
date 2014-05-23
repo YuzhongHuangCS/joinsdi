@@ -41,7 +41,7 @@
 	<div class="point" id="point3" hash="#about"><p class="entry">关于<br/>设创</p></div>
 	<div class="point" id="point4" hash="#comment"><p class="entry">想说<br/>什么</p></div>
 
-	<img id="logo" src="img/logo.svg">
+	<a href="http://www.idi.zju.edu.cn" target="_blank"><img id="logo" src="img/logo.svg"></a>
 	<div id="myalert"></div>
 </div>
 <script src="js/plugin.js"></script>
