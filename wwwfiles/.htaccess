@@ -1,4 +1,4 @@
 RewriteEngine on
 RewriteCond $1 !^(index\.php|images|robots\.txt|detail\.html)
-RewriteCond %{REQUEST_URI} !\.(css|gif|ico|jpg|js|png|swf|txt|woff|f4v|svg|mp4)
+RewriteCond %{REQUEST_URI} !\.(css|gif|ico|jpg|js|png|swf|txt|woff|f4v|svg|mp4|map)
 RewriteRule ^(.*)$ /joinsdi/index.php/$1 [L]
