@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
 	<title>SDILOD</title>
-	<link rel="stylesheet" href="css/sdilod.css">
-	<script src="js/sdilod-plugin.js"></script>
-	<script src="js/sdilod.js"></script>
+	<link rel="stylesheet" href="/jonsdi/css/sdilod.css">
+	<script src="/joinsdi/js/sdilod-plugin.js"></script>
+	<script src="/joinsdi/js/sdilod.js"></script>
 </head>
 <body>
 <header>
