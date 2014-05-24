@@ -18,7 +18,7 @@
 	<table>
 		<thead>
 			<th ng-click="orderProp = 'id'; reverse=!reverse">访客编号</th>
-			<th ng-click="orderProp = 'count'; reverse=!reverse">访问计数<span></span></th>
+			<th ng-click="orderProp = 'count'; reverse=!reverse">访问计数</th>
 			<th ng-click="orderProp = 'first'; reverse=!reverse">初次访问时间</th>
 			<th ng-click="orderProp = 'last'; reverse=!reverse">末次访问时间</th>
 			<th ng-click="orderProp = 'download'; reverse=!reverse">下载报名表时间</th>
