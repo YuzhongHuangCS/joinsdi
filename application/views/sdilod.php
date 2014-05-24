@@ -44,8 +44,8 @@
 		<a href="portal?action=getRefer" target="_blank" ><button>查看原始JSON数据</button></a>
 		</div>
 	</section>
-	<footer>
-		查看原始访问数据
+	<footer onclick="location.href='sdilod/detail'">
+		查看独立访客数据
 	</footer>
 </body>
 </html>

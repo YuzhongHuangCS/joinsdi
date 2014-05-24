@@ -101,10 +101,13 @@ class stat extends CI_Model {
 	public function getRawData() {
 		$data = array();
 
-		$sql = 'SELECT * FROM `vistor` ORDER BY `id`';
+		$sql = 'SELECT * FROM `vistor`';
 		$query = $this->db->query($sql);
 		foreach($query->result_array() as $row){
 			foreach ($row as $key => $value) {
+				if($key == 'ua'){
+					$value = str_replace('User-Agent	', '', $value);
+				}
 				$row[$key] = urlencode($value);
 			}
 			$data[] = $row;

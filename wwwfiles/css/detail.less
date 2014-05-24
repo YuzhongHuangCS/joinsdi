@@ -331,58 +331,148 @@ td, th {
     padding: 0;
 }
 
-//style write by Yuzo
-body{
-    font-family: "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "Hiragino Sans GB", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+/*!
+Animate.css - http://daneden.me/animate
+Licensed under the MIT license
+Copyright (c) 2013 Daniel Eden
+*/
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes slideInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px);
+    transform: translateY(-2000px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px);
+    -ms-transform: translateY(-2000px);
+    transform: translateY(-2000px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.slideInDown {
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+}
+@-webkit-keyframes slideOutUp {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px);
+    transform: translateY(-2000px);
+  }
+}
+
+@keyframes slideOutUp {
+  0% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px);
+    -ms-transform: translateY(-2000px);
+    transform: translateY(-2000px);
+  }
+}
+
+.slideOutUp {
+  -webkit-animation-name: slideOutUp;
+  animation-name: slideOutUp;
+}
+
+
+/*style Written by Yuzo
+ */
+body {
+    font-family:"Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "Hiragino Sans GB", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
     background: url(../img/background_dark.jpg) no-repeat fixed;
     background-size: cover;
 }
-#controlBar{
-    margin: 4rem auto 0;
+#controlBar {
+    position: fixed;
+    top: 0;
+    width: 100%;
     text-align: center;
     font-size: 1.2rem;
     color: #FFF;
+    background-color: rgba(0, 0, 0, 0.75);
+    #search {
+        display: inline-block;
+        input {
+            margin: 0.5rem 0;
+            padding: 0.5rem 1rem;
+            color: #000;
+            border: 0;
+            border-radius: 0.3rem;
+        }
+    }
+    #sort {
+        margin-left: 1rem;
+        display: inline-block;
+    }
 }
-#search{
-    display: inline-block;
-}
-#sort{
-    margin-left: 1rem;
-    display: inline-block;
-}
-input{
-    margin: 0.5rem 0;
-    padding: 0.5rem 1rem;
-    color: #000;
-    border: 0;
-    border-radius: 0.3rem;
-}
-table{
-    margin: 3rem auto;
+table {
+    margin: 10% auto;
     width: 90%;
     color: #333;
     border-collapse: collapse;
     box-shadow: 0 0 0.8rem rgba(255, 255, 255, 0.6);
-    tr{
+    tr {
         transition: all 0.2s;
     }
-    tr:nth-child(odd){
+    tr:nth-child(odd) {
         background-color: #FFFFFF;
     }
-    tr:nth-child(even){
+    tr:nth-child(even) {
         background-color: #E8EDFF;
     }
-    tr:hover{
+    tr:hover {
         background-color: #D0DAFD;
     }
-    th {
-        border: 1px solid #CCC;
-        background-color: #EEE;
-        padding: 1rem;
-        cursor: pointer;
+    thead {
+        th {
+            border: 1px solid #CCC;
+            background-color: #EEE;
+            padding: 1rem;
+            cursor: pointer;
+            width: 8rem;
+        }
     }
-    td {
-        border: 0;
-        padding: 1rem;
+    tbody {
+        td {
+            border: 0;
+            padding: 1rem;
+            max-width: 8rem;
+            overflow: auto;
+        }
     }
 }
