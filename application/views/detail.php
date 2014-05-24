@@ -11,8 +11,9 @@
 </head>
 <body ng-app ng-controller="detailControl">
 	<div id="controlBar">
-		<div id="search">搜索：<input ng-model="query" placeholder="快速过滤"></div>
-		<div id="sort">点击表头排序</div>
+		<div id="search">搜索: <input ng-model="query" placeholder="快速过滤"></div>
+		<div id="count">总计: {{(visitors | filter:query).length}} 项</div>
+		<div id="sort">点击表头可排序</div>
 	</div>
 	<table>
 		<thead>
