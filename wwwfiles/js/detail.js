@@ -3,6 +3,6 @@ function detailControl($scope, $http) {
 		$scope.visitors = data;
 	});
 
-	$scope.orderProp = 'last';
-	$scope.reverse = 1;
+	$scope.orderProp = 'id';
+	$scope.reverse = 0;
 }

@@ -180,7 +180,7 @@ $(function() {
             });
         });
         //click
-        $('.point').on('click', function(){
+        $('.point').on('click', function() {
             window.location.hash = $(this).attr('hash');
         })
     };
@@ -188,7 +188,7 @@ $(function() {
     function detailController(toSection) {
         $('.point').off('click mouseleave mouseenter');
         $('#index').css('overflow', 'visible');
-        $('.point').css('cursor', 'default');
+        $('.point').css('cursor', 'auto');
         $('#nav').hide();
 
         var target = $('#point1');
@@ -295,8 +295,7 @@ $(function() {
             }
         });
 
-        $(document).keydown(function(event) {　　
-
+        $(document).keydown(function(event) {
             var downArray = [32, 34, 40];
             var upArray = [33, 38];　　
             if ($.inArray(event.keyCode, downArray) != -1) {
@@ -317,27 +316,7 @@ $(function() {
         $('html,body').animate({
             "scrollTop": scrollTo
         }, 1000, 'easeOutCubic', function() {
-            switch (toSection) {
-                //scroll down animation
-                case 2:
-                    $('#timeline').css({
-                        "opacity": "0",
-                        "margin-top": "10%"
-                    });
-                    break;
-                case 4:
-                    $('#sdi').animate({
-                        "opacity": "1",
-                        "margin-top": "0"
-                    }, 600, 'easeOutCubic');
-                    break;
-                case 5:
-                    $('.ds-thread').animate({
-                        "opacity": "1",
-                        "margin-top": "3%"
-                    }, 600, 'easeOutCubic');
-                    break;
-            }
+            scrollDownAnim();
             window.scrolling = 0;
         });
     }
@@ -354,31 +333,34 @@ $(function() {
             $('html,body').animate({
                 "scrollTop": scrollTo
             }, 1000, 'easeOutCubic', function() {
-                switch (window.section) {
-                    //scroll down animation
-                    case 2:
-                        $('#timeline').css({
-                            "opacity": "0",
-                            "margin-top": "10%"
-                        });
-                        break;
-                    case 4:
-                        $('#sdi').animate({
-                            "opacity": "1",
-                            "margin-top": "0"
-                        }, 600, 'easeOutCubic');
-                        break;
-                    case 5:
-                        $('.ds-thread').animate({
-                            "opacity": "1",
-                            "margin-top": "3%"
-                        }, 600, 'easeOutCubic');
-                        break;
-                }
+                scrollDownAnim();
                 window.scrolling = 0;
             });
         };
     };
+
+    function scrollDownAnim() {
+        switch (window.section) {
+            case 2:
+                $('#timeline').css({
+                    "opacity": "0",
+                    "margin-top": "10%"
+                });
+                break;
+            case 4:
+                $('#sdi').animate({
+                    "opacity": "1",
+                    "margin-top": "0"
+                }, 600, 'easeOutCubic');
+                break;
+            case 5:
+                $('.ds-thread').animate({
+                    "opacity": "1",
+                    "margin-top": "3%"
+                }, 600, 'easeOutCubic');
+                break;
+        }
+    }
 
     function scrollUp() {
         if (window.scrolling === 0) {
@@ -392,19 +374,22 @@ $(function() {
             $('html,body').animate({
                 "scrollTop": scrollTo
             }, 1000, 'easeOutCubic', function() {
-                switch (window.section) {
-                    //scroll up animation
-                    case 1:
-                        $('#timeline').animate({
-                            "margin-top": "6%",
-                            "opacity": "1"
-                        }, 600, 'easeOutCubic');
-                        break;
-                }
+                scrollUpAnim();
                 window.scrolling = 0;
             });
         };
     };
+
+    function scrollUpAnim() {
+        switch (window.section) {
+            case 1:
+                $('#timeline').animate({
+                    "margin-top": "6%",
+                    "opacity": "1"
+                }, 600, 'easeOutCubic');
+                break;
+        }
+    }
 });
 
 function upload() {
