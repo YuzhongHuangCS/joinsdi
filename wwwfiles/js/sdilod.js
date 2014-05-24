@@ -8,7 +8,7 @@ $(function() {
         'height': h / 1.7
     });
 
-    $.getJSON('portal?action=getDayStat', function(data) {
+    $.getJSON('/joinsdi/portal?action=getDayStat', function(data) {
         var date = [];
         var uv = [];
         var dl = [];
@@ -38,7 +38,7 @@ $(function() {
         new Chart($("#dayStatChart").get(0).getContext("2d")).Line(getDayStat);
     });
 
-    $.getJSON('portal?action=getAggrStat', function(data) {
+    $.getJSON('/joinsdi/portal?action=getAggrStat', function(data) {
         var labels = [];
         var datasets = [];
         var th = '<tr>';
@@ -63,7 +63,7 @@ $(function() {
         $('#table').html(table);
     });
 
-    $.getJSON('portal?action=getRefer', function(data) {
+    $.getJSON('/joinsdi/portal?action=getRefer', function(data) {
         var refers = [];
         var html = '<p>来源网址</p>';
 
