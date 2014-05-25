@@ -44,7 +44,7 @@
 	<a href="http://www.idi.zju.edu.cn" target="_blank"><img id="logo" src="img/logo.svg"></a>
 	<div id="myalert"></div>
 </div>
-<script src="js/plugin.js"></script>
+<script src="js/jquery.min.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@
     <meta name="renderer" content="webkit">
 	<title>SDILOD</title>
 	<link rel="stylesheet" href="/joinsdi/css/sdilod.css">
-	<script src="/joinsdi/js/sdilod-plugin.js"></script>
+	<script src="/joinsdi/js/jquery.min.js"></script>
 	<script src="/joinsdi/js/sdilod.js"></script>
 </head>
 <body>
