@@ -121,6 +121,12 @@ form {
     input.short {
         width: 9.5rem;
     }
+    input.long {
+        width: 30.8rem;
+    }
+    input.midlong {
+        width: 26.8rem;
+    }
     .checkbox {
         cursor: pointer;
         display: block;
@@ -157,18 +163,55 @@ form {
 }
 #submit {
     width: 60%;
-    margin: 3rem auto;
+    margin: 1.5rem auto 3rem;
     padding: 0.8rem;
     background-color: @blue;
     border-radius: 0.5rem;
     text-align: center;
+    transition: all 0.4s;
+    box-shadow: 0 0 2rem #FFF inset;
     p {
         font-size: 2rem;
         margin: 0;
     }
+    &:hover {
+        background-color: #2FCCC9;
+    }
+}
+#status {
+    width: 24rem;
+    margin: 2rem auto 0;
+    transition: all 1s;
+    text-align: center;
+    opacity: 0;
+    progress {
+        width: 100%;
+    }
 }
 footer {
-    height: 10rem;
+    height: 6rem;
+    text-align: center;
+    #logo {
+        width: 10rem;
+    }
+}
+#myAlert {
+    position: fixed;
+    top: 20%;
+    margin-left: 30%;
+    width: 40%;
+    padding: 4rem 2rem 2rem;
+    height: 12rem;
+    background-color: #333;
+    opacity: 0.9;
+    border-radius: 1rem;
+    color: #FFF;
+    display: none;
+    font-size: 1.5rem;
+    text-align: center;
+    letter-spacing: 0.2rem;
+    z-index: 25;
+    cursor: pointer;
 }
 input[type=checkbox], input[type=radio] {
     -webkit-appearance: none;

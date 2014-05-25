@@ -1,6 +1,58 @@
+$(function() {
+    $('.must').blur(function() {
+        if (!$(this).val()) {
+            $(this).css({
+                'border': '1px solid rgba(248, 38, 157, 0.5)',
+                'box-shadow': '0 0 3px rgba(248, 38, 157, 0.5)'
+            });
+        } else {
+            $(this).css({
+                'border': '1px solid rgba(33, 238, 193, 0.5)',
+                'box-shadow': '0 0 3px rgba(33, 238, 193, 0.5)'
+            });
+        }
+    })
+})
+
+function submit() {
+    /*$.each($('.must'), function(index, val) {
+        if (!(val.value)) {
+            myAlert('你还有必填项没有填哦')
+            return false;
+        };
+        if ((index + 1) == $('.must').length) {
+            var checkCount = 0;
+            $("[type='checkbox']").each(function(index, val) {
+                if ($(this).attr("checked")) {
+                    checkCount++;
+                }
+                if ((index + 1) == $('[type=checkbox]').length) {
+                	console.log(checkCount);
+                    if (checkCount == 0) {
+                        myAlert('至少选一个时间嘛');
+                        return false;
+                    } else {
+                        $('#status').css('opacity', '1');
+                        var postData = $('#form1').serialize() + '&' + $('#form3').serialize();
+                        $.post('/joinsdi/upload/form', postData, function(data, textStatus, xhr) {
+                            console.log(data);
+                            if (data == 'success') {
+                                $('#result').text('上传成功');
+                                uploadFile()
+                                //myAlert('<p>上传成功</p><p>我们已经向你所填写的邮箱发送了确认邮件，请注意查收')
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });*/
+ uploadFile();
+}
+
 function previewImage(file) {
-    var MAXWIDTH = 256;
-    var MAXHEIGHT = 256;
+    var MAXWIDTH = 128;
+    var MAXHEIGHT = 128;
     var div = document.getElementById('preview');
     if (file.files && file.files[0]) {
         div.innerHTML = '<img id=imghead>';
@@ -54,4 +106,46 @@ function clacImgZoomParam(maxWidth, maxHeight, width, height) {
     param.left = Math.round((maxWidth - param.width) / 2);
     param.top = Math.round((maxHeight - param.height) / 2);
     return param;
+}
+
+function uploadFile() {
+    var fileObj = document.querySelector('#file').files[0];
+    var fileController = "/joinsdi/upload/avator";
+
+    var form = new FormData();
+    form.append('file', fileObj);
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("post", fileController, true);
+    xhr.onload = function() {
+        alert(this.responseText);
+    }
+    xhr.upload.addEventListener('progress', progressFunction, false);
+    xhr.send(form);
+}
+
+function progressFunction(event) {
+    var progress = document.querySelector('#progressBar');
+    if (event.lengthComputable) {
+        progressBar.max = event.total;
+        progressBar.value = event.loaded;
+    }
+}
+
+function myAlert(text) {
+    $('#myAlert').fadeIn('normal', function() {
+        setTimeout(function() {
+            $('#myAlert').fadeOut(1250);
+        }, 3000);
+    });
+    $('#myAlert').html(text);
+    $('#myAlert').click(function() {
+        $('#myAlert').fadeOut();
+    });
+}
+
+function check(id) {
+	console.log($('[name=date'+ id + ']'))
+	$('[name=date'+ id + ']').attr('checked', 'checked');
 }
