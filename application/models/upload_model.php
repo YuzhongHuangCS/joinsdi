@@ -27,4 +27,11 @@ class upload_model extends CI_Model {
 
 		return $result;
 	}
+
+	public function check($uploadID){
+		$sql = 'SELECT * FROM `upload` WHERE `uploadID` = ?';
+		$result = $this->db->query($sql, $uploadID);
+
+		return $result;
+	}
 }

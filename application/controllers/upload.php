@@ -129,4 +129,28 @@ class upload extends CI_Controller {
 			header('Location: http://www.idi.zju.edu.cn/joinsdi/');  
 		}
 	}
+
+	public function check(){
+		//send mail
+		$uploadID = 1;
+		$info = $this->upload_model->check($uploadID)->result()[0];
+
+  		$this->load->library('email');
+
+  		$config['mailtype'] = 'html';
+  		$config['crlf'] = '\r\n';
+  		$config['newline'] = '\r\n';
+  		$this->email->initialize($config);
+
+  		$this->email->from('joinsdi@www.idi.zju.edu.cn', '设计创新班2013级招生');
+  		$this->email->reply_to('joinsdi2014@gmail.com');
+  		$this->email->to($info->email); 
+
+  		$this->email->subject('报名表提交成功·设计创新班2013级招生');
+		$this->email->message($info->name);
+		$this->email->set_alt_message('This is the alternative message');
+
+		$this->email->send();
+		$this->email->print_debugger();
+	}
 }
