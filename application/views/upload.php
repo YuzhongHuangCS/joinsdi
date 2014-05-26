@@ -58,17 +58,23 @@
 	<form id="form2">
 		<div id="avatar">
 			<p>个人生活照</p>
+			<p>jpg/png/gif格式，小于10MB</p>
 			<div id="preview">
 				<img id="imghead" src='/joinsdi/img/avatar.png'>
 			</div>
-			<input type="file" onchange="previewImage(this)" id="avatarFile"/>
+			<a class="a-upload">
+				<input type="file" onchange="previewImage(this)" id="avatarFile"/>选择文件
+			</a>
 		</div>
 		<div id="apply">
-			<p>报名表(请上传pdf/zip/rar格式)</p>
+			<p>报名表</p>
+			<p>pdf/zip/rar/7z格式，小于100MB</p>
 			<div id="place">
-				<img id="imghead" src='/joinsdi/img/avatar.png'>
+				<img id="imghead" src='/joinsdi/img/apply.jpg'>
 			</div>
-			<input type="file" id="applyFile">
+			<a class="a-upload">
+				<input type="file" id="applyFile">选择文件
+			</a>
 		</div>
 	</form>
 </div>

@@ -71,16 +71,19 @@ class upload extends CI_Controller {
 
 				$config['upload_path'] = "./avatar";
   				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+  				$config['max_size'] = 10240;
   				$config['encrypt_name'] = TRUE;
 
   				$this->upload->initialize($config);
   				if(!$this->upload->do_upload("file")){
   					$error = array('error' => $this->upload->display_errors());
-   					print_r($error);
+   					//print_r($error);
+   					echo('failed');
   				} else{
   					$data = array('upload_data' => $this->upload->data());
   					$result = $this->upload_model->avatar(array($uploadID, $data['upload_data']['file_name']));
-  					echo ($result);
+  					//echo ($result);
+  					echo('success');
   				}
 			} else{
 				header('Location: http://www.idi.zju.edu.cn/joinsdi/');  
@@ -104,16 +107,19 @@ class upload extends CI_Controller {
 
 				$config['upload_path'] = "../apply";
   				$config['allowed_types'] = 'pdf|zip|rar|7z';
+  				$config['max_size'] = 102400;
   				$config['encrypt_name'] = TRUE;
 
   				$this->upload->initialize($config);
   				if(!$this->upload->do_upload("file")){
   					$error = array('error' => $this->upload->display_errors());
-   					print_r($error);
+   					//print_r($error);
+   					echo('failed');
   				} else{
   					$data = array('upload_data' => $this->upload->data());
   					$result = $this->upload_model->apply(array($uploadID, $data['upload_data']['file_name']));
-  					echo ($result);
+  					//echo ($result);
+  					echo('success');
   				}
 			} else{
 				header('Location: http://www.idi.zju.edu.cn/joinsdi/');  

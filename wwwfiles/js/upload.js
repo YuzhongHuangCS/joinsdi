@@ -32,7 +32,7 @@ function submit() {
             myAlert('至少选一个时间嘛');
             return false;
         } else {
-            console.log(checkCount);
+            //console.log(checkCount);
             do_sumbit();
         };
     };
@@ -41,10 +41,12 @@ function submit() {
         $('#status').css('opacity', '1');
         var postData = $('#form1').serialize() + '&' + $('#form3').serialize();
         $.get('/joinsdi/upload/form', postData, function(data, textStatus, xhr) {
-            console.log(data);
+            //console.log(data);
             if (data == 'success') {
                 $('#result').text('上传成功');
                 uploadAvatar();
+            } else{
+                myAlert("信息表上传出错了><，请重试");
             }
         });
     }
@@ -52,9 +54,6 @@ function submit() {
     checkValid();
 }
 
-function success() {
-    myAlert('<p>上传成功</p><p>我们已经向你所填写的邮箱发送了确认邮件，请注意查收')
-}
 
 function previewImage(file) {
     var MAXWIDTH = 128;
@@ -114,7 +113,7 @@ function clacImgZoomParam(maxWidth, maxHeight, width, height) {
     return param;
 }
 
-function uploadAvatar(callback) {
+function uploadAvatar() {
     var fileObj = document.querySelector('#avatarFile').files[0];
     var fileController = "/joinsdi/upload/avatar";
 
@@ -125,14 +124,18 @@ function uploadAvatar(callback) {
 
     xhr.open("post", fileController, true);
     xhr.onload = function() {
-        //alert(this.responseText);
-        uploadApply();
+        if(this.responseText == 'success'){
+            uploadApply();
+        } else{
+            myAlert('照片上传出错了><，请重试');
+        }
+        
     }
     xhr.upload.addEventListener('progress', progressFunction, false);
     xhr.send(form);
 }
 
-function uploadApply(callback) {
+function uploadApply() {
     var fileObj = document.querySelector('#applyFile').files[0];
     var fileController = "/joinsdi/upload/apply";
 
@@ -143,8 +146,11 @@ function uploadApply(callback) {
 
     xhr.open("post", fileController, true);
     xhr.onload = function() {
-        //alert(this.responseText);
-        success();
+        if(this.responseText == 'success'){
+            myAlert('<p>上传成功</p><p>我们已经向你所填写的邮箱发送了确认邮件，请注意查收');
+        }else{
+            myAlert('申请表上传出错了><，请重试');
+        }
     }
     xhr.upload.addEventListener('progress', progressFunction, false);
     xhr.send(form);

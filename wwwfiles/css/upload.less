@@ -72,6 +72,7 @@ body {
         p {
             font-size: 1.8rem;
             color: #333;
+            height: 1.8rem;
             .circle {
                 display: inline-block;
                 margin-right: 0.5rem;
@@ -135,6 +136,14 @@ form {
 }
 #avatar {
     display: inline-block;
+    margin-right: 8rem;
+    p {
+        font-size: 1rem;
+    }
+    p:first-child {
+        font-size: 1.5rem;
+        margin-bottom: 0;
+    }
     #preview {
         width: 128px;
         height: 128px;
@@ -148,6 +157,13 @@ form {
 #apply {
     display: inline-block;
     vertical-align: top;
+    p {
+        font-size: 1rem;
+    }
+    p:first-child {
+        font-size: 1.5rem;
+        margin-bottom: 0;
+    }
     #place {
         width: 128px;
         height: 128px;
@@ -278,6 +294,7 @@ input[type=checkbox]:focus {
 }
 input[type=file] {
     width: 22rem;
+    font-size: 1rem;
 }
 @-webkit-keyframes fadeIn {
     0% {
@@ -294,4 +311,35 @@ input[type=file] {
     100% {
         opacity: 1;
     }
+}
+/*a  upload */
+.a-upload {
+    margin-top: 1rem;
+    padding: 4px 10px;
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+    cursor: pointer;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+}
+ 
+.a-upload  input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer
+}
+ 
+.a-upload:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none;
+    cursor: pointer;
 }
