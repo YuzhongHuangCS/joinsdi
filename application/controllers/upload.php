@@ -131,8 +131,7 @@ class upload extends CI_Controller {
   		$config['newline'] = '\r\n';
   		$this->email->initialize($config);
 
-  		$this->email->from('joinsdi@www.idi.zju.edu.cn', '设计创新班2013级招生');
-  		$this->email->reply_to('joinsdi2014@gmail.com');
+  		$this->email->from('joinsdi2014@gmail.com', '设计创新班2013级招生');
   		$this->email->to($info->email); 
 
   		$this->email->subject('报名表提交成功·设计创新班2013级招生');

@@ -36,7 +36,7 @@
   		专业: <input type="text" class="must" name="major" placeholder="预确认专业" />
   		<br/>
   		手机: <input type="text" class="must" name="longNum" placeholder="手机长号" />
-  		短号: <input type="text" class="must" name="shortNum" placeholder="手机短号" />
+  		短号: <input type="text" name="shortNum" placeholder="手机短号" />
   		<br/>
   		电邮: <input type="email" class="must" name="email" placeholder="E-mail" />
   		宿舍地址: <input type="email" class="short must" name="dormitory" placeholder="宿舍地址" />
