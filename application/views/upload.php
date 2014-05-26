@@ -61,14 +61,14 @@
 			<div id="preview">
 				<img id="imghead" src='/joinsdi/img/avatar.png'>
 			</div>
-			<input type="file" onchange="previewImage(this)"/>
+			<input type="file" onchange="previewImage(this)" id="avatarFile"/>
 		</div>
 		<div id="apply">
 			<p>报名表(请上传pdf/zip/rar格式)</p>
 			<div id="place">
 				<img id="imghead" src='/joinsdi/img/avatar.png'>
 			</div>
-			<input type="file" id="file">
+			<input type="file" id="applyFile">
 		</div>
 	</form>
 </div>
@@ -79,13 +79,13 @@
 	</div>
 	<form id="form3">
 		<p>请选择你有空参加WorkShop的时间段(请尽可能地多选)</p>
-  		<label class="checkbox"><input type="checkbox" name="date1" value="ok" onclick="check(1)"/>6月6日 18:00-20:00
+  		<label class="checkbox"><input type="checkbox" name="date1" value="1" onclick="check(1)"/>6月6日 18:00-20:00
   		</label>
-  		<label class="checkbox"><input type="checkbox" name="date2" value="ok" onclick="check(2)"/>6月6日 20:30-22:30
+  		<label class="checkbox"><input type="checkbox" name="date2" value="1" onclick="check(2)"/>6月6日 20:30-22:30
   		</label>
-  		<label class="checkbox"><input type="checkbox" name="date3" value="ok" onclick="check(3)"/>6月7日 18:00-20:00
+  		<label class="checkbox"><input type="checkbox" name="date3" value="1" onclick="check(3)"/>6月7日 18:00-20:00
   		</label>
-  		<label class="checkbox"><input type="checkbox" name="date4" value="ok" onclick="check(4)"/>6月7日 20:30-22:30
+  		<label class="checkbox"><input type="checkbox" name="date4" value="1" onclick="check(4)"/>6月7日 20:30-22:30
   		</label>
 	</form>
 </div>

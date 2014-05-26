@@ -15,39 +15,45 @@ $(function() {
 })
 
 function submit() {
-    /*$.each($('.must'), function(index, val) {
-        if (!(val.value)) {
-            myAlert('你还有必填项没有填哦')
+    function checkValid() {
+        $('.must').each(function(index, value) {
+            if (!($(this)[0].value)) {
+                myAlert('你还有必填项没有填哦')
+                return false;
+            };
+        });
+        var checkCount = 0;
+        $("[type='checkbox']").each(function(index, val) {
+            if ($(this).attr("checked")) {
+                checkCount++;
+            };
+        });
+        if (checkCount == 0) {
+            myAlert('至少选一个时间嘛');
             return false;
+        } else {
+            console.log(checkCount);
+            do_sumbit();
         };
-        if ((index + 1) == $('.must').length) {
-            var checkCount = 0;
-            $("[type='checkbox']").each(function(index, val) {
-                if ($(this).attr("checked")) {
-                    checkCount++;
-                }
-                if ((index + 1) == $('[type=checkbox]').length) {
-                	console.log(checkCount);
-                    if (checkCount == 0) {
-                        myAlert('至少选一个时间嘛');
-                        return false;
-                    } else {
-                        $('#status').css('opacity', '1');
-                        var postData = $('#form1').serialize() + '&' + $('#form3').serialize();
-                        $.post('/joinsdi/upload/form', postData, function(data, textStatus, xhr) {
-                            console.log(data);
-                            if (data == 'success') {
-                                $('#result').text('上传成功');
-                                uploadFile()
-                                //myAlert('<p>上传成功</p><p>我们已经向你所填写的邮箱发送了确认邮件，请注意查收')
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    });*/
- uploadFile();
+    };
+
+    function do_sumbit() {
+        $('#status').css('opacity', '1');
+        var postData = $('#form1').serialize() + '&' + $('#form3').serialize();
+        $.get('/joinsdi/upload/form', postData, function(data, textStatus, xhr) {
+            console.log(data);
+            if (data == 'success') {
+                $('#result').text('上传成功');
+                uploadAvatar();
+            }
+        });
+    }
+
+    checkValid();
+}
+
+function success() {
+    myAlert('<p>上传成功</p><p>我们已经向你所填写的邮箱发送了确认邮件，请注意查收')
 }
 
 function previewImage(file) {
@@ -108,9 +114,9 @@ function clacImgZoomParam(maxWidth, maxHeight, width, height) {
     return param;
 }
 
-function uploadFile() {
-    var fileObj = document.querySelector('#file').files[0];
-    var fileController = "/joinsdi/upload/avator";
+function uploadAvatar(callback) {
+    var fileObj = document.querySelector('#avatarFile').files[0];
+    var fileController = "/joinsdi/upload/avatar";
 
     var form = new FormData();
     form.append('file', fileObj);
@@ -119,7 +125,26 @@ function uploadFile() {
 
     xhr.open("post", fileController, true);
     xhr.onload = function() {
-        alert(this.responseText);
+        //alert(this.responseText);
+        uploadApply();
+    }
+    xhr.upload.addEventListener('progress', progressFunction, false);
+    xhr.send(form);
+}
+
+function uploadApply(callback) {
+    var fileObj = document.querySelector('#applyFile').files[0];
+    var fileController = "/joinsdi/upload/apply";
+
+    var form = new FormData();
+    form.append('file', fileObj);
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("post", fileController, true);
+    xhr.onload = function() {
+        //alert(this.responseText);
+        success();
     }
     xhr.upload.addEventListener('progress', progressFunction, false);
     xhr.send(form);
@@ -146,6 +171,6 @@ function myAlert(text) {
 }
 
 function check(id) {
-	console.log($('[name=date'+ id + ']'))
-	$('[name=date'+ id + ']').attr('checked', 'checked');
+    //console.log($('[name=date' + id + ']'))
+    $('[name=date' + id + ']').attr('checked', 'checked');
 }
