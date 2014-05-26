@@ -62,9 +62,7 @@
 			<div id="preview">
 				<img id="imghead" src='/joinsdi/img/avatar.png'>
 			</div>
-			<a class="a-upload">
-				<input type="file" onchange="previewImage(this)" id="avatarFile"/>选择文件
-			</a>
+			<input type="file" onchange="previewImage(this)" id="avatarFile"/>
 		</div>
 		<div id="apply">
 			<p>报名表</p>
@@ -72,9 +70,7 @@
 			<div id="place">
 				<img id="imghead" src='/joinsdi/img/apply.jpg'>
 			</div>
-			<a class="a-upload">
-				<input type="file" onchange="checkApply(this)"id="applyFile">选择文件
-			</a>
+			<input type="file" onchange="checkApply(this)" id="applyFile">
 		</div>
 	</form>
 </div>

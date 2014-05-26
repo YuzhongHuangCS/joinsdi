@@ -12,9 +12,22 @@ $(function() {
             });
         }
     })
+    window.uploaded = 0;
+
+    $('#preview').click(function() {
+        $('#avatarFile').click();
+    });
+    $('#place').click(function() {
+        $('#applyFile').click();
+    });
 })
 
 function submit() {
+    if (window.uploaded) {
+        myAlert('放心，你的报名表已经提交了');
+        return false;
+    }
+
     function checkValid() {
         function checkMust() {
             $('.must').each(function(index, value) {
@@ -199,6 +212,7 @@ function uploadApply() {
         if (this.responseText == 'success') {
             $('#result').text('上传成功');
             myAlert('<p>上传成功</p><p>我们已经向你所填写的邮箱发送了确认邮件，请注意查收');
+            window.uploaded = 1;
         } else {
             myAlert('申请表上传出错了><，请重试');
         }

@@ -152,11 +152,13 @@ form {
         }
         border:1px solid #000;
         overflow:hidden;
+        cursor: pointer;
     }
 }
 #apply {
     display: inline-block;
     vertical-align: top;
+    cursor: pointer;
     p {
         font-size: 1rem;
     }
@@ -309,7 +311,8 @@ input[type=checkbox]:focus {
     border-color:#4d90fe;
 }
 input[type=file] {
-    width: 22rem;
+    margin-top: 1rem;
+    width: 15rem;
     font-size: 1rem;
 }
 @-webkit-keyframes fadeIn {
@@ -328,35 +331,7 @@ input[type=file] {
         opacity: 1;
     }
 }
-/*a  upload */
- .a-upload {
-    margin-top: 1rem;
-    padding: 4px 10px;
-    height: 20px;
-    line-height: 20px;
-    position: relative;
-    cursor: pointer;
-    color: #888;
-    background: #fafafa;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    display: inline-block;
-}
-.a-upload input {
-    position: absolute;
-    font-size: 100px;
-    right: 0;
-    top: 0;
-    opacity: 0;
-    cursor: pointer
-}
-.a-upload:hover {
-    color: #444;
-    background: #eee;
-    border-color: #ccc;
-    text-decoration: none;
-    cursor: pointer;
-}
+
 @-webkit-keyframes animate-stripes {
    100% { background-position: -100px 0px; }
 }
