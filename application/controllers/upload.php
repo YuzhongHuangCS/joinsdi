@@ -35,6 +35,7 @@ class upload extends CI_Controller {
 			$postData = $this->input->get(NULL, TRUE);
 			$postData['visitorID'] = $vistorID;
 
+			$postData['shortNum'] = fill('shortNum');
 			$postData['date1'] = fill('date1');
 			$postData['date2'] = fill('date2');
 			$postData['date3'] = fill('date3');

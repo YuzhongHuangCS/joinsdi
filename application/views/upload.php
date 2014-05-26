@@ -30,9 +30,7 @@
   		</label>
   		<span class="birthday">出生年月: </span><input type="text" class="short must" name="birthday" placeholder="YYYY-MM-DD" />
   		<br/>
-  		学园: <input type="text" class="must" name="campus" placeholder="学园" />
   		大类: <input type="text" class="must" name="category" placeholder="大类" />
-  		<br/>
   		专业: <input type="text" class="must" name="major" placeholder="预确认专业" />
   		<br/>
   		手机: <input type="text" class="must" name="longNum" placeholder="手机长号" />

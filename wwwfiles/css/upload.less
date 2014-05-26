@@ -1,5 +1,5 @@
 @green: #21EEAC;
- @red: #F8269D;
+ @red: #80151A;
  @blue: #39F6F2;
  ::selection {
     color: #FFF;
@@ -22,16 +22,17 @@ body {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0 auto;
-    left: 10%;
-    width: 80%;
-    padding: 4rem 2rem 1rem 5rem;
+    left: 15%;
+    width: 70%;
+    padding: 4rem 2rem 1rem;
     border-radius: 0.5rem;
-    color: #000;
-    background-color: @blue;
-    opacity: 0.7;
+    color: #FFF;
+    background-color: #000;
+    opacity: 0.5;
     z-index: -10;
     -webkit-animation: loadJumbotron 1s;
     animation: loadJumbotron 1s;
+    text-align: center;
     @-webkit-keyframes loadJumbotron {
         0% {
             margin-top: -25rem;
@@ -39,7 +40,7 @@ body {
         }
         100% {
             margin-top: 0;
-            opacity: 0.7;
+            opacity: 0.5;
         }
     }
     @keyframes loadJumbotron {
@@ -49,7 +50,7 @@ body {
         }
         100% {
             margin-top: 0;
-            opacity: 0.7;
+            opacity: 0.5;
         }
     }
     h1 {
@@ -75,11 +76,11 @@ body {
             height: 1.8rem;
             .circle {
                 display: inline-block;
-                margin-right: 0.5rem;
+                margin-right: 0.25rem;
                 width: 3rem;
                 height: 3rem;
                 color: #FFF;
-                background-color: #333;
+                background-color: @red;
                 text-align: center;
                 vertical-align: bottom;
                 border-radius: 1.5rem;
@@ -94,7 +95,7 @@ body {
     }
 }
 form {
-    padding-left: 3.5rem;
+    padding-left: 14%;
     font-size: 1.25rem;
     color: #333;
     input[type=text], input[type=email] {
@@ -180,21 +181,21 @@ form {
     filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);
 }
 #submit {
-    width: 60%;
+    width: 55%;
     margin: 1rem auto 3rem;
     padding: 0.8rem;
-    background-color: @blue;
+    color: #FFF;
+    background-color: #333;
     border-radius: 0.5rem;
     text-align: center;
     transition: all 0.4s;
-    box-shadow: 0 0 2rem #FFF inset;
     cursor: pointer;
     p {
         font-size: 2rem;
         margin: 0;
     }
     &:hover {
-        background-color: #2FCCC9;
+        background-color: #555;
     }
 }
 #status {
