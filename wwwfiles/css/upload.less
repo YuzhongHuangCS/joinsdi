@@ -179,7 +179,7 @@ form {
 }
 #submit {
     width: 60%;
-    margin: 1.5rem auto 3rem;
+    margin: 1rem auto 3rem;
     padding: 0.8rem;
     background-color: @blue;
     border-radius: 0.5rem;
@@ -202,6 +202,22 @@ form {
     opacity: 0;
     progress {
         width: 100%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: none;
+    }
+    progress[value]::-webkit-progress-bar {
+        background-color: #eee;
+        border-radius: 2px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    }
+    progress[value]::-webkit-progress-value {
+        background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0, 0, 0, .1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)), -webkit-linear-gradient(left, #09c, #f44);
+        border-radius: 2px;
+        background-size: 35px 20px, 100% 100%, 100% 100%;
+        -webkit-animation: animate-stripes 5s linear infinite;
+        animation: animate-stripes 5s linear infinite;
     }
 }
 footer {
@@ -313,7 +329,7 @@ input[type=file] {
     }
 }
 /*a  upload */
-.a-upload {
+ .a-upload {
     margin-top: 1rem;
     padding: 4px 10px;
     height: 20px;
@@ -326,8 +342,7 @@ input[type=file] {
     border-radius: 4px;
     display: inline-block;
 }
- 
-.a-upload  input {
+.a-upload input {
     position: absolute;
     font-size: 100px;
     right: 0;
@@ -335,11 +350,17 @@ input[type=file] {
     opacity: 0;
     cursor: pointer
 }
- 
 .a-upload:hover {
     color: #444;
     background: #eee;
     border-color: #ccc;
     text-decoration: none;
     cursor: pointer;
+}
+@-webkit-keyframes animate-stripes {
+   100% { background-position: -100px 0px; }
+}
+
+@keyframes animate-stripes {
+   100% { background-position: -100px 0px; }
 }

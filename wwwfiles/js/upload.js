@@ -16,25 +16,38 @@ $(function() {
 
 function submit() {
     function checkValid() {
-        $('.must').each(function(index, value) {
-            if (!($(this)[0].value)) {
-                myAlert('你还有必填项没有填哦')
+        function checkMust() {
+            $('.must').each(function(index, value) {
+                if (!($(this)[0].value)) {
+                    myAlert('你还有必填项没有填哦');
+                    $('.must').filter(':eq(' + index + ')').css({
+                        'border': '1px solid rgba(248, 38, 157, 0.5)',
+                        'box-shadow': '0 0 3px rgba(248, 38, 157, 0.5)'
+                    });
+                    return false;
+                };
+                if ((index + 1) == $('.must').length) {
+                    checkTime();
+                }
+            });
+        }
+
+        function checkTime() {
+            var checkCount = 0;
+            $("[type='checkbox']").each(function(index, val) {
+                if ($(this).attr("checked")) {
+                    checkCount++;
+                };
+            });
+            if (checkCount == 0) {
+                myAlert('至少选一个时间嘛');
                 return false;
+            } else {
+                //console.log(checkCount);
+                do_sumbit();
             };
-        });
-        var checkCount = 0;
-        $("[type='checkbox']").each(function(index, val) {
-            if ($(this).attr("checked")) {
-                checkCount++;
-            };
-        });
-        if (checkCount == 0) {
-            myAlert('至少选一个时间嘛');
-            return false;
-        } else {
-            //console.log(checkCount);
-            do_sumbit();
-        };
+        }
+        checkMust();
     };
 
     function do_sumbit() {
@@ -43,9 +56,8 @@ function submit() {
         $.get('/joinsdi/upload/form', postData, function(data, textStatus, xhr) {
             //console.log(data);
             if (data == 'success') {
-                $('#result').text('上传成功');
                 uploadAvatar();
-            } else{
+            } else {
                 myAlert("信息表上传出错了><，请重试");
             }
         });
@@ -56,12 +68,27 @@ function submit() {
 
 
 function previewImage(file) {
+    if (file.files.item(0).size > 10485760) {
+        myAlert('这个图有点大。。。');
+        return false;
+    }
+    switch (file.files.item(0).type) {
+        case 'image/jpeg':
+            ;
+        case 'image/png':
+            ;
+        case 'image/gif':
+            break;
+        default:
+            myAlert('这个是图吗。。。');
+            return false;
+    }
     var MAXWIDTH = 128;
     var MAXHEIGHT = 128;
-    var div = document.getElementById('preview');
+    var div = document.querySelector('#preview');
     if (file.files && file.files[0]) {
         div.innerHTML = '<img id=imghead>';
-        var img = document.getElementById('imghead');
+        var img = document.querySelector('#imghead');
         img.onload = function() {
             var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
             img.width = rect.width;
@@ -80,7 +107,7 @@ function previewImage(file) {
         file.select();
         var src = document.selection.createRange().text;
         div.innerHTML = '<img id=imghead>';
-        var img = document.getElementById('imghead');
+        var img = document.querySelector('#imghead');
         img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
         var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
         status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
@@ -113,6 +140,26 @@ function clacImgZoomParam(maxWidth, maxHeight, width, height) {
     return param;
 }
 
+function checkApply(file) {
+    if (file.files.item(0).size > 104857600) {
+        myAlert('这东西好大啊。。。');
+        return false;
+    }
+    switch (file.files.item(0).type) {
+        case 'application/zip':
+            ;
+        case 'application/x-rar':
+            ;
+        case 'application/pdf':
+            ;
+        case 'application/x-7z-compressed':
+            break;
+        default:
+            myAlert('这个是你的报名表吗。。。');
+            return false;
+    }
+}
+
 function uploadAvatar() {
     var fileObj = document.querySelector('#avatarFile').files[0];
     var fileController = "/joinsdi/upload/avatar";
@@ -124,14 +171,14 @@ function uploadAvatar() {
 
     xhr.open("post", fileController, true);
     xhr.onload = function() {
-        if(this.responseText == 'success'){
+        if (this.responseText == 'success') {
             uploadApply();
-        } else{
+        } else {
             myAlert('照片上传出错了><，请重试');
         }
-        
+
     }
-    xhr.upload.addEventListener('progress', progressFunction, false);
+    //xhr.upload.addEventListener('progress', progressFunction, false);
     xhr.send(form);
 }
 
@@ -146,9 +193,10 @@ function uploadApply() {
 
     xhr.open("post", fileController, true);
     xhr.onload = function() {
-        if(this.responseText == 'success'){
+        if (this.responseText == 'success') {
+            $('#result').text('上传成功');
             myAlert('<p>上传成功</p><p>我们已经向你所填写的邮箱发送了确认邮件，请注意查收');
-        }else{
+        } else {
             myAlert('申请表上传出错了><，请重试');
         }
     }

@@ -73,7 +73,7 @@
 				<img id="imghead" src='/joinsdi/img/apply.jpg'>
 			</div>
 			<a class="a-upload">
-				<input type="file" id="applyFile">选择文件
+				<input type="file" onchange="checkApply(this)"id="applyFile">选择文件
 			</a>
 		</div>
 	</form>

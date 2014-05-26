@@ -69,7 +69,7 @@ class upload extends CI_Controller {
 				$this->load->helper('url');
 				$this->load->library('upload');
 
-				$config['upload_path'] = "./avatar";
+				$config['upload_path'] = "../avatar";
   				$config['allowed_types'] = 'gif|jpg|png|jpeg';
   				$config['max_size'] = 10240;
   				$config['encrypt_name'] = TRUE;
