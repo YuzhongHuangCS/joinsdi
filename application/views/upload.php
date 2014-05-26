@@ -46,7 +46,7 @@
   		<br/>
   		备注: <input type="text" class="long" name="remark" placeholder="备注，无特殊情况请留空" />
   		<p>请填写一些你常去的SNS社区(例如人人，Lofter，Dribbble)</p>
-  		<p>和你的用户名。此题为加分项，非必填。</p>
+  		<p>和你的用户名。此栏非必填，但有助于我们更全面地了解你。</p>
   		网站/用户名 <input type="text" class="midlong" name="favorite" placeholder="网站/用户名;  网站/用户名" />
 	</form>
 </div>

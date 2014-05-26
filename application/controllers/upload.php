@@ -151,7 +151,7 @@ class upload extends CI_Controller {
             <p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;">亲爱的 ' . $info->name . ' </p>
             <p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;">感谢你参与浙江大学国际设计研究院设计创新班2013级招生。</p>
             <p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;">你的报名表已经成功提交</p>
-            <p style="margin-left: 54px; font-size: 12px">你可以通过Entry ID更新你的报名表。</p>
+            <p style="margin-left: 54px; font-size: 12px">你可以通过Entry ID更新你的报名表。在提交更新后的报名表时，填入备注栏中即可。</p>
             <p style="margin-left: 54px; font-size: 12px">你的Entry ID为: ' . $info-> uploadID . '</p>
             <p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;">请在招生结束前妥善保存此Entry ID。</p>
             <p style="margin-left: 54px; font-size: 12px">参与WorkShop名单预计将在6月5日公布，请注意保持手机通讯通畅。</p>
@@ -160,6 +160,7 @@ class upload extends CI_Controller {
             <p style="margin-left: 54px; font-size: 12px">阅读更多招生信息请登录：</p>
             <p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;"><a style="color: #B51F27" href="http://www.idi.zju.edu.cn/joinsdi/">招生官网</a> | <a style="color: #B51F27" href="http://www.renren.com/323343079/profile">人人主页</a></p>
             <p style="margin-left: 54px; font-size: 12px">如果你有任何疑问，请在我们的交流版面与我们互动。</p>
+            <p style="margin-left: 54px; font-size: 12px">请勿直接回复本邮件，如有疑问可邮件至 <a href="mailto: joinsdi2014@gmail.com" style="color: #B51F27">joinsdi2014@gmail.com</a></p>
             <p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;">最后，再次感谢你参与浙江大学国际设计研究院设计创新班2013级招生。</p>
             <p style="margin-left: 54px; font-size: 12px;">祝好，</p>
             <p style="margin-left: 54px; font-size: 12px">设计创新班全体成员</p>
