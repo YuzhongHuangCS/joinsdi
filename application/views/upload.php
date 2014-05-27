@@ -55,7 +55,7 @@
 	</div>
 	<form id="form2">
 		<div id="avatar">
-			<p>个人生活照</p>
+			<p>个人照片</p>
 			<p>jpg/png/gif格式，小于10MB</p>
 			<div id="preview">
 				<img id="imghead" src='/joinsdi/img/avatar.png'>
