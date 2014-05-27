@@ -120,7 +120,9 @@ class upload extends CI_Controller {
 
   				$this->upload->initialize($config);
   				if(!$this->upload->do_upload("file")){
+  					$data = array('upload_data' => $this->upload->data());
   					$error = array('error' => $this->upload->display_errors());
+  					print_r($data);
    					print_r($error);
    					echo('failed');
   				} else{
