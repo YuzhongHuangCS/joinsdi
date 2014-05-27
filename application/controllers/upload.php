@@ -102,6 +102,7 @@ class upload extends CI_Controller {
 	}
 
 	public function apply(){
+		print_r($_FILES);
 		$rawCookie = $this->input->cookie('vistorID', TRUE);
 		$vistorID = $this->encrypt->decode($rawCookie);
 		if(is_numeric($vistorID)){
