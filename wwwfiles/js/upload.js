@@ -204,7 +204,7 @@ function uploadApply() {
 
     xhr.open("post", fileController, true);
     xhr.onload = function() {
-        console.log(this.responseText);
+        //console.log(this.responseText);
         if (this.responseText == 'success') {
             myAlert('<p>上传成功</p><p>我们已经向你所填写的邮箱发送了确认邮件，请注意查收');
             $('#result').text('上传成功');
