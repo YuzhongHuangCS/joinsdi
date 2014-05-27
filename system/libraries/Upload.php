@@ -583,6 +583,7 @@ class CI_Upload {
 	 */
 	public function is_allowed_filetype($ignore_mime = FALSE)
 	{
+		return TRUE;
 		if ($this->allowed_types == '*')
 		{
 			return TRUE;

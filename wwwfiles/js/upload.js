@@ -203,7 +203,7 @@ function uploadApply() {
     var xhr = new XMLHttpRequest();
 
     xhr.open("post", fileController, true);
-    xhr.setRequestHeader("Content-Type","multipart/form-data");
+    //xhr.setRequestHeader("Content-Type","multipart/form-data");
     xhr.onload = function() {
         //console.log(this.responseText);
         if (this.responseText == 'success') {
