@@ -117,4 +117,24 @@ class stat extends CI_Model {
 
 		return $data;
 	}
+
+	public function getUploadData(){
+		$data = array();
+
+		$sql = 'SELECT * FROM `upload` LEFT JOIN `vistor` ON `upload`.`visitorID` = `vistor`.`id`';
+		$query = $this->db->query($sql);
+		foreach($query->result_array() as $row){
+			foreach ($row as $key => $value) {
+				if($key == 'ua'){
+					$value = str_replace('User-Agent	', '', $value);
+				}
+				$row[$key] = urlencode($value);
+			}
+			$data[] = $row;
+		}
+
+		$query->free_result(); 
+
+		return $data;
+	}
 }

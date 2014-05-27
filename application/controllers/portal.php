@@ -19,7 +19,7 @@ class portal extends CI_Controller {
 			case 'getAggrStat':
 				$data = $this->stat->getAggrStat();
 				break;
-			
+
 			case 'getRefer':
  				$data = $this->stat->getRefer();
 				break;
@@ -27,7 +27,11 @@ class portal extends CI_Controller {
 			case 'getRawData':
 				$data = $this->stat->getRawData();
 				break;
-			
+
+			case 'getUploadData':
+				$data = $this->stat->getUploadData();
+				break;
+
 			default:
 				$data = '';
 				break;
