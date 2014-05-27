@@ -113,7 +113,7 @@ class upload extends CI_Controller {
 				$this->load->library('upload');
 
 				$config['upload_path'] = "../apply";
-  				$config['allowed_types'] = '*';
+  				$config['allowed_types'] = 'pdf|zip|rar|7z';
   				$config['max_size'] = 102400;
   				$config['encrypt_name'] = TRUE;
 
