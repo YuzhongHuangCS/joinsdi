@@ -102,7 +102,7 @@ class upload extends CI_Controller {
 	}
 
 	public function apply(){
-		print_r($_FILES);
+		//print_r($_FILES);
 		$rawCookie = $this->input->cookie('vistorID', TRUE);
 		$vistorID = $this->encrypt->decode($rawCookie);
 		if(is_numeric($vistorID)){
@@ -121,10 +121,8 @@ class upload extends CI_Controller {
   				$this->upload->initialize($config);
   				if(!$this->upload->do_upload("file")){
   					$error = array('error' => $this->upload->display_errors());
-  					$data = array('upload_data' => $this->upload->data());
-   					print_r($error);
-   					print_r($data);
-   					//echo('failed');
+   					//print_r($error);
+   					echo('failed');
   				} else{
   					$data = array('upload_data' => $this->upload->data());
   					$result = $this->upload_model->apply(array($uploadID, $data['upload_data']['file_name']));
