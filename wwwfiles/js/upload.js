@@ -67,7 +67,7 @@ function submit() {
         $('#result').text('正在上传信息表');
         $('#status').css('opacity', '1');
         var postData = $('#form1').serialize() + '&' + $('#form3').serialize();
-        $.get('/joinsdi/upload/form', postData, function(data, textStatus, xhr) {
+        $.post('/joinsdi/upload/form', postData, function(data, textStatus, xhr) {
             //console.log(data);
             if (data == 'success') {
                 uploadAvatar();

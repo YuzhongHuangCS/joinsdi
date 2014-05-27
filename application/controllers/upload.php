@@ -38,7 +38,7 @@ class upload extends CI_Controller {
 
 		if(is_numeric($vistorID)){
 			global $postData;
-			$postData = $this->input->get(NULL, TRUE);
+			$postData = $this->input->post(NULL, TRUE);
 			$postData['visitorID'] = $vistorID;
 
 			$postData['shortNum'] = fill('shortNum');
