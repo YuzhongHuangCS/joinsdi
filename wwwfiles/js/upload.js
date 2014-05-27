@@ -83,6 +83,7 @@ function submit() {
 
 
 function previewImage(file) {
+    console.log(file.files.item(0));
     if (file.files.item(0).size > 10485760) {
         myAlert('这个图有点大。。。');
         return false;
@@ -156,7 +157,7 @@ function clacImgZoomParam(maxWidth, maxHeight, width, height) {
 }
 
 function checkApply(file) {
-    //console.log(file.files.item(0));
+    console.log(file.files.item(0));
     if (file.files.item(0).size > 104857600) {
         myAlert('这东西好大啊。。。');
         return false;
