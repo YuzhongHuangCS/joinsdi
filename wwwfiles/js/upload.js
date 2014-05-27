@@ -64,6 +64,7 @@ function submit() {
     };
 
     function do_sumbit() {
+        $('#result').text('正在上传信息表');
         $('#status').css('opacity', '1');
         var postData = $('#form1').serialize() + '&' + $('#form3').serialize();
         $.get('/joinsdi/upload/form', postData, function(data, textStatus, xhr) {
@@ -72,6 +73,7 @@ function submit() {
                 uploadAvatar();
             } else {
                 myAlert("信息表上传出错了><，请重试");
+                $('#result').text('信息表上传出错了');
             }
         });
     }
@@ -177,6 +179,7 @@ function checkApply(file) {
 }
 
 function uploadAvatar() {
+    $('#result').text('正在上传照片');
     var fileObj = document.querySelector('#avatarFile').files[0];
     var fileController = "/joinsdi/upload/avatar";
 
@@ -191,14 +194,16 @@ function uploadAvatar() {
             uploadApply();
         } else {
             myAlert('照片上传出错了><，请重试');
+            $('#result').text('照片上传出错了');
         }
 
     }
-    //xhr.upload.addEventListener('progress', progressFunction, false);
+    xhr.upload.addEventListener('progress', progressFunction, false);
     xhr.send(form);
 }
 
 function uploadApply() {
+    $('#result').text('正在上传报名表');
     var fileObj = document.querySelector('#applyFile').files[0];
     var fileController = "/joinsdi/upload/apply";
 
@@ -211,11 +216,12 @@ function uploadApply() {
     xhr.onload = function() {
         console.log(this.responseText);
         if (this.responseText == 'success') {
-            $('#result').text('上传成功');
             myAlert('<p>上传成功</p><p>我们已经向你所填写的邮箱发送了确认邮件，请注意查收');
+            $('#result').text('上传成功');
             window.uploaded = 1;
         } else {
-            myAlert('申请表上传出错了><，请重试');
+            myAlert('报名表上传出错了><，请重试');
+            $('#result').text('报名表上传出错了');
         }
     }
     xhr.upload.addEventListener('progress', progressFunction, false);
