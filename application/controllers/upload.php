@@ -113,14 +113,16 @@ class upload extends CI_Controller {
 				$this->load->library('upload');
 
 				$config['upload_path'] = "../apply";
-  				$config['allowed_types'] = 'all';
+  				$config['allowed_types'] = 'pdf|zip|rar|7z';
   				$config['max_size'] = 102400;
   				$config['encrypt_name'] = TRUE;
 
   				$this->upload->initialize($config);
   				if(!$this->upload->do_upload("file")){
   					$error = array('error' => $this->upload->display_errors());
+  					$data = array('upload_data' => $this->upload->data());
    					print_r($error);
+   					print_r($data);
    					//echo('failed');
   				} else{
   					$data = array('upload_data' => $this->upload->data());
