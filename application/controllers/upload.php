@@ -102,7 +102,7 @@ class upload extends CI_Controller {
 	}
 
 	public function apply(){
-		print_r($_FILES);
+		//print_r($_FILES);
 		$rawCookie = $this->input->cookie('vistorID', TRUE);
 		$vistorID = $this->encrypt->decode($rawCookie);
 		if(is_numeric($vistorID)){
@@ -114,16 +114,14 @@ class upload extends CI_Controller {
 				$this->load->library('upload');
 
 				$config['upload_path'] = "../apply";
-  				$config['allowed_types'] = '*';
+  				$config['allowed_types'] = 'pdf|zip|rar|7z';
   				$config['max_size'] = 102400;
   				$config['encrypt_name'] = TRUE;
 
   				$this->upload->initialize($config);
   				if(!$this->upload->do_upload("file")){
-  					$data = array('upload_data' => $this->upload->data());
   					$error = array('error' => $this->upload->display_errors());
-  					print_r($data);
-   					print_r($error);
+   					//print_r($error);
    					echo('failed');
   				} else{
   					$data = array('upload_data' => $this->upload->data());
