@@ -162,7 +162,7 @@ class upload extends CI_Controller {
             		<p style="margin-left: 54px; font-size: 12px">你的Entry ID为: <b>' . $info-> uploadID . '</b></p>
             		<p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;">请在招生结束前妥善保存此Entry ID。</p>
             		<p style="margin-left: 54px; font-size: 12px">参与WorkShop名单预计将在6月5日公布，请注意保持手机通讯通畅。</p>
-            		<p style="margin-left: 54px; font-size: 12px">WorkShop将于<b>6月6日-6月7日</b>举行，请空出自己选择的WorkShop时段。</p>
+            		<p style="margin-left: 54px; font-size: 12px">WorkShop将于6月6日-6月7日举行，请空出自己选择的WorkShop时段。</p>
             		<p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;">专家面试时间将于WorkShop后公布，请密切关注我们的动态。</p>
             		<p style="margin-left: 54px; font-size: 12px">阅读更多招生信息请登录：</p>
             		<p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;"><a style="color: #B51F27" href="http://www.idi.zju.edu.cn/joinsdi/">招生官网</a> | <a style="color: #B51F27" href="http://www.renren.com/323343079/profile">人人主页</a></p>

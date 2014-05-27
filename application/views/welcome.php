@@ -30,7 +30,7 @@
 			<img src="img/man.png">
 			<p>下载报名表</p>
 		</a>
-		<a id="upload" onclick="upload()">
+		<a id="upload" href="upload">
 			<img src="img/man_blue.png">
 			<p>报名表回收</p>
 		</a>
