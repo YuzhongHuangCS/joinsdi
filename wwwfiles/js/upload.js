@@ -230,7 +230,7 @@ function myAlert(text) {
     $('#myAlert').fadeIn('normal', function() {
         setTimeout(function() {
             $('#myAlert').fadeOut(1250);
-        }, 3000);
+        }, 6000);
     });
     $('#myAlert').html(text);
     $('#myAlert').click(function() {
