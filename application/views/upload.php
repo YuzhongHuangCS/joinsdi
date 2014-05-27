@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
-	<title>设计创新班2014招生·报名表回收</title>
+	<title>设计创新班2013级招生·报名表回收</title>
 	<link rel="stylesheet" href="/joinsdi/css/plugin.css">
 	<link rel="stylesheet" href="/joinsdi/css/upload.css">
 </head>
 <body>
 <nav></nav>
 <div id="jumbotron">
-	<h1>有处可逃·设计创新班2014招生</h1>
+	<h1>有处可逃·设计创新班2013级招生</h1>
 	<h2>电子版报名表提交</h2>
 </div>
 <div class="part" id="part1">
