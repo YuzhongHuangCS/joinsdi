@@ -159,10 +159,10 @@ class upload extends CI_Controller {
             		<p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;">感谢你参与浙江大学国际设计研究院设计创新班2013级招生。</p>
             		<p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;">你的报名表已经成功提交</p>
             		<p style="margin-left: 54px; font-size: 12px">你可以通过Entry ID更新你的报名表。在提交更新后的报名表时，填入备注栏中即可。</p>
-            		<p style="margin-left: 54px; font-size: 12px">你的Entry ID为: ' . $info-> uploadID . '</p>
+            		<p style="margin-left: 54px; font-size: 12px">你的Entry ID为: <b>' . $info-> uploadID . '</b></p>
             		<p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;">请在招生结束前妥善保存此Entry ID。</p>
             		<p style="margin-left: 54px; font-size: 12px">参与WorkShop名单预计将在6月5日公布，请注意保持手机通讯通畅。</p>
-            		<p style="margin-left: 54px; font-size: 12px">WorkShop将于6月6日-6月7日举行，请空出自己选择的WorkShop时段。</p>
+            		<p style="margin-left: 54px; font-size: 12px">WorkShop将于<b>6月6日-6月7日</b>举行，请空出自己选择的WorkShop时段。</p>
             		<p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;">专家面试时间将于WorkShop后公布，请密切关注我们的动态。</p>
             		<p style="margin-left: 54px; font-size: 12px">阅读更多招生信息请登录：</p>
             		<p style="margin-left: 54px; font-size: 12px; margin-bottom: 24px;"><a style="color: #B51F27" href="http://www.idi.zju.edu.cn/joinsdi/">招生官网</a> | <a style="color: #B51F27" href="http://www.renren.com/323343079/profile">人人主页</a></p>
