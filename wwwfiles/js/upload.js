@@ -83,15 +83,19 @@ function submit() {
 
 
 function previewImage(file) {
-    console.log(file.files.item(0));
+    //console.log(file.files.item(0));
     if (file.files.item(0).size > 10485760) {
         myAlert('这个图有点大。。。');
         return false;
     }
     switch (file.files.item(0).type) {
+        case 'image/pjpeg':
+            ;
         case 'image/jpeg':
             ;
         case 'image/png':
+            ;
+        case 'image/x-png':
             ;
         case 'image/gif':
             break;
@@ -157,25 +161,10 @@ function clacImgZoomParam(maxWidth, maxHeight, width, height) {
 }
 
 function checkApply(file) {
-    console.log(file.files.item(0));
+    //console.log(file.files.item(0));
     if (file.files.item(0).size > 104857600) {
         myAlert('这东西好大啊。。。');
         return false;
-    }
-    switch (file.files.item(0).type) {
-        case 'application/zip':
-            ;
-        case 'application/x-rar':
-            ;
-        case 'application/x-rar-compressed':
-            ;
-        case 'application/pdf':
-            ;
-        case 'application/x-7z-compressed':
-            break;
-        default:
-            myAlert('这个是你的报名表吗。。。');
-            return false;
     }
 }
 
