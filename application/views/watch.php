@@ -60,6 +60,8 @@
 				</tr>
 				<tr>
 					<td>WorkShop时段:</td>
+				</tr>
+				<tr>
 					<td ng-if="upload.date1"><b>6月6日 18:00-20:00</b></td>
 					<td ng-if="upload.date2"><b>6月6日 20:30-22:30</b></td>
 					<td ng-if="upload.date3"><b>6月7日 18:00-20:00</b></td>
