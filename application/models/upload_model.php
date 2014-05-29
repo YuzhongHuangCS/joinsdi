@@ -7,8 +7,8 @@ class upload_model extends CI_Model {
 
 	public function form($data) {
 		//print_r($data);
-		$sql = 'INSERT INTO `upload`(`uploadID`, `visitorID`, `timestamp`, `name`, `id`, `birthday`, `category`, `major`, `longNum`, `shortNum`, `email`, `dormitory`, `gpa`, `rank`, `date1`, `date2`, `date3`, `date4`, `remark`, `favorite`) VALUES (NULL, ? , CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-		$this->db->query($sql, array($data['visitorID'], $data['name'], $data['id'], $data['birthday'], $data['category'], $data['major'], $data['longNum'], $data['shortNum'], $data['email'], $data['dormitory'], $data['gpa'], $data['rank'], $data['date1'], $data['date2'], $data['date3'], $data['date4'], $data['remark'], $data['favorite']));
+		$sql = 'INSERT INTO `upload`(`uploadID`, `visitorID`, `timestamp`, `name`, `id`, `gender`, `birthday`, `category`, `major`, `longNum`, `shortNum`, `email`, `dormitory`, `gpa`, `rank`, `date1`, `date2`, `date3`, `date4`, `remark`, `favorite`) VALUES (NULL, ? , CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$this->db->query($sql, array($data['visitorID'], $data['name'], $data['id'], $data['gender'], $data['birthday'], $data['category'], $data['major'], $data['longNum'], $data['shortNum'], $data['email'], $data['dormitory'], $data['gpa'], $data['rank'], $data['date1'], $data['date2'], $data['date3'], $data['date4'], $data['remark'], $data['favorite']));
 
 		return $this->db->insert_id();
 	}

@@ -10,6 +10,10 @@ class sdilod extends CI_Controller {
 		$this->load->view('detail.php');
 	}
 
+	public function watch(){
+		$this->load->view('watch.php');
+	}
+
 	public function portal(){
 		$this->load->model('stat');
 		date_default_timezone_set('Asia/Shanghai');
