@@ -53,6 +53,9 @@ class sdilod extends CI_Controller {
 				break;
 
 			case 'getAvatar':
+				if(empty($uploadID)){
+					break;
+				}
 				$this->load->helper('file');
 				
 				$fileName = $this->stat->getAvatar($uploadID);
@@ -72,19 +75,27 @@ class sdilod extends CI_Controller {
 				break;
 
 			case 'getApply':
+				if(empty($uploadID)){
+					break;
+				}
 				$this->load->helper('file');
 				
-				$fileName = $this->stat->getApply($uploadID);
-				$path = '/home/joinus/apply/' . $fileName;
+				$data = $this->stat->getApply($uploadID);
+				$path = '/home/joinus/apply/' . $data->apply;
 
 				$info = get_file_info($path);
+				$info['extension'] = pathinfo($path, PATHINFO_EXTENSION);
+
 				$size = $info['size'];
 
-				$encoded_name = rawurlencode($info['name']);
-				$mime_type = get_mime_by_extension($encoded_name);
+				$fake_name = rawurlencode($info['name']);
+				$mime_type = get_mime_by_extension($fake_name);
 				if ( $mime_type == '' ) {
 					$mime_type = 'application/octet-stream';
 				}
+
+				$encoded_name = rawurlencode($data->name . '-' . $data->id . '-JoinSDI.' . $info['extension']);
+				
 				header("Content-Type: $mime_type");
 				header("Content-Length: $size");
 				header("Content-Disposition: attachment; filename=\"$encoded_name\"; filename*=utf-8''$encoded_name");
