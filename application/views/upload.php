@@ -21,7 +21,7 @@
 	</div>
 	<form id="form1">
 		姓名: <input type="text" class="must" name="name" placeholder="姓名" />
-		学号: <input type="text" class="must" name="id" placeholder="学号" />
+		学号: <input type="text" class="must" name="num" placeholder="学号" />
 		<br />
 		<span>性别:</span>
   		<label class="radio"><input type="radio" class="must" name="gender" value="male" />男

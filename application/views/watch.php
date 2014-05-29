@@ -15,7 +15,7 @@
 		<div id="count">总计: {{(uploads | filter:query).length}} 项 &nbsp;&nbsp;&nbsp;&nbsp;排序规则:</div>
 		<select ng-model="orderProp" class="black">
 			<option value="name">姓名</option>
-  			<option value="id">学号</option>
+  			<option value="num">学号</option>
   			<option value="birthday">生日</option>
   			<option value="gender">性别</option>
   			<option value="category">大类</option>
@@ -42,7 +42,7 @@
 			<table>
 				<tr>
 					<td>姓名: <b>{{upload.name}}</b></td>
-					<td>学号: <b>{{upload.id}}</b></td>
+					<td>学号: <b>{{upload.num}}</b></td>
 					<td>生日: <b>{{upload.birthday}}</b></td>
 					<td>性别: <b>{{upload.gender}}</b></td>
 				</tr>
