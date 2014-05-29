@@ -44,8 +44,9 @@
 		<a href="portal?action=getRefer" target="_blank" ><button>查看原始JSON数据</button></a>
 		</div>
 	</section>
-	<footer onclick="location.href='sdilod/detail'">
-		查看独立访客数据
+	<footer>
+		<div onclick="location.href='/joinsdi/sdilod/detail'">查看独立访客数据</div>
+		<div onclick="location.href='/joinsdi/sdilod/watch'">查看报名表</div>
 	</footer>
 </body>
 </html>

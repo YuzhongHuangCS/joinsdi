@@ -330,11 +330,10 @@ sub {
 td, th {
     padding: 0;
 }
-
 //Style Write For SDILOD @red: #F8269D;
-@blue: #46d8d6;
-@green: #21EEAC;
-header {
+ @blue: #46d8d6;
+ @green: #21EEAC;
+ header {
     text-align: center;
     line-height: 5rem;
     color: #FFF;
@@ -349,7 +348,7 @@ body {
     background-color: #F4F4F4;
     height: 100%;
     overflow-x: hidden;
-    font-family: "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "Hiragino Sans GB", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+    font-family:"Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "Hiragino Sans GB", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
 }
 section {
     width: 100%;
@@ -434,15 +433,20 @@ a {
     }
 }
 footer {
+    margin-top: 2rem;
     text-align: center;
     line-height: 5rem;
     color: #FFF;
     font-size: 1.5rem;
     background-color: #3F3E40;
     letter-spacing: 0.1rem;
-    cursor: pointer;
-    transition: all 0.5s;
-    &:hover {
-        background-color: @blue;
+    div {
+        width: 45%;
+        display: inline-block;
+        cursor: pointer;
+        transition: all 0.5s;
+        &:hover {
+            background-color: @blue;
+        }
     }
 }
