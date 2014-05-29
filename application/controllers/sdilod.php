@@ -98,7 +98,7 @@ class sdilod extends CI_Controller {
 					$mime_type = 'application/octet-stream';
 				}
 
-				$encoded_name = rawurlencode($data->name . '-' . $data->id . '-JoinSDI.' . $info['extension']);
+				$encoded_name = rawurlencode($data->name . '-' . $data->num . '-JoinSDI.' . $info['extension']);
 				
 				header("Content-Type: $mime_type");
 				header("Content-Length: $size");

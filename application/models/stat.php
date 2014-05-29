@@ -147,7 +147,7 @@ class stat extends CI_Model {
 	}
 
 	public function getApply($uploadID){
-		$sql = 'SELECT `name`, `id`, `apply` FROM `upload` WHERE `uploadID` = ?';
+		$sql = 'SELECT `name`, `num`, `apply` FROM `upload` WHERE `uploadID` = ?';
 
 		$query = $this->db->query($sql, $uploadID);
 		$data = $query->result()[0];
