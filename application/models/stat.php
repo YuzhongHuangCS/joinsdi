@@ -137,4 +137,20 @@ class stat extends CI_Model {
 
 		return $data;
 	}
+
+	public function getAvatar($uploadID){
+		$sql = 'SELECT `avator` FROM `upload` WHERE `uploadID` = ?';
+
+		$query = $this->db->query($sql, $uploadID);
+		$data = $query->result()[0]->avator;
+		return $data;
+	}
+
+	public function getApply($uploadID){
+		$sql = 'SELECT `apply` FROM `upload` WHERE `uploadID` = ?';
+
+		$query = $this->db->query($sql, $uploadID);
+		$data = $query->result()[0]->apply;
+		return $data;
+	}
 }
