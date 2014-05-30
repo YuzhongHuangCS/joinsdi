@@ -186,7 +186,6 @@ function uploadAvatar() {
             myAlert('照片上传出错了><，请重试');
             $('#result').text('照片上传出错了');
         }
-
     }
     xhr.upload.addEventListener('progress', progressFunction, false);
     xhr.send(form);
@@ -196,6 +195,7 @@ function uploadApply() {
     $('#result').text('正在上传报名表');
     var fileObj = document.querySelector('#applyFile').files[0];
     var fileController = "/joinsdi/upload/apply";
+
     var form = new FormData();
     form.append('file', fileObj);
 
