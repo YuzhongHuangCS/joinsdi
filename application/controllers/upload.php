@@ -142,7 +142,7 @@ class upload extends CI_Controller {
   		$this->email->from('joinsdi@www.idi.zju.edu.cn', '设计创新班2013级招生');
   		$this->email->to($info->email);
 
-  		$this->email->subject('报名表提交成功-设计创新班2013级招生');
+  		$this->email->subject('设计创新班2013级招生/报名表提交成功');
 		$this->email->message('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			<html xmlns="http://www.w3.org/1999/xhtml">
 			<head>
