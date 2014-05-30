@@ -161,15 +161,11 @@ function clacImgZoomParam(maxWidth, maxHeight, width, height) {
 }
 
 function checkApply(file) {
+    //console.log(file.files.item(0).type);
     if (file.files.item(0).size > 104857600) {
         myAlert('这东西好大啊。。。');
         return false;
-    } else{
-        if(file.files.item(0).type == ''){
-            file.files.item(0).type = 'application/zip';
-        }
-        console.log(file.files.item(0));
-    }
+    } 
 }
 
 function uploadAvatar() {
@@ -200,7 +196,6 @@ function uploadApply() {
     $('#result').text('正在上传报名表');
     var fileObj = document.querySelector('#applyFile').files[0];
     var fileController = "/joinsdi/upload/apply";
-
     var form = new FormData();
     form.append('file', fileObj);
 
