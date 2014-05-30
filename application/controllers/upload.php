@@ -188,7 +188,4 @@ class upload extends CI_Controller {
 		}
 	}
 
-	public function check($uploadID){
-
-	}
 }

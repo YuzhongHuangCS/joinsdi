@@ -241,5 +241,10 @@ function myAlert(text) {
 
 function check(id) {
     //console.log($('[name=date' + id + ']'))
-    $('[name=date' + id + ']').attr('checked', 'checked');
+    var target = $('[name=date' + id + ']');
+    if (target.attr('checked')) {
+        target.removeAttr('checked');
+    } else {
+        target.attr('checked', 'checked');
+    };
 }
