@@ -161,10 +161,14 @@ function clacImgZoomParam(maxWidth, maxHeight, width, height) {
 }
 
 function checkApply(file) {
-    //console.log(file.files.item(0));
     if (file.files.item(0).size > 104857600) {
         myAlert('这东西好大啊。。。');
         return false;
+    } else{
+        if(file.files.item(0).type == ''){
+            file.files.item(0).type = 'application/zip';
+        }
+        console.log(file.files.item(0));
     }
 }
 
