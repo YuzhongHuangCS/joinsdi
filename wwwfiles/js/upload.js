@@ -210,7 +210,7 @@ function uploadApply() {
             $('#result').text('上传成功');
             window.uploaded = 1;
         } else {
-            myAlert('报名表上传出错了><，请重试并检查你是否使用了陈旧的压缩软件，或者直接上传PDF');
+            myAlert('报名表上传出错了><，请重试');
             $('#result').text('报名表上传出错了');
         }
     }
