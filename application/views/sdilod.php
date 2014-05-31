@@ -18,7 +18,7 @@
 		<div id="dayStatDesc" class="desc">
 			<p>每日新增覆盖人数</p>
 			<p>每日新增下载量</p>
-			<a href="portal?action=getDayStat" target="_blank" ><button>查看原始JSON数据</button></a>
+			<a href="/joinsdi/sdilod/portal?action=getDayStat" target="_blank" ><button>查看原始JSON数据</button></a>
 		</div>
 	</section>
 	<hr/>
@@ -34,14 +34,14 @@
 			<p>todayUV: 今天访问招生页面的用户数</p>
 			<table id="table"></table>
 			<br/>
-			<a href="portal?action=getAggrStat" target="_blank" ><button>查看原始JSON数据</button></a>
+			<a href="/joinsdi/sdilod/portal?action=getAggrStat" target="_blank" ><button>查看原始JSON数据</button></a>
 		</div>
 	</section>
 	<hr/>
 	<section id="refer">
 		<canvas id="referChart" class="chart"></canvas>
 		<div id="referDesc" class="desc">
-		<a href="portal?action=getRefer" target="_blank" ><button>查看原始JSON数据</button></a>
+		<a href="/joinsdi/sdilod/portal?action=getRefer" target="_blank" ><button>查看原始JSON数据</button></a>
 		</div>
 	</section>
 	<footer>
