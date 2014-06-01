@@ -62,11 +62,13 @@ $(function() {
         var date = [];
         var uv = [];
         var dl = [];
+        var up = [];
 
         $.each(data, function(index, val) {
             date.push(index);
             uv.push(val.uv);
             dl.push(val.dl);
+            up.push(val.up);
         });
         var getDayStat = {
             labels: date,
@@ -82,6 +84,12 @@ $(function() {
                 pointColor: "rgba(151,187,205,1)",
                 pointStrokeColor: "#fff",
                 data: dl
+            }, {
+                fillColor: "rgba(255,0,0,0.5)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                data: up
             }]
 
         }

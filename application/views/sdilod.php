@@ -16,8 +16,9 @@
 	<section id="dayStat">
 		<canvas id="dayStatChart" class="chart"></canvas>
 		<div id="dayStatDesc" class="desc">
-			<p>每日新增覆盖人数</p>
-			<p>每日新增下载量</p>
+			<p id="uv">每日新增覆盖人数</p>
+			<p id="dl">每日新增下载量</p>
+			<p id="up">每日上传报名表人数</p>
 			<a href="/joinsdi/sdilod/portal?action=getDayStat" target="_blank" ><button>查看原始JSON数据</button></a>
 		</div>
 	</section>

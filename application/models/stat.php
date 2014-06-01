@@ -20,12 +20,25 @@ class stat extends CI_Model {
 		);
 
 		$stat = array();
-		for($d = $startDate['d']; $d <= $endDate['d']; $d++){
+
+		for($d = $startDate['d']; $d <= 31; $d++){
 			if(strlen($d) == 1){
 				$d = '0' . $d;
 			}
 			$stat[$d]['uv'] = 0;
 			$stat[$d]['dl'] = 0;
+			$stat[$d]['up'] = 0;
+		}
+
+		if($endDate['m'] >= 6){
+			for($d = 1; $d <= $endDate['d']; $d++){
+				if(strlen($d) == 1){
+					$d = '0' . $d;
+				}
+				$stat[$d]['uv'] = 0;
+				$stat[$d]['dl'] = 0;
+				$stat[$d]['up'] = 0;
+			}
 		}
 
 		$sql = 'SELECT `first`, `download` FROM `vistor`';
@@ -36,8 +49,16 @@ class stat extends CI_Model {
 			if($row['download'] != '0000-00-00 00:00:00'){
 				$today = date("d", strtotime($row['download']));
 				$stat[$today]['dl']++;
-				}
-			};
+			}
+		};
+		$query->free_result();
+
+		$sql = 'SELECT `timestamp` FROM `upload`';
+		$query = $this->db->query($sql);
+		foreach ($query->result_array() as $row) {
+			$today = date("d", strtotime($row['timestamp']));
+			$stat[$today]['up']++;
+		}
 		$query->free_result();
 
 		return $stat;
