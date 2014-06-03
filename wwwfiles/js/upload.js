@@ -60,10 +60,16 @@ function submit() {
                 do_sumbit();
             };
         }
+
         checkMust();
     };
 
     function do_sumbit() {
+        if (window.ing) {
+            return false;
+        }
+        window.ing = 1;
+        $('#submit p').text('正在上传...');
         $('#result').text('正在上传信息表');
         $('#status').css('opacity', '1');
         var postData = $('#form1').serialize() + '&' + $('#form3').serialize();
@@ -74,6 +80,8 @@ function submit() {
             } else {
                 myAlert("信息表上传出错了><，请重试");
                 $('#result').text('信息表上传出错了');
+                window.ing = 0;
+                $('#submit p').text('提交报名表');
             }
         });
     }
@@ -165,7 +173,7 @@ function checkApply(file) {
     if (file.files.item(0).size > 104857600) {
         myAlert('这东西好大啊。。。');
         return false;
-    } 
+    }
 }
 
 function uploadAvatar() {
@@ -185,6 +193,8 @@ function uploadAvatar() {
         } else {
             myAlert('照片上传出错了><，请重试');
             $('#result').text('照片上传出错了');
+            window.ing = 0;
+            $('#submit p').text('提交报名表');
         }
     }
     xhr.upload.addEventListener('progress', progressFunction, false);
@@ -212,6 +222,8 @@ function uploadApply() {
         } else {
             myAlert('报名表上传出错了><，请重试');
             $('#result').text('报名表上传出错了');
+            window.ing = 0;
+            $('#submit p').text('提交报名表');
         }
     }
     xhr.upload.addEventListener('progress', progressFunction, false);
