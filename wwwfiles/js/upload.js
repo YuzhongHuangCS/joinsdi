@@ -219,6 +219,8 @@ function uploadApply() {
             myAlert('<p>上传成功</p><p>我们已经向你所填写的邮箱发送了确认邮件，请注意查收');
             $('#result').text('上传成功');
             window.uploaded = 1;
+            window.ing = 0;
+            $('#submit p').text('上传成功');
         } else {
             myAlert('报名表上传出错了><，请重试');
             $('#result').text('报名表上传出错了');
