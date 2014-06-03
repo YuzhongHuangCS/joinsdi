@@ -75,7 +75,7 @@ class sdilod extends CI_Controller {
 				}
 				header("Content-Type: $mime_type");
 				header("Content-Length: $size");
-				header("Cache-control: Private max-age=86400");
+				header("Cache-control: max-age=86400");
 				readfile($path);
 				break;
 
