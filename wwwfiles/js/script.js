@@ -499,9 +499,9 @@ function upload() {
     $('#myalert').fadeIn('normal', function() {
         setTimeout(function() {
             $('#myalert').fadeOut(1250);
-        }, 3000);
+        }, 6000);
     });
-    $('#myalert').html('你不会这么快就填好表了吧<br/>慢慢来，别急');
+    $('#myalert').html('报名表提交已于6月3日截止,<br/>感谢你对设计创新班2013级招生的关注');
     $('#myalert').click(function() {
         $('#myalert').fadeOut();
     });
