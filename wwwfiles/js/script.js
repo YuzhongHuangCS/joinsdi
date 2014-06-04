@@ -501,7 +501,7 @@ function upload() {
             $('#myalert').fadeOut(1250);
         }, 6000);
     });
-    $('#myalert').html('报名表提交已于6月3日截止,<br/>感谢你对设计创新班2013级招生的关注');
+    $('#myalert').html('报名表提交已于6月3日截止,<br/>感谢关注设计创新班2013级招生');
     $('#myalert').click(function() {
         $('#myalert').fadeOut();
     });
