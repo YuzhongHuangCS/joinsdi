@@ -10,8 +10,8 @@ class mail extends CI_Controller {
 	}
 
 	public function index() {
-		$sql = 'SELECT * FROM `mymail`';
-		$query = $this->db->query($sql, $uploadID);
+		$sql = 'SELECT * FROM `mymail2`';
+		$query = $this->db->query($sql);
   		
   		$config['mailtype'] = 'html';
   		$config['crlf'] = '\r\n';
@@ -23,9 +23,9 @@ class mail extends CI_Controller {
   			$this->email->from('joinsdi@idi.zju.edu.cn', '设计创新班2013级招生');
   			$this->email->to($info->email);
 
-  			$this->email->subject('设计创新班2013级招生/WorkShop面试结果');
+  			$this->email->subject('设计创新班2013级招生/专家面试通知');
 			$this->email->message($content);
-			$this->email->set_alt_message('设计创新班2013级招生/WorkShop面试结果');
+			$this->email->set_alt_message('设计创新班2013级招生/专家面试通知');
 
 			$this->email->send();
 			echo($info->name);
