@@ -23,53 +23,53 @@ html
 						span.circleText 1
 					| 个人基本信息
 				hr
-				form.ui.form.segment#form1
-					.four.fields
-						.field
-							label 姓名
-							input(placeholder='姓名', name='name', type='text')
-						.field
-							label 学号
-							input(placeholder='学号', name='num', type='text')
-						.field
-							label 出生日期
-							input(placeholder='YYYY-MM-DD', name='birthday', type='text')
-						.field
-							label 性别
-							select.ui.dropdown(name='gender')
-								option(value='') 性别
-								option(value='male') 男
-								option(value='female') 女
-					.four.fields
-						.field
-							label 大类
-							input(placeholder='大类', name='category', type='text')
-						.field
-							label 专业
-							input(placeholder='专业', name='major', type='text')
-						.field
-							label 均绩
-							input(placeholder='均绩', name='gpa', type='text')
-						.field
-							label 排名
-							input(placeholder='排名', name='rank', type='text')
-					.two.fields
-						.field
-							label 手机
-							input(placeholder='手机', name='phone', type='text')
-						.field
-							label 电子邮箱
-							input(placeholder='电子邮箱', name='email', type='email')
-					.two.fields
-						.field
-							label 寝室
-							input(placeholder='寝室', name='dormitory', type='text')
+			form.ui.form.segment#form1
+				.four.fields
 					.field
-						label 备注
-						input(placeholder='有特殊情况可在此说明', name='remark', type='text')
+						label 姓名
+						input.must(placeholder='姓名', name='name', type='text')
 					.field
-						label 常去的社区及其用户名(例如Lofter，Dribbble，Behance)。此栏非必填，但有助于我们更好地了解你。
-						input(placeholder='网站/用户名  网站/用户名', name='remark', type='text')
+						label 学号
+						input.must(placeholder='学号', name='num', type='text')
+					.field
+						label 出生日期
+						input.must(placeholder='YYYY-MM-DD', name='birthday', type='text')
+					.field
+						label 性别
+						select.ui.dropdown.must(name='gender')
+							option(value='') 性别
+							option(value='male') 男
+							option(value='female') 女
+				.four.fields
+					.field
+						label 大类
+						input.must(placeholder='大类', name='category', type='text')
+					.field
+						label 专业
+						input.must(placeholder='专业', name='major', type='text')
+					.field
+						label 均绩
+						input.must(placeholder='均绩', name='gpa', type='text')
+					.field
+						label 排名
+						input.must(placeholder='排名', name='rank', type='text')
+				.two.fields
+					.field
+						label 手机
+						input.must(placeholder='手机', name='phone', type='text')
+					.field
+						label 电子邮箱
+						input.must(placeholder='电子邮箱', name='email', type='email')
+				.two.fields
+					.field
+						label 寝室
+						input.must(placeholder='寝室', name='dormitory', type='text')
+				.field
+					label 备注
+					input(placeholder='有特殊情况可在此说明', name='remark', type='text')
+				.field
+					label 常去的社区及其用户名(例如Lofter，Dribbble，Behance)。此栏非必填，但有助于我们更好地了解你。
+					input(placeholder='网站/用户名  网站/用户名', name='remark', type='text')
 
 		#part2.part
 			.line
@@ -89,7 +89,7 @@ html
 					p 报名表
 					p pdf/zip/rar/7z格式，小于100MB
 					#place
-						img#imghead(src='static/img/apply.jpg')
+						img#imgapply(src='static/img/apply.jpg')
 					input#applyFile(type='file', onchange='checkApply(this)')
 		#part3.part
 			.line
@@ -98,27 +98,23 @@ html
 						span.circleText 3
 					| 选择WorkShop时间
 				hr
-			form#form3
-				p 请选择你有空参加WorkShop的时间段(请尽可能地多选)
-				label.checkbox
-					input(type='checkbox', name='date1', value='1', onclick='check(1)')
-					| 6月6日 18:00-20:00
-				label.checkbox
-					input(type='checkbox', name='date2', value='1', onclick='check(2)')
-					| 6月6日 20:30-22:30
-				label.checkbox
-					input(type='checkbox', name='date3', value='1', onclick='check(3)')
-					| 6月7日 18:00-20:00
-				label.checkbox
-					input(type='checkbox', name='date4', value='1', onclick='check(4)')
-					| 6月7日 20:30-22:30
+			form.ui.form.segment#form3
+				h4 请选择你有空参加WorkShop的时间段 (请尽可能地多选)
+				label.checkbox 
+					input(type="checkbox" name="date1" value="1" onclick="check(1)")
+					| 5月23日18:00~20:00
+				label.checkbox 
+					input(type="checkbox" name="date2" value="1" onclick="check(2)")
+					| 5月23日20:30~22:30
+				label.checkbox 
+					input(type="checkbox" name="date3" value="1" onclick="check(3)")
+					| 5月24日18:00~20:00
+
 		#status
 			progress#progressBar(value='0', max='100')
 			p#result 正在上传...
 		#submit(onclick='submit()')
 			p 提交报名表
-		footer
-			img#logo(src='/joinsdi/img/logo.svg')
 		#myAlert
 	
 	script(src='/static/bower_components/jquery/dist/jquery.min.js')
