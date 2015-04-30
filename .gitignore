@@ -1,0 +1,11 @@
+# Files that are automatically generated
+*.html
+*.css
+*.js
+
+# Backup files
+*~
+
+# Packages
+bower_components
+node_modules

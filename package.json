@@ -1,0 +1,10 @@
+{
+	"name": "JoinSDI2014",
+	"version": "0.0.1",
+	"devDependencies": {
+		"grunt-contrib-jade": "x",
+		"grunt-contrib-less": "x",
+		"grunt-contrib-coffee": "x",
+		"grunt-contrib-watch": "x"
+	}
+}
