@@ -4,20 +4,23 @@ module.exports = (grunt)->
 			compile:
 				files:
 					'application/views/home.html': 'application/views/home.jade'
+					'application/views/upload.html': 'application/views/upload.jade'
 		coffee:
 			compile:
 				files:
-					'static/js/script.js': 'static/js/script.coffee'
+					'static/js/home.js': 'static/js/home.coffee'
+					'static/js/upload.js': 'static/js/upload.coffee'
 		less:
 			compile:
 				files:
-					'static/css/style.css': 'static/css/style.less'
+					'static/css/home.css': 'static/css/home.less'
+					'static/css/upload.css': 'static/css/upload.less'
 		watch:
 			jade:
-		    	files: ['application/views/home.jade']
+		    	files: ['application/views/home.jade', 'application/views/upload.jade']
 		    	tasks: ['jade']
 		    coffee:
-		    	files: ['static/js/script.coffee']
+		    	files: ['static/js/home.coffee', 'static/js/upload.coffee']
 		    	tasks: ['coffee']
 
 

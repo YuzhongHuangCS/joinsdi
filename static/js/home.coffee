@@ -1,8 +1,8 @@
 $ ->
 	$('img#logo').hover ->
-		$(this).attr('src', '/static/img/box_open.png')
+		$(this).attr('src', 'static/img/box_open.png')
 	, ->
-		$(this).attr('src', '/static/img/box_close.png')
+		$(this).attr('src', 'static/img/box_close.png')
 	initFlame()
 
 initFlame = ->
