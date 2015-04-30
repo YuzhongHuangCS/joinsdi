@@ -1,10 +1,31 @@
 @charset "utf-8";
 
-* {
-	margin: 0;
-	padding: 0;
+body {
+	background-color: white;
 }
 
-#canvas {
+img#logo {
 	display: block;
+	margin: 5% auto 0;
+}
+
+p#slogan {
+	text-align: center;
+	font-size: 1.5rem;
+	letter-spacing: 1.5rem;
+}
+
+canvas#flame {
+	position: fixed;
+	top: 0;
+	z-index: -10;
+}
+
+#action {
+	margin: 0 auto;
+	text-align: center;
+	.ui.button.logoRed {
+		background-color: #FF0024;
+		color: white;
+	}
 }

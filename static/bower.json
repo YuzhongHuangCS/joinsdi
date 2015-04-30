@@ -1,0 +1,9 @@
+{
+	"name": "joinSDI2014",
+	"version": "0.0.1",
+	"homepage": "www.idi.zju.edu.cn/jonsdi",
+	"private": true,
+	"dependencies": {
+		"semantic": "x"
+	}
+}
