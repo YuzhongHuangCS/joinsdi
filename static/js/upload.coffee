@@ -1,5 +1,6 @@
 $ ->
 	$('.ui.dropdown').dropdown()
+	$('.ui.checkbox').checkbox()
 	$('.datepicker').datepicker(
 		dateFormat: 'yy-mm-dd'
 		defaultDate: '1996-01-01'

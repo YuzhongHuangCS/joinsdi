@@ -99,15 +99,18 @@ html
 				.ui.divider
 				form.ui.form.segment#form3
 					h4 请选择你有空参加WorkShop的时间段 (请尽可能地多选)
-					label.checkbox 
-						input(type="checkbox" name="date1" value="1" onclick="check(1)")
-						| 5月23日18:00~20:00
-					label.checkbox 
-						input(type="checkbox" name="date2" value="1" onclick="check(2)")
-						| 5月23日20:30~22:30
-					label.checkbox 
-						input(type="checkbox" name="date3" value="1" onclick="check(3)")
-						| 5月24日18:00~20:00
+					.field
+						.ui.checkbox
+							input(type='checkbox' name='workshop[]' value='5月23日18:00~20:00')
+							label 5月23日18:00~20:00
+					.field
+						.ui.checkbox
+							input(type='checkbox' name='workshop[]' value='5月23日20:30~22:30')
+							label 5月23日20:30~22:30
+					.field
+						.ui.checkbox
+							input(type='checkbox' name='workshop[]' value='5月24日18:00~20:00')
+							label 5月24日18:00~20:00
 
 			#status
 				progress#progressBar(value='0', max='100')
