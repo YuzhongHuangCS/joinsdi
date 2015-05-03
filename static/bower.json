@@ -4,6 +4,6 @@
 	"homepage": "www.idi.zju.edu.cn/jonsdi",
 	"private": true,
 	"dependencies": {
-		"semantic": "x"
+		"semantic-ui": "x"
 	}
 }

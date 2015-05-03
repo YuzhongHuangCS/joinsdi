@@ -8,8 +8,6 @@ $ ->
 	$('#place').click ->
 		$('#applyFile').click()
 
-	myAlert('非常抱歉，由于考试周实在繁忙，上传系统推迟一周上线')
-
 window.checkApply = (file)->
 	if file.files.item(0).size > 104857600
 		myAlert('这东西好大啊。。。')
@@ -47,13 +45,11 @@ myAlert = (text)->
 	$('#myAlert').fadeIn 'normal', ->
 		setTimeout ->
 			$('#myAlert').fadeOut(1250)
-			window.location.href = '/joinsdi'
 		, 6000
 
 	$('#myAlert').html(text)
 	$('#myAlert').click ->
 		$('#myAlert').fadeOut()
-		window.location.href = '/joinsdi'
 
 
 clacImgZoomParam = (maxWidth, maxHeight, width, height)->
