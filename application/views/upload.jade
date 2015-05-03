@@ -79,18 +79,18 @@ html
 					.content 上传文件
 				.ui.divider
 				form#form2.ui.form.segment
-					#avatar
-						p 个人照片
-						p jpg/png/gif格式，小于10MB
-						#preview
-							img#imghead(src='static/img/avatar.png')
-						input#avatarFile(type='file', onchange='previewImage(this)')
-					#apply
-						p 报名表
-						p pdf/zip/rar/7z格式，小于100MB
-						#place
-							img#imgapply(src='static/img/apply.jpg')
-						input#applyFile(type='file', onchange='checkApply(this)')
+					.ui.grid.stackable
+						.row.two.column
+							#avatar.column.file
+								h3 个人照片
+								img.ui.image.small.rounded.preview(src='static/img/avatar.png')
+								input.select(type='file')
+								p JPG / PNG / GIF格式， 小于10MB
+							#apply.column.file
+								h3 报名表
+								img.ui.image.small.rounded.preview(src='static/img/apply.png')
+								input.select(type='file')
+								p PDF / ZIP / RAR / 7Z格式， 小于100MB
 			#step3.step
 				.line
 				h2.ui.header
@@ -114,6 +114,17 @@ html
 				p#result 正在上传...
 
 			.ui.button.fluid.huge.red#submit(onclick='submit()') 提交报名表
+
+
+		.ui.modal.small#error
+			i.close.icon
+			.header Modal Title
+			.content A description can appear on the right
+			.actions
+				.ui.button.positive.right.labeled.icon
+					| 明白
+					i.checkmark.icon
+
 
 	script(src='static/bower_components/jquery/dist/jquery.min.js')
 	script(src='static/bower_components/jquery-ui/jquery-ui.min.js')

@@ -8,187 +8,38 @@ $ ->
 				$(this).val('1996-01-01')
 	)
 
-	$('#preview').click ->
-		$('#avatarFile').click()
+	$('#avatar > img.preview').click ->
+		$('#avatar > input.select').click()
 	
-	$('#place').click ->
-		$('#applyFile').click()
+	$('#apply > img.preview').click ->
+		$('#apply > input.select').click()
 
-	validationRules =
-		name:
-			identifier: 'name'
-			rules: [
-				{
-					type: 'empty'
-					prompt: '请输入姓名'
-				}
-			]
-		num:
-			identifier: 'num'
-			rules: [
-				{
-					type: 'empty'
-					prompt: '请输入学号'	
-				}
-				{
-					type: 'integer'
-					prompt: '学号由10位数字构成'
-				}
-				{
-					type: 'length[10]'
-					prompt: '学号由10位数字构成'
-				}
-				{
-					type: 'maxLength[10]'
-					prompt: '学号由10位数字构成'
-				}
-			]
-		birthday:
-			identifier: 'birthday'
-			rules: [
-				{
-					type: 'empty'
-					prompt: '请输入生日'
-				}
-			]
-		gender:
-			identifier: 'gender'
-			rules: [
-				{
-					type: 'empty'
-					prompt: '请选择性别'
-				}
-			]
-		category:
-			identifier: 'category'
-			rules: [
-				{
-					type: 'empty'
-					prompt: '请输入大类'
-				}
-			]
-		major:
-			identifier: 'major'
-			rules: [
-				{
-					type: 'empty'
-					prompt: '请输入专业'
-				}
-			]
-		gpa:
-			identifier: 'gpa'
-			rules: [
-				{
-					type: 'empty'
-					prompt: '请输入均绩'
-				}
-			]
-		rank:
-			identifier: 'rank'
-			rules: [
-				{
-					type: 'empty'
-					prompt: '请输入排名'
-				}
-			]
-		phone:
-			identifier: 'phone'
-			rules: [
-				{
-					type: 'empty'
-					prompt: '请输入手机'
-				}
-			]
-		email:
-			identifier: 'email'
-			rules: [
-				{
-					type: 'empty'
-					prompt: '请输入电子邮箱'
-				}
-				{
-					type: 'email'
-					prompt: '请输入合法的电子邮箱'					
-				}
-			]
-		dormitory:
-			identifier: 'dormitory'
-			rules: [
-				{
-					type: 'empty'
-					prompt: '请输入寝室'
-				}
-			]
-
-	$('#form1').form(validationRules, {
+	$('#form1').form(validationRule, {
 		inline : true,
 		on: 'blur'
 	})
 
-window.checkApply = (file)->
-	if file.files.item(0).size > 104857600
-		myAlert('这东西好大啊。。。')
-		return false
-	else
-		$('#imgapply').attr('src', 'static/img/logo.png')
+	$('#avatar > input.select').change ->
+		if this.files.length
+			file = this.files[0]
+			if file.size > 10485760
+				return modalAlert('照片不符合要求', '照片太大了， 不要超过10MB哦')
 
-window.previewImage = (file)->
-	#console.log(file.files.item(0));
-	if (file.files.item(0).size > 10485760)
-		myAlert('这个图有点大。。。')
-		return false
+			if file.type? and file.type.indexOf('image') != -1
+				reader = new FileReader()
+				reader.onload = (event)->
+					$('#avatar > img.preview').attr('src', event.target.result)
+				reader.readAsDataURL(file)
+			else
+				return modalAlert('照片不符合要求', '照片格式不对， 请上传JPG / PNG / GIF格式的照片')
 
-	if file.files.item(0).type in ['image/pjpeg', 'image/jpeg', 'image/png', 'image/x-png', 'image/gif']
-		MAXWIDTH = 128
-		MAXHEIGHT = 128
-		if (file.files && file.files[0])
-			img = document.querySelector('#imghead');
-			img.onload = ->
-				rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
-				img.width = rect.width;
-				img.height = rect.height;
-				#img.style.marginLeft = rect.left+'px';
-				img.style.marginTop = rect.top + 'px';
-			
-			reader = new FileReader();
-			reader.onload = (evt)->
-				img.src = evt.target.result;
-			reader.readAsDataURL(file.files[0]);
-	else
-		myAlert('这个是图吗。。。');
-		return false;
-
-myAlert = (text)->
-	$('#myAlert').fadeIn 'normal', ->
-		setTimeout ->
-			$('#myAlert').fadeOut(1250)
-		, 6000
-
-	$('#myAlert').html(text)
-	$('#myAlert').click ->
-		$('#myAlert').fadeOut()
-
-clacImgZoomParam = (maxWidth, maxHeight, width, height)->
-	param =
-		top: 0
-		left: 0
-		width: width
-		height: height
-
-	if width > maxWidth || height > maxHeight
-		rateWidth = width / maxWidth
-		rateHeight = height / maxHeight
-
-		if rateWidth > rateHeight
-			param.width = maxWidth;
-			param.height = Math.round(height / rateWidth)
-		else
-			param.width = Math.round(width / rateHeight)
-			param.height = maxHeight;
-
-	param.left = Math.round((maxWidth - param.width) / 2)
-	param.top = Math.round((maxHeight - param.height) / 2)
-	return param;
+	$('#apply > input.select').change ->
+		if this.files.length
+			file = this.files[0]
+			if file.size > 104857600
+				return modalAlert('报名表不符合要求', '报名表太大了， 不要超过100MB哦')
+			else
+				$('#apply > img.preview').attr('src', 'static/img/logo.png')
 
 window.check = (id)->
 	#console.log($('[name=date' + id + ']'))
@@ -303,3 +154,115 @@ progressFunction = (event)->
 	if event.lengthComputable
 		progressBar.max = event.total;
 		progressBar.value = event.loaded;
+
+modalAlert = (header, content)->
+	element = $('#error')
+	element.children('.header').text(header)
+	element.children('.content').text(content)
+	element.modal('setting', 'transition', 'vertical flip').modal('show')
+
+validationRule =
+	name:
+		identifier: 'name'
+		rules: [
+			{
+				type: 'empty'
+				prompt: '请输入姓名'
+			}
+		]
+	num:
+		identifier: 'num'
+		rules: [
+			{
+				type: 'empty'
+				prompt: '请输入学号'	
+			}
+			{
+				type: 'integer'
+				prompt: '学号由10位数字构成'
+			}
+			{
+				type: 'length[10]'
+				prompt: '学号由10位数字构成'
+			}
+			{
+				type: 'maxLength[10]'
+				prompt: '学号由10位数字构成'
+			}
+		]
+	birthday:
+		identifier: 'birthday'
+		rules: [
+			{
+				type: 'empty'
+				prompt: '请输入生日'
+			}
+		]
+	gender:
+		identifier: 'gender'
+		rules: [
+			{
+				type: 'empty'
+				prompt: '请选择性别'
+			}
+		]
+	category:
+		identifier: 'category'
+		rules: [
+			{
+				type: 'empty'
+				prompt: '请输入大类'
+			}
+		]
+	major:
+		identifier: 'major'
+		rules: [
+			{
+				type: 'empty'
+				prompt: '请输入专业'
+			}
+		]
+	gpa:
+		identifier: 'gpa'
+		rules: [
+			{
+				type: 'empty'
+				prompt: '请输入均绩'
+			}
+		]
+	rank:
+		identifier: 'rank'
+		rules: [
+			{
+				type: 'empty'
+				prompt: '请输入排名'
+			}
+		]
+	phone:
+		identifier: 'phone'
+		rules: [
+			{
+				type: 'empty'
+				prompt: '请输入手机'
+			}
+		]
+	email:
+		identifier: 'email'
+		rules: [
+			{
+				type: 'empty'
+				prompt: '请输入电子邮箱'
+			}
+			{
+				type: 'email'
+				prompt: '请输入合法的电子邮箱'					
+			}
+		]
+	dormitory:
+		identifier: 'dormitory'
+		rules: [
+			{
+				type: 'empty'
+				prompt: '请输入寝室'
+			}
+		]
