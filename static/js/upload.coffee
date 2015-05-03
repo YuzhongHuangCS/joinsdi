@@ -1,12 +1,129 @@
 $ ->
 	$('.ui.dropdown').dropdown()
-	window.uploaded = 0;
+	$('.datepicker').datepicker(
+		dateFormat: 'yy-mm-dd'
+		defaultDate: '1996-01-01'
+		beforeShow: (text)->
+			if not $(this).val()
+				$(this).val('1996-01-01')
+	)
 
 	$('#preview').click ->
 		$('#avatarFile').click()
 	
 	$('#place').click ->
 		$('#applyFile').click()
+
+	validationRules =
+		name:
+			identifier: 'name'
+			rules: [
+				{
+					type: 'empty'
+					prompt: '请输入姓名'
+				}
+			]
+		num:
+			identifier: 'num'
+			rules: [
+				{
+					type: 'empty'
+					prompt: '请输入学号'	
+				}
+				{
+					type: 'integer'
+					prompt: '学号由10位数字构成'
+				}
+				{
+					type: 'length[10]'
+					prompt: '学号由10位数字构成'
+				}
+				{
+					type: 'maxLength[10]'
+					prompt: '学号由10位数字构成'
+				}
+			]
+		birthday:
+			identifier: 'birthday'
+			rules: [
+				{
+					type: 'empty'
+					prompt: '请输入生日'
+				}
+			]
+		gender:
+			identifier: 'gender'
+			rules: [
+				{
+					type: 'empty'
+					prompt: '请选择性别'
+				}
+			]
+		category:
+			identifier: 'category'
+			rules: [
+				{
+					type: 'empty'
+					prompt: '请输入大类'
+				}
+			]
+		major:
+			identifier: 'major'
+			rules: [
+				{
+					type: 'empty'
+					prompt: '请输入专业'
+				}
+			]
+		gpa:
+			identifier: 'gpa'
+			rules: [
+				{
+					type: 'empty'
+					prompt: '请输入均绩'
+				}
+			]
+		rank:
+			identifier: 'rank'
+			rules: [
+				{
+					type: 'empty'
+					prompt: '请输入排名'
+				}
+			]
+		phone:
+			identifier: 'phone'
+			rules: [
+				{
+					type: 'empty'
+					prompt: '请输入手机'
+				}
+			]
+		email:
+			identifier: 'email'
+			rules: [
+				{
+					type: 'empty'
+					prompt: '请输入电子邮箱'
+				}
+				{
+					type: 'email'
+					prompt: '请输入合法的电子邮箱'					
+				}
+			]
+		dormitory:
+			identifier: 'dormitory'
+			rules: [
+				{
+					type: 'empty'
+					prompt: '请输入寝室'
+				}
+			]
+
+	$('#form1').form(validationRules, {
+		inline : true,
+		on: 'blur'
+	})
 
 window.checkApply = (file)->
 	if file.files.item(0).size > 104857600

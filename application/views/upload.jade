@@ -9,6 +9,7 @@ html
 		meta(name='apple-mobile-web-app-capable' content='yes')
 		title 上传报名表 - 设计创新班2014级招生
 		link(rel='stylesheet' href='static/bower_components/semantic-ui/dist/semantic.min.css')
+		link(rel='stylesheet' href='static/bower_components/jquery-ui/jquery-ui.min.css')
 		link(rel='stylesheet' href='static/bower_components/animate.css/animate.min.css')
 		link(rel='stylesheet' href='static/css/upload.css')
 		link(rel='icon' type='image/png' sizes='256x256' href='static/img/logo.png')
@@ -24,52 +25,53 @@ html
 					.content 个人基本信息
 				.ui.divider
 				form.ui.form.segment#form1
-					.four.fields
+					.fields.four
 						.field
 							label 姓名
-							input(placeholder='姓名', name='name', type='text')
+							input(type='text' name='name' placeholder='姓名')
 						.field
 							label 学号
-							input(placeholder='学号', name='num', type='text')
+							input(type='text' name='num' placeholder='学号')
 						.field
 							label 出生日期
-							input(placeholder='YYYY-MM-DD', name='birthday', type='text')
+							input.datepicker(type='text' name='birthday' placeholder='出生日期')
 						.field
 							label 性别
 							select.ui.dropdown(name='gender')
 								option(value='') 性别
 								option(value='male') 男
 								option(value='female') 女
-					.four.fields
+					.fields.four
 						.field
 							label 大类
-							input(placeholder='大类', name='category', type='text')
+							input(type='text' name='category' placeholder='大类' required)
 						.field
 							label 专业
-							input(placeholder='专业', name='major', type='text')
+							input(type='text' name='major' placeholder='专业')
 						.field
 							label 均绩
-							input(placeholder='均绩', name='gpa', type='text')
+							input(type='text' name='gpa' placeholder='均绩')
 						.field
 							label 排名
-							input(placeholder='排名', name='rank', type='text')
-					.two.fields
+							input(type='text' name='rank' placeholder='排名')
+					.fields.two
 						.field
 							label 手机
-							input(placeholder='手机', name='phone', type='text')
+							input(type='text' name='phone' placeholder='手机')
 						.field
 							label 电子邮箱
-							input(placeholder='电子邮箱', name='email', type='email')
-					.two.fields
+							input(type='email' name='email' placeholder='电子邮箱')
+					.fields.two
 						.field
 							label 寝室
-							input(placeholder='寝室', name='dormitory', type='text')
+							input(type='text' name='dormitory' placeholder='寝室')
+						.field
 					.field
-						label 备注
-						input(placeholder='有特殊情况可在此说明', name='remark', type='text')
+							label 备注
+							input(type='text' name='remark' placeholder='有特殊情况可在此说明')
 					.field
-						label 常去的社区及其用户名(例如Lofter，Dribbble，Behance)。此栏非必填，但有助于我们更好地了解你。
-						input(placeholder='网站/用户名  网站/用户名', name='remark', type='text')
+						label 常去的社区及其用户名(例如微博， Lofter， Dribbble)。此栏非必填，但有助于我们更好地了解你。
+						input(type='text' name='social' placeholder='网站/用户名  网站/用户名')
 
 			#step2.step
 				h2.ui.header
@@ -114,5 +116,6 @@ html
 			.ui.button.fluid.huge.red#submit(onclick='submit()') 提交报名表
 
 	script(src='static/bower_components/jquery/dist/jquery.min.js')
+	script(src='static/bower_components/jquery-ui/jquery-ui.min.js')
 	script(src='static/bower_components/semantic-ui/dist/semantic.min.js')
 	script(src='static/js/upload.js')

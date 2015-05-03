@@ -5,6 +5,7 @@
 	"private": true,
 	"dependencies": {
 		"semantic-ui": "x",
+		"jquery-ui": "x",
 		"animate.css": "x"
 	}
 }
