@@ -4,6 +4,7 @@
 	"homepage": "www.idi.zju.edu.cn/jonsdi",
 	"private": true,
 	"dependencies": {
-		"semantic-ui": "x"
+		"semantic-ui": "x",
+		"animate.css": "x"
 	}
 }

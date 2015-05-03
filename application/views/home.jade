@@ -13,23 +13,24 @@ html
 		link(rel='icon' type='image/png' sizes='256x256' href='static/img/logo.png')
 
 	body
-		#content
+		#brand
 			img#logo(src='static/img/box_close.png')
 			p#slogan /点/燃/一/根/火/柴/
 
-			#action
-				.ui.buttons
-					a(href='upload')
-						.ui.button.animated.vertical.logoRed
-							.content.visible 上传报名表
-							.content.hidden
-								i.icon.arrow.up
-					.or
-					a(href='download')
-						.ui.button.animated.vertical
-							.content.visible 下载报名表
-							.content.hidden
-								i.icon.arrow.down
+		#action
+			.ui.buttons
+				a(href='download')
+					.ui.button.animated.vertical
+						.content.visible 下载报名表
+						.content.hidden
+							i.icon.arrow.down
+				.or
+				a(href='upload')
+					.ui.button.animated.vertical.red
+						.content.visible 上传报名表
+						.content.hidden
+							i.icon.arrow.up
+
 		canvas#flame
 		script(src='static/bower_components/jquery/dist/jquery.min.js')
 		script(src='static/bower_components/semantic-ui/dist/semantic.min.js')

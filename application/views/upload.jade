@@ -9,114 +9,110 @@ html
 		meta(name='apple-mobile-web-app-capable' content='yes')
 		title 上传报名表 - 设计创新班2014级招生
 		link(rel='stylesheet' href='static/bower_components/semantic-ui/dist/semantic.min.css')
+		link(rel='stylesheet' href='static/bower_components/animate.css/animate.min.css')
 		link(rel='stylesheet' href='static/css/upload.css')
 		link(rel='icon' type='image/png' sizes='256x256' href='static/img/logo.png')
 	body
-		#jumbotron
+		#brand
 			img#logo(src='static/img/box_open.png')
 			p#slogan /点/燃/一/根/火/柴/
 
-		#part1.part
-			.line
-				p
-					span.circle
-						span.circleText 1
-					| 个人基本信息
-				hr
-			form.ui.form.segment#form1
-				.four.fields
+		#container
+			#step1.step
+				h2.ui.header
+					i.icon.num 1
+					.content 个人基本信息
+				.ui.divider
+				form.ui.form.segment#form1
+					.four.fields
+						.field
+							label 姓名
+							input(placeholder='姓名', name='name', type='text')
+						.field
+							label 学号
+							input(placeholder='学号', name='num', type='text')
+						.field
+							label 出生日期
+							input(placeholder='YYYY-MM-DD', name='birthday', type='text')
+						.field
+							label 性别
+							select.ui.dropdown(name='gender')
+								option(value='') 性别
+								option(value='male') 男
+								option(value='female') 女
+					.four.fields
+						.field
+							label 大类
+							input(placeholder='大类', name='category', type='text')
+						.field
+							label 专业
+							input(placeholder='专业', name='major', type='text')
+						.field
+							label 均绩
+							input(placeholder='均绩', name='gpa', type='text')
+						.field
+							label 排名
+							input(placeholder='排名', name='rank', type='text')
+					.two.fields
+						.field
+							label 手机
+							input(placeholder='手机', name='phone', type='text')
+						.field
+							label 电子邮箱
+							input(placeholder='电子邮箱', name='email', type='email')
+					.two.fields
+						.field
+							label 寝室
+							input(placeholder='寝室', name='dormitory', type='text')
 					.field
-						label 姓名
-						input.must(placeholder='姓名', name='name', type='text')
+						label 备注
+						input(placeholder='有特殊情况可在此说明', name='remark', type='text')
 					.field
-						label 学号
-						input.must(placeholder='学号', name='num', type='text')
-					.field
-						label 出生日期
-						input.must(placeholder='YYYY-MM-DD', name='birthday', type='text')
-					.field
-						label 性别
-						select.ui.dropdown.must(name='gender')
-							option(value='') 性别
-							option(value='male') 男
-							option(value='female') 女
-				.four.fields
-					.field
-						label 大类
-						input.must(placeholder='大类', name='category', type='text')
-					.field
-						label 专业
-						input.must(placeholder='专业', name='major', type='text')
-					.field
-						label 均绩
-						input.must(placeholder='均绩', name='gpa', type='text')
-					.field
-						label 排名
-						input.must(placeholder='排名', name='rank', type='text')
-				.two.fields
-					.field
-						label 手机
-						input.must(placeholder='手机', name='phone', type='text')
-					.field
-						label 电子邮箱
-						input.must(placeholder='电子邮箱', name='email', type='email')
-				.two.fields
-					.field
-						label 寝室
-						input.must(placeholder='寝室', name='dormitory', type='text')
-				.field
-					label 备注
-					input(placeholder='有特殊情况可在此说明', name='remark', type='text')
-				.field
-					label 常去的社区及其用户名(例如Lofter，Dribbble，Behance)。此栏非必填，但有助于我们更好地了解你。
-					input(placeholder='网站/用户名  网站/用户名', name='remark', type='text')
+						label 常去的社区及其用户名(例如Lofter，Dribbble，Behance)。此栏非必填，但有助于我们更好地了解你。
+						input(placeholder='网站/用户名  网站/用户名', name='remark', type='text')
 
-		#part2.part
-			.line
-				p
-					span.circle
-						span.circleText 2
-					| 上传文件
-				hr
-			form#form2
-				#avatar
-					p 个人照片
-					p jpg/png/gif格式，小于10MB
-					#preview
-						img#imghead(src='static/img/avatar.png')
-					input#avatarFile(type='file', onchange='previewImage(this)')
-				#apply
-					p 报名表
-					p pdf/zip/rar/7z格式，小于100MB
-					#place
-						img#imgapply(src='static/img/apply.jpg')
-					input#applyFile(type='file', onchange='checkApply(this)')
-		#part3.part
-			.line
-				p
-					span.circle
-						span.circleText 3
-					| 选择WorkShop时间
-				hr
-			form.ui.form.segment#form3
-				h4 请选择你有空参加WorkShop的时间段 (请尽可能地多选)
-				label.checkbox 
-					input(type="checkbox" name="date1" value="1" onclick="check(1)")
-					| 5月23日18:00~20:00
-				label.checkbox 
-					input(type="checkbox" name="date2" value="1" onclick="check(2)")
-					| 5月23日20:30~22:30
-				label.checkbox 
-					input(type="checkbox" name="date3" value="1" onclick="check(3)")
-					| 5月24日18:00~20:00
+			#step2.step
+				h2.ui.header
+					i.icon.num 2
+					.content 上传文件
+				.ui.divider
+				form#form2.ui.form.segment
+					#avatar
+						p 个人照片
+						p jpg/png/gif格式，小于10MB
+						#preview
+							img#imghead(src='static/img/avatar.png')
+						input#avatarFile(type='file', onchange='previewImage(this)')
+					#apply
+						p 报名表
+						p pdf/zip/rar/7z格式，小于100MB
+						#place
+							img#imgapply(src='static/img/apply.jpg')
+						input#applyFile(type='file', onchange='checkApply(this)')
+			#step3.step
+				.line
+				h2.ui.header
+					i.icon.num 3
+					.content 选择WorkShop时间
+				.ui.divider
+				form.ui.form.segment#form3
+					h4 请选择你有空参加WorkShop的时间段 (请尽可能地多选)
+					label.checkbox 
+						input(type="checkbox" name="date1" value="1" onclick="check(1)")
+						| 5月23日18:00~20:00
+					label.checkbox 
+						input(type="checkbox" name="date2" value="1" onclick="check(2)")
+						| 5月23日20:30~22:30
+					label.checkbox 
+						input(type="checkbox" name="date3" value="1" onclick="check(3)")
+						| 5月24日18:00~20:00
 
-		#status
-			progress#progressBar(value='0', max='100')
-			p#result 正在上传...
-		#submit(onclick='submit()')
-			p 提交报名表
-		#myAlert
-	
+			#status
+				progress#progressBar(value='0', max='100')
+				p#result 正在上传...
+
+			.ui.button.fluid.huge.red#submit(onclick='submit()') 提交报名表
+
 	script(src='static/bower_components/jquery/dist/jquery.min.js')
 	script(src='static/bower_components/semantic-ui/dist/semantic.min.js')
 	script(src='static/js/upload.js')

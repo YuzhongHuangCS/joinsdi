@@ -51,7 +51,6 @@ myAlert = (text)->
 	$('#myAlert').click ->
 		$('#myAlert').fadeOut()
 
-
 clacImgZoomParam = (maxWidth, maxHeight, width, height)->
 	param =
 		top: 0

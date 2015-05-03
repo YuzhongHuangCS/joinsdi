@@ -1,59 +1,48 @@
 @green: #21EEAC;
-@red: #FF0024;
+@red: #D95C5C;
 @blue: #39F6F2;
 
-#jumbotron {
-	margin: 0 auto;
-	animation: load 1s;
+body {
+	.animation(fadeInUp 0.5s);
+}
+
+#brand {
 	text-align: center;
+	.animation(fadeInUp 0.5s);
 	p#slogan {
 		font-size: 1.5rem;
 		letter-spacing: 1.5rem;
 	}
-	@keyframes load {
-		0% {
-			margin-top: 50%;
-			opacity: 0;
-		}
-		100% {
-			margin-top: 0;
-			opacity: 1;
-		}
+}
+
+#container {
+	margin: 0 auto;
+	@media (min-width: 768px) and (max-width: 992px) {
+		width: 80%;
+	}
+	@media (min-width: 992px) {
+		width: 60%;
 	}
 }
 
-.part {
-	width: 60%;
-	margin: 0 auto;
-	.line {
-		p {
-			font-size: 1.8rem;
-			color: #333;
-			height: 1.8rem;
-			.circle {
-				display: inline-block;
-				margin-right: 0.4rem;
-				width: 3rem;
-				height: 3rem;
-				color: #FFF;
-				background-color: @red;
-				text-align: center;
-				vertical-align: bottom;
-				border-radius: 1.5rem;
-				.circleText {
-					display: inline-block;
-					margin-top: 0.75rem;
-					font-size: 2.5rem;
-					vertical-align: bottom;
-				}
-			}
-		}
+.step {
+	margin-top: 2rem;
+	.ui.header {
+		font-weight: normal;
 	}
+}
+
+i.icon.num {
+	background-color: @red;
+	color: white;
+	border-radius: 500rem;
+	text-align: center;
 }
 
 #form2 {
 	padding-left: 10%;
 }
+
 #avatar {
 	display: inline-block;
 	margin-right: 8rem;
@@ -99,22 +88,7 @@
 }
 
 #submit {
-	width: 55%;
-	margin: 0.5rem auto 3rem;
-	padding: 0.8rem;
-	color: #FFF;
-	background-color: #333;
-	border-radius: 0.5rem;
-	text-align: center;
-	transition: all 0.4s;
-	cursor: pointer;
-	p {
-		font-size: 2rem;
-		margin: 0;
-	}
-	&:hover {
-		background-color: #555;
-	}
+	margin-bottom: 10%;
 }
 
 #status {
@@ -182,21 +156,7 @@ input[type=file] {
 	}
 }
 
-#myAlert {
-	position: fixed;
-	top: 20%;
-	margin-left: 30%;
-	width: 40%;
-	padding: 4rem 2rem 2rem;
-	height: 12rem;
-	background-color: #333;
-	opacity: 0.9;
-	border-radius: 1rem;
-	color: #FFF;
-	display: none;
-	font-size: 1.5rem;
-	text-align: center;
-	letter-spacing: 0.2rem;
-	z-index: 25;
-	cursor: pointer;
+.animation (@parameter) {
+	-webkit-animation: @parameter;
+	animation: @parameter;
 }
