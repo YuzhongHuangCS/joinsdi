@@ -47,6 +47,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link		http://codeigniter.com/user_guide/helpers/download_helper.html
  */
 
+require_once(BASEPATH . 'helpers/file_helper.php');
+
 // ------------------------------------------------------------------------
 
 if ( ! function_exists('force_download'))
@@ -54,114 +56,34 @@ if ( ! function_exists('force_download'))
 	/**
 	 * Force Download
 	 *
-	 * Generates headers that force a download to happen
+	 * Rewrite by Yuzo with new API
 	 *
+	 * @param	string	file
 	 * @param	string	filename
-	 * @param	mixed	the data to be downloaded
-	 * @param	bool	whether to try and send the actual file MIME type
 	 * @return	void
 	 */
-	function force_download($filename = '', $data = '', $set_mime = FALSE)
+	function force_download($path, $filename = NULL)
 	{
-		if ($filename === '' OR $data === '')
+		if ( ! file_exists($path))
 		{
-			return;
-		}
-		elseif ($data === NULL)
-		{
-			if (@is_file($filename) && ($filesize = @filesize($filename)) !== FALSE)
-			{
-				$filepath = $filename;
-				$filename = explode('/', str_replace(DIRECTORY_SEPARATOR, '/', $filename));
-				$filename = end($filename);
-			}
-			else
-			{
-				return;
-			}
-		}
-		else
-		{
-			$filesize = strlen($data);
+			return FALSE;
 		}
 
-		// Set the default MIME type to send
-		$mime = 'application/octet-stream';
-
-		$x = explode('.', $filename);
-		$extension = end($x);
-
-		if ($set_mime === TRUE)
-		{
-			if (count($x) === 1 OR $extension === '')
-			{
-				/* If we're going to detect the MIME type,
-				 * we'll need a file extension.
-				 */
-				return;
-			}
-
-			// Load the mime types
-			$mimes =& get_mimes();
-
-			// Only change the default MIME if we can find one
-			if (isset($mimes[$extension]))
-			{
-				$mime = is_array($mimes[$extension]) ? $mimes[$extension][0] : $mimes[$extension];
-			}
+		$mime = get_mime_by_extension($path);
+		if ( ! $mime) {
+			$mime = 'application/octet-stream';
 		}
 
-		/* It was reported that browsers on Android 2.1 (and possibly older as well)
-		 * need to have the filename extension upper-cased in order to be able to
-		 * download it.
-		 *
-		 * Reference: http://digiblog.de/2011/04/19/android-and-the-download-file-headers/
-		 */
-		if (count($x) !== 1 && isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/Android\s(1|2\.[01])/', $_SERVER['HTTP_USER_AGENT']))
-		{
-			$x[count($x) - 1] = strtoupper($extension);
-			$filename = implode('.', $x);
+		if ( ! $filename) {
+			$filename = basename($path);
 		}
+		$encoded_name = rawurlencode($filename);
 
-		if ($data === NULL && ($fp = @fopen($filepath, 'rb')) === FALSE)
-		{
-			return;
-		}
-
-		// Clean output buffer
-		if (ob_get_level() !== 0 && @ob_end_clean() === FALSE)
-		{
-			@ob_clean();
-		}
-
-		// Generate the server headers
+		header('Cache-control: public');
 		header('Content-Type: '.$mime);
-		header('Content-Disposition: attachment; filename="'.$filename.'"');
-		header('Expires: 0');
 		header('Content-Transfer-Encoding: binary');
-		header('Content-Length: '.$filesize);
-
-		// Internet Explorer-specific headers
-		if (isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
-		{
-			header('Cache-Control: no-cache, no-store, must-revalidate');
-		}
-
-		header('Pragma: no-cache');
-
-		// If we have raw data - just dump it
-		if ($data !== NULL)
-		{
-			exit($data);
-		}
-
-		// Flush 1MB chunks of data
-		while ( ! feof($fp) && ($data = fread($fp, 1048576)) !== FALSE)
-		{
-			echo $data;
-		}
-
-		fclose($fp);
-		exit;
+		header("Content-Disposition: attachment; filename=\"{$encoded_name}\"; filename*=utf-8''{$encoded_name}");
+		header('Content-Length: '.filesize($path));
+		readfile($path);
 	}
 }

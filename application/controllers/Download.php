@@ -9,7 +9,7 @@ class Download extends CI_Controller {
 	}
 
 	public function index() {
-		force_download(FCPATH . '/static/2014级设计创新班招生报名表.docx', NULL);
+		force_download(FCPATH . '/static/2014级设计创新班招生报名表.docx');
 	}
 
 }
