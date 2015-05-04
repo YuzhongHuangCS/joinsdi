@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 04, 2015 at 08:13 PM
+-- Generation Time: May 04, 2015 at 09:09 PM
 -- Server version: 10.0.17-MariaDB-0ubuntu1
 -- PHP Version: 5.6.4-4ubuntu6
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `submit` (
   `workshop` set('5月23日18:00~20:00','5月23日20:30~22:30','5月24日18:00~20:00') NOT NULL,
   `avator` varchar(64) NOT NULL DEFAULT '',
   `apply` varchar(64) NOT NULL DEFAULT ''
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -58,11 +58,11 @@ CREATE TABLE IF NOT EXISTS `visitor` (
 `ID` int(11) NOT NULL,
   `count` int(11) NOT NULL DEFAULT '1',
   `first` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `download` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `refer` varchar(256) NOT NULL,
   `ua` varchar(256) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -88,12 +88,12 @@ ALTER TABLE `visitor`
 -- AUTO_INCREMENT for table `submit`
 --
 ALTER TABLE `submit`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `visitor`
 --
 ALTER TABLE `visitor`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

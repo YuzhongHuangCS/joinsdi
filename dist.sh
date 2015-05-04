@@ -12,6 +12,7 @@ mkdir dist/avatar
 cp application dist -r
 cp static dist -r
 cp system dist -r
+cp index.php dist
 
 #filter
 find dist -name "*.coffee" -exec rm -fv {} \;
