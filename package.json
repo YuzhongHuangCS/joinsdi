@@ -5,6 +5,7 @@
 		"grunt-contrib-jade": "x",
 		"grunt-contrib-less": "x",
 		"grunt-contrib-coffee": "x",
-		"grunt-contrib-watch": "x"
+		"grunt-contrib-watch": "x",
+		"grunt-contrib-uglify": "x"
 	}
 }
