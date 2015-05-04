@@ -1,0 +1,89 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+		meta(name='renderer' content='webkit')
+		meta(name='viewport' content='widtd=device-widtd, initial-scale=1, user-scalable=no')
+		title 报名表提交成功 - 设计创新班2014级招生
+		style.
+			img.logo {
+				width: 6rem;
+			}
+			table.info {
+				width: 100%;
+			}
+			a.link {
+				color: #B51F27;
+			}
+	body
+		img.logo(src='http://www.idi.zju.edu.cn/joinsdi/static/img/logo.png')
+		p 亲爱的 {name}：
+		p 感谢您参与浙江大学国际设计研究院 - 设计创新班2014级招生。
+		p 您的报名表已经成功提交，抄录如下：
+
+		table.info
+			tr
+				th 姓名：
+				td {name}
+				th 学号：
+				td {num}
+				th 出生日期：
+				td {birthday}
+				th 性别：
+				td {gender}
+			tr
+				th 大类：
+				td {category}
+				th 专业：
+				td {major}
+				th 均绩：
+				td {gpa}
+				th 排名：
+				td {rank}
+			tr
+				th 手机：
+				td {phone}
+				th 电子邮箱：
+				td {email}
+				th 寝室：
+				td(colspan=3) {dormitory}
+			tr
+				th 备注：
+				td(colspan=3) {remark}
+				th 社交帐号：
+				th(colspan=3) {social}
+			tr
+				th WorkShop时间：
+				{workshop}
+				td {date}
+				{/workshop}
+			tr
+				th 个人照片：
+				td
+					a(href='{avatar}') 下载链接
+				th 报名表：
+				td
+					a(href='{apply}') 下载链接
+
+		p
+			span 您的EntryID为: 
+			b {ID}
+		p 如果您需要更新报名表，请在提交更新后的报名表时，在备注栏中填写此EntryID。
+		p 请在招生结束前妥善保存此EntryID。
+
+		p
+			span 阅读更多招生信息请登录：
+			a.link(href='http://www.idi.zju.edu.cn/joinsdi/') 招生官网
+			span &nbsp;&nbsp;
+			a.link(href='http://www.renren.com/323343079/profile') 人人主页
+
+		p 如果您有任何疑问，欢迎在我们的交流版面与我们互动。
+
+		p
+			span 也可以直接回复本邮件，邮箱地址为 
+			a.link(href='mailto: sdi2015@163.com') sdi2015@163.com
+			span &nbsp;&nbsp;(24小时内回复)
+		p 最后，再次感谢您参与浙江大学国际设计研究院 - 设计创新班2014级招生。
+		p 祝好，
+		p 设计创新班全体成员

@@ -16,13 +16,23 @@ class Submit extends CI_Model {
 	}
 
 	public function avatar($ID, $file) {
-		$sql = 'UPDATE `submit` SET `avator` = ? WHERE `ID` = ?';
+		$sql = 'UPDATE `submit` SET `avatar` = ? WHERE `ID` = ?';
 		return $this->db->query($sql, [$file, $ID]);
 	}
 
 	public function apply($ID, $file) {
 		$sql = 'UPDATE `submit` SET `apply` = ? WHERE `ID` = ?';
 		return $this->db->query($sql, [$file, $ID]);
+	}
+
+	public function get($ID) {
+		$sql = 'SELECT * FROM `submit` WHERE `ID` = ?';
+		return $this->db->query($sql, $ID)->row_array();
+	}
+
+	public function query() {
+		$sql = 'SELECT * FROM `submit`';
+		return $this->db->query($sql)->result_array();
 	}
 
 }

@@ -5,6 +5,7 @@ module.exports = (grunt)->
 				files:
 					'application/views/home.html': 'application/views/home.jade'
 					'application/views/upload.html': 'application/views/upload.jade'
+					'application/views/mail/submit.html': 'application/views/mail/submit.jade'
 		coffee:
 			all:
 				files:
@@ -17,7 +18,7 @@ module.exports = (grunt)->
 					'static/css/upload.css': 'static/css/upload.less'
 		watch:
 			jade:
-				files: ['application/views/home.jade', 'application/views/upload.jade']
+				files: ['application/views/home.jade', 'application/views/upload.jade', 'application/views/mail/submit.jade']
 				tasks: ['jade']
 			coffee:
 				files: ['static/js/home.coffee', 'static/js/upload.coffee']

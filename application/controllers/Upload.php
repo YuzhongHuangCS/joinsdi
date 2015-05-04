@@ -60,11 +60,33 @@ class Upload extends Track {
 
 			if ($this->upload->do_upload('file')) {
 				if ($this->submit->apply($submitID, $this->upload->data()['file_name'])) {
-					return $this->output->set_status_header(200);
+					$this->output->set_status_header(200);
+					return $this->_sendmail($submitID);
 				}
 			}
 		}
 
 		$this->output->set_status_header(403);
 	}
+
+	private function _sendmail($submitID) {
+		$this->load->library('email');
+		$this->load->library('parser');
+
+		$data = $this->submit->get($submitID);
+
+		$workshop = [];
+		foreach(explode(',', $data['workshop']) as $date) {
+			$workshop[] = ['date' => $date];
+		}
+		$data['workshop'] = $workshop;
+
+		$this->email->from('hyzme@zju.edu.cn', '设计创新班全体成员');
+		$this->email->reply_to('sdi2015@163.com');
+		$this->email->to($data['email']);
+		$this->email->subject('报名表提交成功 - 设计创新班2014级招生');
+		$this->email->message($this->parser->parse('mail/submit.html', $data, TRUE));
+		return $this->email->send();
+	}
+
 }
