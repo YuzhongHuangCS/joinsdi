@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 04, 2015 at 09:09 PM
+-- Generation Time: May 05, 2015 at 01:53 AM
 -- Server version: 10.0.17-MariaDB-0ubuntu1
 -- PHP Version: 5.6.4-4ubuntu6
 
@@ -44,8 +44,9 @@ CREATE TABLE IF NOT EXISTS `submit` (
   `remark` text NOT NULL,
   `social` text NOT NULL,
   `workshop` set('5月23日18:00~20:00','5月23日20:30~22:30','5月24日18:00~20:00') NOT NULL,
-  `avator` varchar(64) NOT NULL DEFAULT '',
-  `apply` varchar(64) NOT NULL DEFAULT ''
+  `avatar` varchar(64) NOT NULL DEFAULT '',
+  `apply` varchar(64) NOT NULL DEFAULT '',
+  `duplicate` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
