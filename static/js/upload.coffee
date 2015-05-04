@@ -1,3 +1,7 @@
+'use strict'
+
+uploaded = false
+
 $ ->
 	$('.ui.dropdown').dropdown()
 	$('.ui.checkbox').checkbox()
@@ -50,6 +54,9 @@ $ ->
 				$('#apply > img.preview').attr('src', 'static/img/logo.png')
 
 	$('#submit').click ->
+		if uploaded
+			return modalAlert('报名表已上传', '放心吧，报名表已提交')
+
 		for formID in ['#form1', '#form2']
 			if not $(formID).form('validate form')
 				offsetTop = $(formID).offset().top
@@ -61,9 +68,9 @@ $ ->
 		doSubmit()
 
 doSubmit = ->
-	submitID = 0
+	submitID = ''
 	submitForm = ->
-		initModalProgress('正在上传信息表')
+		switchModalProgress('正在上传信息表')
 		form = {}
 		$.extend(form, $('#form1').form('get values'), $('#form3').form('get values'))
 		jqxhr = $.post '/joinsdi/upload/form', form, (body)->
@@ -74,6 +81,7 @@ doSubmit = ->
 			modalAlert('网络错误', '信息表上传失败。请确认网络链接正常，或向我们反馈')
 
 	submitAvatar = ->
+		switchModalProgress('正在上传照片')
 		file = document.querySelector('#avatar > input.select').files[0]
 		form = new FormData()
 		form.append('submitID', submitID)
@@ -91,6 +99,7 @@ doSubmit = ->
 		xhr.send(form)
 
 	submitApply = ->
+		switchModalProgress('正在上传报名表')
 		file = document.querySelector('#apply > input.select').files[0]
 		form = new FormData()
 		form.append('submitID', submitID)
@@ -99,7 +108,8 @@ doSubmit = ->
 		xhr.open('post', '/joinsdi/upload/apply')
 		xhr.onload = ->
 			if this.status == 200
-				modalAlert('上传成功', '我们已经向你所填写的邮箱发送了确认邮件，请注意查收')
+				uploaded = true
+				modalAlert('上传成功', '我们已经向您所填写的邮箱发送了确认邮件，请注意查收', true)
 			else
 				modalAlert('网络错误', '报名表上传失败。请确认网络链接正常，或向我们反馈')
 		xhr.onerror = ->
@@ -107,21 +117,34 @@ doSubmit = ->
 		xhr.addEventListener('progress', updateModelProgress)
 		xhr.send(form)
 
+	initModalProgress()
 	submitForm()
 
-modalAlert = (header, content)->
+modalAlert = (header, content, final)->
 	element = $('#error')
 	element.children('.header').text(header)
 	element.children('.content').text(content)
+	if final
+		element.modal
+			allowMultiple: true
+			onHide: ->
+				$('#progress').modal('hide')
+	else
+		element.modal
+			allowMultiple: true
+
 	element.modal('setting', 'transition', 'vertical flip').modal('show')
 
-initModalProgress = (header)->
+initModalProgress = ->
+	$('#progress').modal({allowMultiple: true}).modal('setting', 'transition', 'vertical flip').modal('setting', 'closable', false).modal('show')
+
+switchModalProgress = (header)->
 	element = $('#progress')
 	element.children('.header').text(header)
 	element.find('.label').text(header)
-	element.modal('setting', 'transition', 'vertical flip').modal('show')
 
 updateModelProgress = (event)->
+	console.log 'here'
 	if event.lengthComputable
 		$('#progress .ui.progress').attr('data-percent', event.loaded / event.total)
 
