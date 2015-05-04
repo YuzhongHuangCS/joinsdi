@@ -22,13 +22,15 @@ $ ->
 
 
 	$('#form1').form(form1Rule, {
-		inline : true,
+		inline : true
 		on: 'blur'
+		keyboardShortcuts: false
 	})
 
 	$('#form2').form(form2Rule, {
-		inline : true,
+		inline : true
 		on: 'blur'
+		keyboardShortcuts: false
 	})
 
 	$('#avatar > input.select').change ->
@@ -95,7 +97,7 @@ doSubmit = ->
 				modalAlert('网络错误', '照片上传失败。请确认网络链接正常，或向我们反馈')
 		xhr.onerror = ->
 			modalAlert('网络错误', '照片上传失败。请确认网络链接正常，或向我们反馈')
-		xhr.addEventListener('progress', updateModelProgress)
+		xhr.upload.addEventListener('progress', updateModelProgress)
 		xhr.send(form)
 
 	submitApply = ->
@@ -114,7 +116,7 @@ doSubmit = ->
 				modalAlert('网络错误', '报名表上传失败。请确认网络链接正常，或向我们反馈')
 		xhr.onerror = ->
 			modalAlert('网络错误', '报名表上传失败。请确认网络链接正常，或向我们反馈')
-		xhr.addEventListener('progress', updateModelProgress)
+		xhr.upload.addEventListener('progress', updateModelProgress)
 		xhr.send(form)
 
 	initModalProgress()
@@ -144,9 +146,9 @@ switchModalProgress = (header)->
 	element.find('.label').text(header)
 
 updateModelProgress = (event)->
-	console.log 'here'
 	if event.lengthComputable
-		$('#progress .ui.progress').attr('data-percent', event.loaded / event.total)
+		$('#progress .ui.progress').progress
+			percent: 100 * event.loaded / event.total
 
 form1Rule =
 	name:
