@@ -155,6 +155,7 @@ updateModelProgress = (event)->
 		else
 			$('#progress .ui.progress').progress('increment', event.loaded - lastProgress)
 
+		$('#progress .bar .progress').text(parseInt(100 * event.loaded / event.total) + '%')
 		lastProgress = event.loaded
 
 form1Rule =
