@@ -67,7 +67,7 @@ doSubmit = ->
 		form = {}
 		$.extend(form, $('#form1').form('get values'), $('#form3').form('get values'))
 		jqxhr = $.post '/joinsdi/upload/form', form, (body)->
-			submitID = parseInt(body)
+			submitID = body
 			submitAvatar()
 
 		jqxhr.fail ->
