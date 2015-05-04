@@ -15,7 +15,13 @@ $ ->
 	$('#apply > img.preview').click ->
 		$('#apply > input.select').click()
 
-	$('#form1').form(validationRule, {
+
+	$('#form1').form(form1Rule, {
+		inline : true,
+		on: 'blur'
+	})
+
+	$('#form2').form(form2Rule, {
 		inline : true,
 		on: 'blur'
 	})
@@ -42,45 +48,24 @@ $ ->
 			else
 				$('#apply > img.preview').attr('src', 'static/img/logo.png')
 
-window.check = (id)->
-	#console.log($('[name=date' + id + ']'))
-	target = $('[name=date' + id + ']')
-	if target.attr('checked')
-		target.removeAttr('checked')
-	else
-		target.attr('checked', 'checked')
+	$('#submit').click ->
+		for formID in ['#form1', '#form2']
+			if not $(formID).form('validate form')
+				offsetTop = $(formID).offset().top
+				return $('html, body').animate({scrollTop: offsetTop}, 500)
+
+		if not $('#form3').form('get values').workshop.length
+			return modalAlert('请选择WorkShop时段', '请至少选择一个WorkShop时段， 时间是挤出来的嘛')
+
+		infoForm = {}
+		$.extend(infoForm, $('#form1').form('get values'), $('#form3').form('get values'))
+		$.post '/joinsdi/upload/form', infoForm, (data, textStatus, xhr)->
+			console.log(data, textStatus, xhr)
 
 window.submit = ->
 	if window.uploaded
 		myAlert('放心，你的报名表已经提交了')
 		return false;
-
-	checkValid = ->
-		checkMust = ->
-			$('.must').each (index, value)->
-				if not $(this)[0].value
-					myAlert('你还有必填项没有填哦')
-					$('.must').filter(':eq(' + index + ')').css
-						'border': '1px solid rgba(248, 38, 157, 0.5)'
-						'box-shadow': '0 0 3px rgba(248, 38, 157, 0.5)'
-					return false
-				if ((index + 1) == $('.must').length)
-					checkTime()
-
-		checkTime = ->
-			checkCount = 0;
-			$("[type='checkbox']").each (index, val)->
-				if $(this).attr("checked")
-					checkCount++
-
-			if checkCount == 0
-				myAlert('至少选一个时间嘛')
-				return false
-			else
-				#console.log(checkCount);
-				do_sumbit();
-
-		checkMust();
 
 	do_sumbit = ->
 		return false if window.ing
@@ -162,7 +147,7 @@ modalAlert = (header, content)->
 	element.children('.content').text(content)
 	element.modal('setting', 'transition', 'vertical flip').modal('show')
 
-validationRule =
+form1Rule =
 	name:
 		identifier: 'name'
 		rules: [
@@ -265,5 +250,23 @@ validationRule =
 			{
 				type: 'empty'
 				prompt: '请输入寝室'
+			}
+		]
+
+form2Rule =
+	avatar:
+		identifier: 'avatar'
+		rules: [
+			{
+				type: 'empty'
+				prompt: '请上传个人照片'
+			}
+		]
+	apply:
+		identifier: 'apply'
+		rules: [
+			{
+				type: 'empty'
+				prompt: '请上传报名表'
 			}
 		]
