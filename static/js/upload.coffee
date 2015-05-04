@@ -55,7 +55,7 @@ $ ->
 				return $('html, body').animate({scrollTop: offsetTop}, 500)
 
 		if not $('#form3').form('get values').workshop.length
-			return modalAlert('请选择WorkShop时段', '请至少选择一个WorkShop时段， 时间是挤出来的嘛')
+			return modalAlert('请选择WorkShop时段', '请至少选择一个WorkShop时段， 时间总是挤出来的嘛')
 
 		infoForm = {}
 		$.extend(infoForm, $('#form1').form('get values'), $('#form3').form('get values'))

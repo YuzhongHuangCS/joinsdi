@@ -776,4 +776,20 @@ class CI_Output {
 		}
 	}
 
+	// --------------------------------------------------------------------
+
+	/**
+	 * Set JSON Output
+	 *
+	 * Sets JSON output string with JSON_NUMERIC_CHECK enabled.
+	 *
+	 * @param	mixed	$data	Output data
+	 * @return	CI_Output
+	 */
+
+	public function set_json($data)
+	{
+		return $this->set_content_type('application/json')->set_output(json_encode($data, JSON_NUMERIC_CHECK));
+	}
+
 }

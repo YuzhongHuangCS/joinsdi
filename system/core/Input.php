@@ -338,6 +338,30 @@ class CI_Input {
 	// ------------------------------------------------------------------------
 
 	/**
+	 * Fetch json from the php://input stream
+	 *
+	 * Useful when you need to access json formatted POST, PUT or PATCH request data.
+	 *
+	 * @param	string	$index		Index for item to be fetched
+	 * @param	bool	$xss_clean	Whether to apply XSS filtering
+	 * @return	mixed
+	 */
+	public function json($index = NULL, $xss_clean = NULL)
+	{
+		// Prior to PHP 5.6, the input stream can only be read once,
+		// so we'll need to check if we have already done that first.
+		if ( ! is_array($this->_input_stream))
+		{
+			$this->_input_stream = json_decode($this->raw_input_stream, TRUE);
+			is_array($this->_input_stream) OR $this->_input_stream = array();
+		}
+
+		return $this->_fetch_from_array($this->_input_stream, $index, $xss_clean);
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
 	 * Set cookie
 	 *
 	 * Accepts an arbitrary number of parameters (up to 7) or an associative

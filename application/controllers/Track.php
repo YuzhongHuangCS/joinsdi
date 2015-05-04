@@ -10,10 +10,10 @@ abstract class Track extends CI_Controller {
 		$this->load->library('encryption');
 		$this->load->library('user_agent');
 		$this->load->model('visitor');
-		$this->trackVisitor();
+		$this->_track();
 	}
 
-	private function trackVisitor() {
+	private function _track() {
 		$this->visitorID = $this->encryption->decrypt($this->input->cookie('visitorID'));
 		if ($this->visitorID) {
 			$this->visitor->again($this->visitorID);
