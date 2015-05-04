@@ -145,10 +145,17 @@ switchModalProgress = (header)->
 	element.children('.header').text(header)
 	element.find('.label').text(header)
 
+lastProgress = Number.MAX_VALUE
 updateModelProgress = (event)->
 	if event.lengthComputable
-		$('#progress .ui.progress').progress
-			percent: 100 * event.loaded / event.total
+		if event.loaded < lastProgress
+			$('#progress .ui.progress').progress
+				total: event.total
+				value: event.loaded
+		else
+			$('#progress .ui.progress').progress('increment', event.loaded - lastProgress)
+
+		lastProgress = event.loaded
 
 form1Rule =
 	name:

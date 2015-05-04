@@ -6,8 +6,6 @@ rm -rf dist.zip
 
 #mkdir
 mkdir dist
-mkdir dist/apply
-mkdir dist/avatar
 
 #cp
 cp application dist -r
