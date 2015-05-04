@@ -9,3 +9,8 @@
 # Packages
 bower_components
 node_modules
+
+# data dir
+apply
+avatar
+dist

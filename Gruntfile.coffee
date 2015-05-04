@@ -1,17 +1,17 @@
 module.exports = (grunt)->
 	grunt.initConfig
 		jade:
-			compile:
+			all:
 				files:
 					'application/views/home.html': 'application/views/home.jade'
 					'application/views/upload.html': 'application/views/upload.jade'
 		coffee:
-			compile:
+			all:
 				files:
 					'static/js/home.js': 'static/js/home.coffee'
 					'static/js/upload.js': 'static/js/upload.coffee'
 		less:
-			compile:
+			all:
 				files:
 					'static/css/home.css': 'static/css/home.less'
 					'static/css/upload.css': 'static/css/upload.less'
@@ -25,16 +25,21 @@ module.exports = (grunt)->
 		uglify:
 			options:
 				screwIE8: true
-			compile:
+			all:
 				files:
 					'static/js/home.js': 'static/js/home.js'
 					'static/js/upload.js': 'static/js/upload.js'
+		shell:
+			all:
+				command: 'bash dist.sh'
 
 	grunt.loadNpmTasks('grunt-contrib-jade')
 	grunt.loadNpmTasks('grunt-contrib-less')
 	grunt.loadNpmTasks('grunt-contrib-coffee')
 	grunt.loadNpmTasks('grunt-contrib-watch')
 	grunt.loadNpmTasks('grunt-contrib-uglify')
+	grunt.loadNpmTasks('grunt-shell')
 
-	grunt.registerTask('default', ['jade', 'less', 'coffee', 'uglify'])
 	grunt.registerTask('develop', ['watch'])
+	grunt.registerTask('default', ['jade', 'less', 'coffee', 'uglify'])
+	grunt.registerTask('release', ['jade', 'less', 'coffee', 'uglify', 'shell'])

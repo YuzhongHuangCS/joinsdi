@@ -1,11 +1,14 @@
 {
 	"name": "JoinSDI2014",
 	"version": "0.0.1",
+	"description": "JoinSDI2014",
+	"repository": "https://gitcafe.com/PillowSky/joinsdi/",
 	"devDependencies": {
 		"grunt-contrib-jade": "x",
 		"grunt-contrib-less": "x",
 		"grunt-contrib-coffee": "x",
 		"grunt-contrib-watch": "x",
-		"grunt-contrib-uglify": "x"
+		"grunt-contrib-uglify": "x",
+		"grunt-shell": "x"
 	}
 }
