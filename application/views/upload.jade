@@ -112,22 +112,28 @@ html
 							input(type='checkbox' name='workshop[]' value='5月24日18:00~20:00')
 							label 5月24日18:00~20:00
 
-			#status
-				progress#progressBar(value='0', max='100')
-				p#result 正在上传...
-
 			.ui.button.fluid.huge.red#submit 提交报名表
-
 
 		.ui.modal.small#error
 			i.close.icon
-			.header Modal Title
-			.content A description can appear on the right
+			.header
+			.content
 			.actions
 				.ui.button.positive.right.labeled.icon
 					| 明白
 					i.checkmark.icon
 
+		.ui.modal#progress
+			i.close.icon
+			.header
+			.content
+				.ui.progress.green(data-percent='0')
+					.bar
+					.label
+			.actions
+				.ui.button.positive.right.labeled.icon
+					| 明白
+					i.checkmark.icon
 
 	script(src='static/bower_components/jquery/dist/jquery.min.js')
 	script(src='static/bower_components/jquery-ui/jquery-ui.min.js')

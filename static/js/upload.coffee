@@ -1,6 +1,7 @@
 $ ->
 	$('.ui.dropdown').dropdown()
 	$('.ui.checkbox').checkbox()
+	$('.ui.progress').progress()
 	$('.datepicker').datepicker(
 		dateFormat: 'yy-mm-dd'
 		defaultDate: '1996-01-01'
@@ -57,95 +58,72 @@ $ ->
 		if not $('#form3').form('get values').workshop.length
 			return modalAlert('请选择WorkShop时段', '请至少选择一个WorkShop时段， 时间总是挤出来的嘛')
 
-		infoForm = {}
-		$.extend(infoForm, $('#form1').form('get values'), $('#form3').form('get values'))
-		$.post '/joinsdi/upload/form', infoForm, (data, textStatus, xhr)->
-			console.log(data, textStatus, xhr)
+		doSubmit()
 
-window.submit = ->
-	if window.uploaded
-		myAlert('放心，你的报名表已经提交了')
-		return false;
+doSubmit = ->
+	submitID = 0
+	submitForm = ->
+		initModalProgress('正在上传信息表')
+		form = {}
+		$.extend(form, $('#form1').form('get values'), $('#form3').form('get values'))
+		jqxhr = $.post '/joinsdi/upload/form', form, (body)->
+			submitID = parseInt(body)
+			submitAvatar()
 
-	do_sumbit = ->
-		return false if window.ing
-		window.ing = 1;
-		$('#submit p').text('正在上传...');
-		$('#result').text('正在上传信息表');
-		$('#status').css('opacity', '1');
-		
-		postData = $('#form1').serialize() + '&' + $('#form3').serialize()
-		$.post '/joinsdi/upload/form', postData,  (data, textStatus, xhr)->
-			if data == 'success'
-				uploadAvatar()
+		jqxhr.fail ->
+			modalAlert('网络错误', '信息表上传失败。请确认网络链接正常，或向我们反馈')
+
+	submitAvatar = ->
+		file = document.querySelector('#avatar > input.select').files[0]
+		form = new FormData()
+		form.append('submitID', submitID)
+		form.append('file', file)
+		xhr = new XMLHttpRequest()
+		xhr.open('post', '/joinsdi/upload/avatar')
+		xhr.onload = ->
+			if this.status == 200
+				submitApply()
 			else
-				myAlert('信息表上传出错了><，请重试')
-				$('#result').text('信息表上传出错了')
-				window.ing = 0
-				$('#submit p').text('提交报名表')
+				modalAlert('网络错误', '照片上传失败。请确认网络链接正常，或向我们反馈')
+		xhr.onerror = ->
+			modalAlert('网络错误', '照片上传失败。请确认网络链接正常，或向我们反馈')
+		xhr.addEventListener('progress', updateModelProgress)
+		xhr.send(form)
 
-	checkValid()
+	submitApply = ->
+		file = document.querySelector('#apply > input.select').files[0]
+		form = new FormData()
+		form.append('submitID', submitID)
+		form.append('file', file)
+		xhr = new XMLHttpRequest()
+		xhr.open('post', '/joinsdi/upload/apply')
+		xhr.onload = ->
+			if this.status == 200
+				modalAlert('上传成功', '我们已经向你所填写的邮箱发送了确认邮件，请注意查收')
+			else
+				modalAlert('网络错误', '报名表上传失败。请确认网络链接正常，或向我们反馈')
+		xhr.onerror = ->
+			modalAlert('网络错误', '报名表上传失败。请确认网络链接正常，或向我们反馈')
+		xhr.addEventListener('progress', updateModelProgress)
+		xhr.send(form)
 
-uploadAvatar = ->
-	$('#result').text('正在上传照片');
-	fileObj = document.querySelector('#avatarFile').files[0];
-	fileController = "/joinsdi/upload/avatar";
-
-	form = new FormData();
-	form.append('file', fileObj);
-
-	xhr = new XMLHttpRequest();
-
-	xhr.open("post", fileController, true);
-	xhr.onload = ->
-		if this.responseText == 'success'
-			uploadApply()
-		else
-			myAlert('照片上传出错了><，请重试');
-			$('#result').text('照片上传出错了');
-			window.ing = 0;
-			$('#submit p').text('提交报名表');
-	xhr.upload.addEventListener('progress', progressFunction, false);
-	xhr.send(form);
-
-uploadApply = ->
-	$('#result').text('正在上传报名表');
-	fileObj = document.querySelector('#applyFile').files[0];
-	fileController = "/joinsdi/upload/apply";
-
-	form = new FormData();
-	form.append('file', fileObj);
-
-	xhr = new XMLHttpRequest();
-	xhr.open("post", fileController, true);
-	#xhr.setRequestHeader("Content-Type","multipart/form-data");
-	xhr.onload = ->
-		#console.log(this.responseText);
-		if this.responseText == 'success'
-			myAlert('<p>上传成功</p><p>我们已经向你所填写的邮箱发送了确认邮件，请注意查收');
-			$('#result').text('上传成功');
-			window.uploaded = 1;
-			window.ing = 0;
-			$('#submit p').text('上传成功');
-		else
-			myAlert('报名表上传出错了><，请重试');
-			$('#result').text('报名表上传出错了');
-			window.ing = 0;
-			$('#submit p').text('提交报名表');
-	xhr.upload.addEventListener('progress', progressFunction, false)
-	xhr.send(form);
-
-progressFunction = (event)->
-	progress = document.querySelector('#progressBar')
-	if event.lengthComputable
-		progressBar.max = event.total;
-		progressBar.value = event.loaded;
+	submitForm()
 
 modalAlert = (header, content)->
 	element = $('#error')
 	element.children('.header').text(header)
 	element.children('.content').text(content)
 	element.modal('setting', 'transition', 'vertical flip').modal('show')
+
+initModalProgress = (header)->
+	element = $('#progress')
+	element.children('.header').text(header)
+	element.find('.label').text(header)
+	element.modal('setting', 'transition', 'vertical flip').modal('show')
+
+updateModelProgress = (event)->
+	if event.lengthComputable
+		$('#progress .ui.progress').attr('data-percent', event.loaded / event.total)
 
 form1Rule =
 	name:
