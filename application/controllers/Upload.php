@@ -81,6 +81,9 @@ class Upload extends Track {
 		}
 		$data['workshop'] = $workshop;
 
+		$data['avatar'] = 'http://www.idi.zju.edu.cn/joinsdi/download/avatar/' . base64_encode($this->encryption->encrypt($data['avatar'] . '_' . $data['name']));
+		$data['apply'] = 'http://www.idi.zju.edu.cn/joinsdi/download/apply/' . base64_encode($this->encryption->encrypt($data['apply'] . '_' . $data['name']));
+
 		$this->email->from('hyzme@zju.edu.cn', '设计创新班全体成员');
 		$this->email->reply_to('sdi2015@163.com');
 		$this->email->to($data['email']);

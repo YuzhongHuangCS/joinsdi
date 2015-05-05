@@ -60,7 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $active_group = 'default';
-$query_builder = TRUE;
+$query_builder = FALSE;
 
 $db['default'] = array(
 	'dsn'	=> '',
@@ -71,7 +71,7 @@ $db['default'] = array(
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => TRUE,
-	'db_debug' => TRUE,
+	'db_debug' => (ENVIRONMENT === 'production') ? FALSE : TRUE,
 	'cache_on' => FALSE,
 	'cachedir' => '',
 	'char_set' => 'utf8',
@@ -81,5 +81,5 @@ $db['default'] = array(
 	'compress' => FALSE,
 	'stricton' => TRUE,
 	'failover' => array(),
-	'save_queries' => TRUE
+	'save_queries' => FALSE
 );
