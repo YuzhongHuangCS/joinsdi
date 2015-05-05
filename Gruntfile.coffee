@@ -24,6 +24,7 @@ module.exports = (grunt)->
 		uglify:
 			options:
 				screwIE8: true
+				sourceMap: true
 			all:
 				files:
 					'static/js/script.js': 'static/js/script.js'

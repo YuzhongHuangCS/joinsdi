@@ -8,7 +8,14 @@ body {
 
 .animation (@parameter) {
 	-webkit-animation: @parameter;
+	-ms-animation: @parameter;
 	animation: @parameter;
+}
+
+.transform (@parameter) {
+	-webkit-transform: @parameter;
+	-ms-transform: @parameter;
+	transform: @parameter;
 }
 
 #brand {
@@ -34,17 +41,14 @@ body {
 }
 
 .ui.vertical.reverse.animated.button:hover .visible.content {
-	-webkit-transform: translateY(-200%);
-	-ms-transform: translateY(-200%);
-	transform: translateY(-200%);
+	.transform(translateY(-200%));
 }
 
 .ui.vertical.reverse.animated.button:hover .hidden.content {
 	top: 50%;
 }
 
-#uyan_frame {
-	margin: 5% auto 0;
+.responsive {
 	@media (max-width: 767px) {
 		width: 90%;
 	}
@@ -54,6 +58,10 @@ body {
 	@media (min-width: 992px) {
 		width: 60%;
 	}
+}
+
+#uyan_frame {
+	margin: 5% auto 0;
 }
 
 #footer {
@@ -77,15 +85,6 @@ canvas#flame {
 
 #container {
 	margin: 0 auto;
-	@media (max-width: 767px) {
-		width: 90%;
-	}
-	@media (min-width: 768px) and (max-width: 991px) {
-		width: 80%;
-	}
-	@media (min-width: 992px) {
-		width: 60%;
-	}
 }
 
 .step {

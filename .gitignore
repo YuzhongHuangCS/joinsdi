@@ -2,6 +2,7 @@
 *.html
 *.css
 *.js
+*.map
 
 # Backup files
 *~
