@@ -12,6 +12,9 @@ module.exports = (grunt)->
 					'static/js/script.js': 'static/js/script.coffee'
 		less:
 			all:
+				options:
+					compress: true
+					ieCompat: false
 				files:
 					'static/css/style.css': 'static/css/style.less'
 		watch:

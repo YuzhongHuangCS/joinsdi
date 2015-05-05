@@ -108,8 +108,7 @@ bindHandler = ->
 			file = this.files[0]
 			if file.size > 10485760
 				return modalAlert('照片不符合要求', '照片太大了， 不要超过10MB哦')
-
-			if file.name.substring(file.name.lastIndexOf('.')).toLowerCase() in ['jpg', 'jpeg', 'png', 'gif']
+			if file.name.substring(file.name.lastIndexOf('.') + 1).toLowerCase() in ['jpg', 'jpeg', 'png', 'gif']
 				reader = new FileReader()
 				reader.onload = (event)->
 					$('#avatar > img.preview').attr('src', event.target.result)
@@ -123,7 +122,7 @@ bindHandler = ->
 			if file.size > 104857600
 				return modalAlert('报名表不符合要求', '报名表太大了， 不要超过100MB哦')
 
-			if file.name.substring(file.name.lastIndexOf('.')).toLowerCase() in ['pdf', 'zip', 'rar', '7z']
+			if file.name.substring(file.name.lastIndexOf('.') + 1).toLowerCase() in ['pdf', 'zip', 'rar', '7z']
 				$('#apply > img.preview').attr('src', 'static/img/logo.png')
 			else
 				return modalAlert('报名表不符合要求', '报名表格式不对， 请上传PDF / ZIP / RAR / 7Z格式的报名表')
