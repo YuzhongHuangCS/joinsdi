@@ -149,7 +149,6 @@ doSubmit = ->
 		jqxhr = $.post '/joinsdi/upload/form', form, (body)->
 			submitID = body
 			submitAvatar()
-
 		jqxhr.fail ->
 			modalAlert('网络错误', '信息表上传失败。请确认网络链接正常，或向我们反馈')
 
@@ -182,7 +181,7 @@ doSubmit = ->
 		xhr.onload = ->
 			if this.status == 200
 				uploaded = true
-				modalAlert('上传成功', '我们已经向您所填写的邮箱发送了确认邮件，请注意查收', true)
+				modalAlert('上传成功', '我们已经向您所填写的邮箱发送了确认邮件，请注意查收')
 			else
 				modalAlert('网络错误', '报名表上传失败。请确认网络链接正常，或向我们反馈')
 		xhr.onerror = ->
@@ -193,18 +192,14 @@ doSubmit = ->
 	initModalProgress()
 	submitForm()
 
-modalAlert = (header, content, final)->
+modalAlert = (header, content)->
 	element = $('#error')
 	element.children('.header').text(header)
 	element.children('.content').text(content)
-	if final
-		element.modal
-			allowMultiple: true
-			onHide: ->
-				$('#progress').modal('hide')
-	else
-		element.modal
-			allowMultiple: true
+	element.modal
+		allowMultiple: true
+		onHide: ->
+			$('#progress').modal('hide')
 
 	element.modal('setting', 'transition', 'vertical flip').modal('show')
 
