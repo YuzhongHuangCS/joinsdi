@@ -222,7 +222,7 @@ initProgress = ->
 lastPercent = 0
 updateProgress = (event)->
 	if event.lengthComputable
-		percent = Math.round(100 * event.loaded / event.total) / 2 + formCount * 50
+		percent = Math.round((event.loaded / event.total + formCount) * 50)
 		$('#progress .ui.progress').progress('increment', percent - lastPercent)
 		$('#progress .bar .progress').text(percent + '%')
 		lastPercent = percent
