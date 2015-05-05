@@ -7,14 +7,16 @@ initFlame = ->
 	canvas = document.querySelector('canvas#flame')
 	ctx = canvas.getContext('2d')
 	#Make the canvas occupy the full page
-	W = window.innerWidth
-	H = window.innerHeight
+	W = document.body.clientWidth
+	H = document.body.clientHeight
+	headerHeight = window.screen.height - H
 
 	track_mouse = (e) ->
 		#since the canvas = full page the position of the mouse 
 		#relative to the document will suffice
-		mouse.x = e.pageX
-		mouse.y = e.pageY
+		#console.log e
+		mouse.x = e.screenX
+		mouse.y = e.screenY - headerHeight
 
 	particle = ->
 		#speed, life, location, life, colors
