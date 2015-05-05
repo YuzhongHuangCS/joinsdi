@@ -1,5 +1,16 @@
 @charset "utf-8";
 
+@red: #D95C5C;
+
+body {
+	.animation(fadeInUp 0.5s);
+}
+
+.animation (@parameter) {
+	-webkit-animation: @parameter;
+	animation: @parameter;
+}
+
 #brand {
 	img#logo {
 		display: block;
@@ -54,4 +65,56 @@ canvas#flame {
 	position: fixed;
 	top: 0;
 	z-index: -10;
+}
+
+#jumbotron {
+	text-align: center;
+	p#slogan {
+		font-size: 1.5rem;
+		letter-spacing: 1.5rem;
+	}
+}
+
+#container {
+	margin: 0 auto;
+	@media (max-width: 767px) {
+		width: 90%;
+	}
+	@media (min-width: 768px) and (max-width: 991px) {
+		width: 80%;
+	}
+	@media (min-width: 992px) {
+		width: 60%;
+	}
+}
+
+.step {
+	margin-top: 2rem;
+	.ui.header {
+		font-weight: normal;
+	}
+}
+
+i.icon.num {
+	background-color: @red;
+	color: white;
+	border-radius: 500rem;
+	text-align: center;
+}
+
+.file {
+	text-align: center;
+	img.preview {
+		cursor: pointer;
+		margin: 0 auto;
+	}
+	input.select {
+		margin: 1rem auto;
+		text-align: center;
+		width: 50%;
+	}
+}
+
+#submit {
+	margin: 6% auto 10%;
 }

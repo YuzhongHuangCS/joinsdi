@@ -9,27 +9,24 @@ module.exports = (grunt)->
 		coffee:
 			all:
 				files:
-					'static/js/home.js': 'static/js/home.coffee'
-					'static/js/upload.js': 'static/js/upload.coffee'
+					'static/js/script.js': 'static/js/script.coffee'
 		less:
 			all:
 				files:
-					'static/css/home.css': 'static/css/home.less'
-					'static/css/upload.css': 'static/css/upload.less'
+					'static/css/style.css': 'static/css/style.less'
 		watch:
 			jade:
 				files: ['application/views/home.jade', 'application/views/upload.jade', 'application/views/mail/submit.jade']
 				tasks: ['jade']
 			coffee:
-				files: ['static/js/home.coffee', 'static/js/upload.coffee']
+				files: ['static/js/script.coffee']
 				tasks: ['coffee']
 		uglify:
 			options:
 				screwIE8: true
 			all:
 				files:
-					'static/js/home.js': 'static/js/home.js'
-					'static/js/upload.js': 'static/js/upload.js'
+					'static/js/script.js': 'static/js/script.js'
 		shell:
 			all:
 				command: 'bash dist.sh'
