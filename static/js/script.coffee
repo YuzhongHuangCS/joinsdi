@@ -141,6 +141,7 @@ bindHandler = ->
 
 		doSubmit()
 
+formCount = 0
 doSubmit = ->
 	submitID = ''
 	submitForm = ->
@@ -218,7 +219,6 @@ initProgress = ->
 		total: 100
 		value: 0
 
-formCount = 0
 lastPercent = 0
 updateProgress = (event)->
 	if event.lengthComputable
