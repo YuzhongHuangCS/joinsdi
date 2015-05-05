@@ -25,8 +25,6 @@ class Flame
 		@W = document.body.clientWidth
 		@H = document.body.clientHeight
 
-		@header = window.screen.height - @H
-
 		@canvas.width = @W
 		@canvas.height = @H
 
@@ -42,8 +40,8 @@ class Flame
 		setInterval(@onDraw, 40)
 
 	onMouseMove: (event) =>
-		@pos.x = event.screenX
-		@pos.y = event.screenY - @header
+		@pos.x = event.clientX
+		@pos.y = event.clientY
 
 	onDraw: =>
 		@context.clearRect(0, 0, @W, @H)
