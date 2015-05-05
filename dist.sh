@@ -12,6 +12,7 @@ cp application dist -r
 cp static dist -r
 cp system dist -r
 cp index.php dist
+cp .htaccess dist
 
 #filter
 find dist -name "*.coffee" -exec rm -fv {} \;
