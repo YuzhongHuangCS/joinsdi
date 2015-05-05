@@ -223,9 +223,10 @@ lastPercent = 0
 updateProgress = (event)->
 	if event.lengthComputable
 		percent = Math.round((event.loaded / event.total + formCount) * 50)
-		$('#progress .ui.progress').progress('increment', percent - lastPercent)
-		$('#progress .bar .progress').text(percent + '%')
-		lastPercent = percent
+		if (diff = percent - lastPercent) > 0
+			$('#progress .ui.progress').progress('increment', diff)
+			$('#progress .bar .progress').text(percent + '%')
+			lastPercent = percent
 
 form1Rule =
 	name:
