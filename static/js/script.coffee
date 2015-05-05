@@ -144,7 +144,7 @@ bindHandler = ->
 doSubmit = ->
 	submitID = ''
 	submitForm = ->
-		switchModalProgress('正在上传信息表')
+		switchModal('正在上传信息表')
 		form = $.extend({}, $('#form1').form('get values'), $('#form3').form('get values'))
 		jqxhr = $.post('/joinsdi/upload/form', form)
 		jqxhr.done (body)->
@@ -157,7 +157,7 @@ doSubmit = ->
 			modalAlert('信息表上传失败', '网络错误，请确认网络连接正常。')
 
 	submitAvatar = ->
-		switchModalProgress('正在上传照片')
+		switchModal('正在上传照片')
 		file = document.querySelector('#avatar > input.select').files[0]
 		form = new FormData()
 		form.append('submitID', submitID)
@@ -171,11 +171,12 @@ doSubmit = ->
 				modalAlert('照片上传失败', '数据错误，请确认上传的照片的大小，格式符合要求，并向我们反馈。')
 		xhr.onerror = ->
 			modalAlert('照片上传失败', '网络错误，请确认网络连接正常。')
-		xhr.upload.addEventListener('progress', updateModelProgress)
+		xhr.upload.addEventListener('progress', updateProgress)
 		xhr.send(form)
 
 	submitApply = ->
-		switchModalProgress('正在上传报名表')
+		switchModal('正在上传报名表')
+		formCount = 1
 		file = document.querySelector('#apply > input.select').files[0]
 		form = new FormData()
 		form.append('submitID', submitID)
@@ -191,42 +192,38 @@ doSubmit = ->
 				modalAlert('报名表上传失败', '数据错误，请确认上传的报名表的大小，格式符合要求，并向我们反馈。')
 		xhr.onerror = ->
 			modalAlert('报名表上传失败', '网络错误，请确认网络连接正常。')
-		xhr.upload.addEventListener('progress', updateModelProgress)
+		xhr.upload.addEventListener('progress', updateProgress)
 		xhr.send(form)
 
-	initModalProgress()
+	initModal()
+	initProgress()
 	submitForm()
 
 modalAlert = (header, content)->
 	element = $('#error')
 	element.children('.header').text(header)
 	element.children('.content').text(content)
-	element.modal
-		allowMultiple: true
-		onHide: ->
-			$('#progress').modal('hide')
-
 	element.modal('setting', 'transition', 'vertical flip').modal('show')
 
-initModalProgress = ->
-	$('#progress').modal({allowMultiple: true}).modal('setting', 'transition', 'vertical flip').modal('setting', 'closable', false).modal('show')
+initModal = ->
+	$('#progress').modal('setting', 'transition', 'vertical flip').modal('setting', 'closable', false).modal('show')
 
-switchModalProgress = (header)->
+switchModal = (header)->
 	element = $('#progress')
 	element.children('.header').text(header)
 	element.find('.label').text(header)
 
-lastPercent = 100
-updateModelProgress = (event)->
-	if event.lengthComputable
-		percent = Math.round(100 * event.loaded / event.total)
-		if percent < lastPercent
-			$('#progress .ui.progress').progress
-				total: 100
-				value: percent
-		else
-			$('#progress .ui.progress').progress('increment', percent - lastPercent)
+initProgress = ->
+	$('#progress .ui.progress').progress
+		total: 100
+		value: 0
 
+formCount = 0
+lastPercent = 0
+updateProgress = (event)->
+	if event.lengthComputable
+		percent = Math.round(100 * event.loaded / event.total) / 2 + formCount * 50
+		$('#progress .ui.progress').progress('increment', percent - lastPercent)
 		$('#progress .bar .progress').text(percent + '%')
 		lastPercent = percent
 
