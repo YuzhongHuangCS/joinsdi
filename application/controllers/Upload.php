@@ -75,11 +75,9 @@ class Upload extends Track {
 
 		$data = $this->submit->get($submitID);
 
-		$workshop = [];
-		foreach(explode(',', $data['workshop']) as $date) {
-			$workshop[] = ['date' => $date];
-		}
-		$data['workshop'] = $workshop;
+		$data['workshop'] = array_map(function($date){
+			return ['date' => $date];
+		}, explode(',', $data['workshop']));
 
 		$data['avatar'] = 'http://www.idi.zju.edu.cn/joinsdi/download/avatar/' . base64_encode($this->encryption->encrypt($data['avatar'] . '_' . $data['name']));
 		$data['apply'] = 'http://www.idi.zju.edu.cn/joinsdi/download/apply/' . base64_encode($this->encryption->encrypt($data['apply'] . '_' . $data['name']));
