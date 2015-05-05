@@ -107,29 +107,29 @@ bindHandler = ->
 		if this.files.length
 			file = this.files[0]
 			if file.size > 10485760
-				return modalAlert('照片不符合要求', '照片太大了， 不要超过10MB哦')
+				return modalAlert('照片不符合要求', '照片太大了，不要超过10MB哦！')
 			if file.name.substring(file.name.lastIndexOf('.') + 1).toLowerCase() in ['jpg', 'jpeg', 'png', 'gif']
 				reader = new FileReader()
 				reader.onload = (event)->
 					$('#avatar > img.preview').attr('src', event.target.result)
 				reader.readAsDataURL(file)
 			else
-				return modalAlert('照片不符合要求', '照片格式不对， 请上传JPG / PNG / GIF格式的照片')
+				return modalAlert('照片不符合要求', '照片格式不对，请上传JPG / PNG / GIF格式的照片。')
 
 	$('#apply > input.select').change ->
 		if this.files.length
 			file = this.files[0]
 			if file.size > 104857600
-				return modalAlert('报名表不符合要求', '报名表太大了， 不要超过100MB哦')
+				return modalAlert('报名表不符合要求', '报名表太大了，不要超过100MB哦！')
 
 			if file.name.substring(file.name.lastIndexOf('.') + 1).toLowerCase() in ['pdf', 'zip', 'rar', '7z']
 				$('#apply > img.preview').attr('src', 'static/img/logo.png')
 			else
-				return modalAlert('报名表不符合要求', '报名表格式不对， 请上传PDF / ZIP / RAR / 7Z格式的报名表')
+				return modalAlert('报名表不符合要求', '报名表格式不对，请上传PDF / ZIP / RAR / 7Z格式的报名表。')
 
 	$('#submit').click ->
 		if uploaded
-			return modalAlert('报名表已上传', '放心吧，报名表已提交')
+			return modalAlert('报名表已提交', '放心吧，报名表已提交。')
 
 		for formID in ['#form1', '#form2']
 			if not $(formID).form('validate form')
@@ -137,7 +137,7 @@ bindHandler = ->
 				return $('html, body').animate({scrollTop: offsetTop}, 500)
 
 		if not $('#form3').form('get values').workshop.length
-			return modalAlert('请选择WorkShop时段', '请至少选择一个WorkShop时段， 时间总是挤出来的嘛')
+			return modalAlert('请选择WorkShop时段', '请选择至少一个WorkShop时段，时间总是挤出来的嘛。')
 
 		doSubmit()
 
@@ -146,11 +146,15 @@ doSubmit = ->
 	submitForm = ->
 		switchModalProgress('正在上传信息表')
 		form = $.extend({}, $('#form1').form('get values'), $('#form3').form('get values'))
-		jqxhr = $.post '/joinsdi/upload/form', form, (body)->
-			submitID = body
-			submitAvatar()
+		jqxhr = $.post('/joinsdi/upload/form', form)
+		jqxhr.done (body)->
+			if jqxhr.status == 200
+				submitID = body
+				submitAvatar()
+			else
+				modalAlert('信息表上传失败', '数据错误，请确认所有栏目已规范填写，并向我们反馈。')
 		jqxhr.fail ->
-			modalAlert('网络错误', '信息表上传失败。请确认网络链接正常，或向我们反馈')
+			modalAlert('信息表上传失败', '网络错误，请确认网络连接正常。')
 
 	submitAvatar = ->
 		switchModalProgress('正在上传照片')
@@ -164,9 +168,9 @@ doSubmit = ->
 			if this.status == 200
 				submitApply()
 			else
-				modalAlert('网络错误', '照片上传失败。请确认网络链接正常，或向我们反馈')
+				modalAlert('照片上传失败', '数据错误，请确认上传的照片的大小，格式符合要求，并向我们反馈。')
 		xhr.onerror = ->
-			modalAlert('网络错误', '照片上传失败。请确认网络链接正常，或向我们反馈')
+			modalAlert('照片上传失败', '网络错误，请确认网络连接正常。')
 		xhr.upload.addEventListener('progress', updateModelProgress)
 		xhr.send(form)
 
@@ -181,11 +185,12 @@ doSubmit = ->
 		xhr.onload = ->
 			if this.status == 200
 				uploaded = true
-				modalAlert('上传成功', '我们已经向您所填写的邮箱发送了确认邮件，请注意查收')
+				email = $('input[name="email"]').val()
+				modalAlert('上传成功', "我们已经向您所填写的邮箱#{email}发送了确认邮件，请注意查收。")
 			else
-				modalAlert('网络错误', '报名表上传失败。请确认网络链接正常，或向我们反馈')
+				modalAlert('报名表上传失败', '数据错误，请确认上传的报名表的大小，格式符合要求，并向我们反馈。')
 		xhr.onerror = ->
-			modalAlert('网络错误', '报名表上传失败。请确认网络链接正常，或向我们反馈')
+			modalAlert('报名表上传失败', '网络错误，请确认网络连接正常。')
 		xhr.upload.addEventListener('progress', updateModelProgress)
 		xhr.send(form)
 
@@ -211,18 +216,19 @@ switchModalProgress = (header)->
 	element.children('.header').text(header)
 	element.find('.label').text(header)
 
-lastProgress = Number.MAX_VALUE
+lastPercent = 100
 updateModelProgress = (event)->
 	if event.lengthComputable
-		if event.loaded < lastProgress
+		percent = Math.round(100 * event.loaded / event.total)
+		if percent < lastPercent
 			$('#progress .ui.progress').progress
-				total: event.total
-				value: event.loaded
+				total: 100
+				value: percent
 		else
-			$('#progress .ui.progress').progress('increment', event.loaded - lastProgress)
+			$('#progress .ui.progress').progress('increment', percent - lastPercent)
 
-		$('#progress .bar .progress').text(parseInt(100 * event.loaded / event.total) + '%')
-		lastProgress = event.loaded
+		$('#progress .bar .progress').text(percent + '%')
+		lastPercent = percent
 
 form1Rule =
 	name:
