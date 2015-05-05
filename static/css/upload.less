@@ -2,6 +2,11 @@
 
 @red: #D95C5C;
 
+.animation (@parameter) {
+	-webkit-animation: @parameter;
+	animation: @parameter;
+}
+
 body {
 	.animation(fadeInUp 0.5s);
 }
@@ -59,7 +64,7 @@ i.icon.num {
 	margin: 6% auto 10%;
 }
 
-.animation (@parameter) {
-	-webkit-animation: @parameter;
-	animation: @parameter;
+#footer {
+	display: block;
+	margin: 2% auto;
 }

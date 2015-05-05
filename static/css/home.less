@@ -18,6 +18,20 @@
 	text-align: center;
 }
 
+.ui.vertical.reverse.animated.button .hidden.content {
+	top: 150%;
+}
+
+.ui.vertical.reverse.animated.button:hover .visible.content {
+	-webkit-transform: translateY(-200%);
+	-ms-transform: translateY(-200%);
+	transform: translateY(-200%);
+}
+
+.ui.vertical.reverse.animated.button:hover .hidden.content {
+	top: 50%;
+}
+
 #uyan_frame {
 	margin: 5% auto 0;
 	@media (max-width: 767px) {
@@ -31,18 +45,9 @@
 	}
 }
 
-.ui.vertical.reverse.animated.button .hidden.content {
-	top: 150%;
-}
-
-.ui.vertical.reverse.animated.button:hover .visible.content {
-	-webkit-transform: translateY(-200%);
-	-ms-transform: translateY(-200%);
-	transform: translateY(-200%);
-}
-
-.ui.vertical.reverse.animated.button:hover .hidden.content {
-	top: 50%;
+#footer {
+	display: block;
+	margin: 2% auto;
 }
 
 canvas#flame {
