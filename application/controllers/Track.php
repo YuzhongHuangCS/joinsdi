@@ -18,7 +18,7 @@ abstract class Track extends CI_Controller {
 		if ($this->visitorID) {
 			$this->visitor->again($this->visitorID);
 		} else {
-			$this->visitorID = $this->visitor->create($this->agent->referrer(), $this->agent->agent_string());
+			$this->visitorID = $this->visitor->create(trim($this->agent->referrer()), trim($this->agent->agent_string()));
 			$this->input->set_cookie('visitorID', $this->encryption->encrypt($this->visitorID), SECONDS_YEAR);
 		}
 	}
