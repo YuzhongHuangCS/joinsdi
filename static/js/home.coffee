@@ -61,11 +61,9 @@ class Flame
 			@context.arc(p.pos.x, p.pos.y, p.radius, Math.PI * 2, false)
 			@context.fill()
 
-			p.ttl--
-			p.radius--
-			p.a = p.ttl / p.life
-			p.pos.x += p.speed.x
-			p.pos.y += p.speed.y
-
-			if p.ttl < 0 or p.radius < 0
+			if (--p.ttl) < 0 or (--p.radius) < 0
 				@particles[i] = new Particle(@pos)
+			else
+				p.a = p.ttl / p.life
+				p.pos.x += p.speed.x
+				p.pos.y += p.speed.y
