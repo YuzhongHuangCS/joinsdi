@@ -1,97 +1,73 @@
 'use strict'
 
 $ ->
-	initFlame()
+	new Flame()
 
-initFlame = ->
-	canvas = document.querySelector('canvas#flame')
-	ctx = canvas.getContext('2d')
-	#Make the canvas occupy the full page
-	W = document.body.clientWidth
-	H = document.body.clientHeight
-	headerHeight = window.screen.height - H
-
-	track_mouse = (e) ->
-		#since the canvas = full page the position of the mouse 
-		#relative to the document will suffice
-		#console.log e
-		mouse.x = e.screenX
-		mouse.y = e.screenY - headerHeight
-
-	particle = ->
-		#speed, life, location, life, colors
-		#speed.x range = -2.5 to 2.5 
-		#speed.y range = -15 to -5 to make it move upwards
-		#lets change the Y speed to make it look like a flame
+class Particle
+	constructor: (pos)->
+		@pos = $.extend({}, pos)
+		@radius = 10 + Math.random() * 20
+		@life = 20 + Math.random() * 10
+		@ttl = @life
+		@r = Math.round(Math.random() * 128 + 64)
+		@g = Math.round(Math.random() * 128 + 32)
+		@b = Math.round(Math.random() * 64)
+		@a = 1
 		@speed =
 			x: -2.5 + Math.random() * 5
 			y: -15 + Math.random() * 10
-		#location = mouse coordinates
-		#Now the flame follows the mouse coordinates
-		if mouse.x and mouse.y
-			@location =
-				x: mouse.x
-				y: mouse.y
-		else
-			@location =
-				x: W / 2
-				y: H / 2
-		#radius range = 10-30
-		@radius = 10 + Math.random() * 20
-		#life range = 20-30
-		@life = 20 + Math.random() * 10
-		@remaining_life = @life
-		#colors
-		@r = Math.round(Math.random() * 255)
-		@g = Math.round(Math.random() * 255)
-		@b = Math.round(Math.random() * 255)
 
-	draw = ->
-		#Painting the canvas black
-		#Time for lighting magic
-		#particles are painted with "lighter"
-		#In the next frame the background is painted normally without blending to the 
-		#previous frame
-		#ctx.globalCompositeOperation = 'source-over'
-		#ctx.fillStyle = 'white'
-		ctx.clearRect 0, 0, W, H
-		#ctx.globalCompositeOperation = 'multiply'
-		i = 0
-		while i < particles.length
-			p = particles[i]
-			ctx.beginPath()
-			#changing opacity according to the life.
-			#opacity goes to 0 at the end of life of a particle
-			p.opacity = Math.round(p.remaining_life / p.life * 100) / 100
-			#a gradient instead of white fill
-			gradient = ctx.createRadialGradient(p.location.x, p.location.y, 0, p.location.x, p.location.y, p.radius)
-			gradient.addColorStop 0, 'rgba(' + p.r + ', ' + p.g + ', ' + p.b + ', ' + p.opacity + ')'
-			gradient.addColorStop 0.5, 'rgba(' + p.r + ', ' + p.g + ', ' + p.b + ', ' + p.opacity + ')'
-			gradient.addColorStop 1, 'rgba(' + p.r + ', ' + p.g + ', ' + p.b + ', 0)'
-			ctx.fillStyle = gradient
-			ctx.arc(p.location.x, p.location.y, p.radius, Math.PI * 2, false)
-			ctx.fill()
-			#lets move the particles
-			p.remaining_life--
+class Flame
+	constructor: ->
+		@canvas = document.querySelector('canvas#flame')
+		@context = @canvas.getContext('2d')
+
+		@W = document.body.clientWidth
+		@H = document.body.clientHeight
+
+		@header = window.screen.height - @H
+
+		@canvas.width = @W
+		@canvas.height = @H
+
+		@pos =
+			x: @W / 2
+			y: @H / 2
+
+		@particles = []
+		for i in [0...100]
+			@particles.push(new Particle(@pos))
+
+		document.addEventListener('mousemove', @onMouseMove)
+		setInterval(@onDraw, 40)
+
+	onMouseMove: (event) =>
+		@pos.x = event.screenX
+		@pos.y = event.screenY - @header
+
+	onDraw: =>
+		@context.clearRect(0, 0, @W, @H)
+		@context.globalCompositeOperation = 'lighter'
+
+		for i in [0...@particles.length]
+			p = @particles[i]
+
+			@context.beginPath()
+
+			gradient = @context.createRadialGradient(p.pos.x, p.pos.y, 0, p.pos.x, p.pos.y, p.radius)
+			gradient.addColorStop(0, "rgba(#{p.r}, #{p.g}, #{p.b}, #{p.a})")
+			gradient.addColorStop(0.5, "rgba(#{p.r}, #{p.g}, #{p.b}, #{p.a})")
+			gradient.addColorStop(1, "rgba(#{p.r}, #{p.g}, #{p.b}, 0)")
+			@context.fillStyle = gradient
+
+			@context.arc(p.pos.x, p.pos.y, p.radius, Math.PI * 2, false)
+			@context.fill()
+
+			p.ttl--
 			p.radius--
-			p.location.x += p.speed.x
-			p.location.y += p.speed.y
-			#regenerate particles
-			if p.remaining_life < 0 or p.radius < 0
-				#a brand new particle replacing the dead one
-				particles[i] = new particle
-			i++
+			p.a = p.ttl / p.life
+			p.pos.x += p.speed.x
+			p.pos.y += p.speed.y
 
-	canvas.width = W
-	canvas.height = H
-	particles = []
-	mouse = {}
-	#Lets create some particles now
-	particle_count = 100
-	i = 0
-	while i < particle_count
-		particles.push new particle
-		i++
-	#finally some mouse tracking
-	document.addEventListener('mousemove', track_mouse)
-	setInterval draw, 33
+			if p.ttl < 0 or p.radius < 0
+				@particles[i] = new Particle(@pos)

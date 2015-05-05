@@ -76,8 +76,7 @@ doSubmit = ->
 	submitID = ''
 	submitForm = ->
 		switchModalProgress('正在上传信息表')
-		form = {}
-		$.extend(form, $('#form1').form('get values'), $('#form3').form('get values'))
+		form = $.extend({}, $('#form1').form('get values'), $('#form3').form('get values'))
 		jqxhr = $.post '/joinsdi/upload/form', form, (body)->
 			submitID = body
 			submitAvatar()
