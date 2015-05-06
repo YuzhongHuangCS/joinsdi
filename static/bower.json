@@ -6,6 +6,11 @@
 	"dependencies": {
 		"semantic-ui": "x",
 		"jquery-ui": "x",
-		"animate.css": "x"
+		"animate.css": "x",
+		"angular": "x",
+		"angular-route": "x",
+		"angular-resource": "x",
+		"angular-animate": "x",
+		"angular-ui-grid": "x"
 	}
 }

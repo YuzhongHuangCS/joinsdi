@@ -8,10 +8,15 @@ module.exports = (grunt)->
 					'application/views/mail/submit.html': 'application/views/mail/submit.jade'
 					'application/views/bsie.html': 'application/views/bsie.jade'
 					'application/views/login.html': 'application/views/login.jade'
+					'application/views/sdilod.html': 'application/views/sdilod.jade'
+					'static/partial/stat.html': 'static/partial/stat.jade'
+					'static/partial/submit.html': 'static/partial/submit.jade'
+					'static/partial/visitor.html': 'static/partial/visitor.jade'
 		coffee:
 			all:
 				files:
 					'static/js/script.js': 'static/js/script.coffee'
+					'static/js/sdilod.js': 'static/js/sdilod.coffee'
 		less:
 			all:
 				options:
@@ -20,12 +25,13 @@ module.exports = (grunt)->
 				files:
 					'static/css/style.css': 'static/css/style.less'
 					'static/css/login.css': 'static/css/login.less'
+					'static/css/sdilod.css': 'static/css/sdilod.less'
 		watch:
 			jade:
-				files: ['application/views/home.jade', 'application/views/upload.jade', 'application/views/mail/submit.jade', 'application/views/bsie.jade', 'application/views/login.jade']
+				files: ['application/views/home.jade', 'application/views/upload.jade', 'application/views/mail/submit.jade', 'application/views/bsie.jade', 'application/views/login.jade', 'application/views/sdilod.jade', 'static/partial/stat.jade', 'static/partial/submit.jade', 'static/partial/visitor.jade']
 				tasks: ['jade']
 			coffee:
-				files: ['static/js/script.coffee']
+				files: ['static/js/script.coffee', 'static/js/sdilod.coffee']
 				tasks: ['coffee']
 		uglify:
 			options:
@@ -34,6 +40,7 @@ module.exports = (grunt)->
 			all:
 				files:
 					'static/js/script.js': 'static/js/script.js'
+					'static/js/sdilod.js': 'static/js/sdilod.js'
 		shell:
 			all:
 				command: 'bash dist.sh'

@@ -33,4 +33,8 @@ class Sdilod extends CI_Controller {
 		$this->parser->parse('login.html', $error);
 	}
 
+	public function visitor() {
+		$this->load->model('visitor');
+		$this->output->set_json($this->visitor->query());
+	}
 }

@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+@blue: #35BDB2;
+@wp-blue: #0074A2;
+@green: #20AF74;
+@bg-green: #EDFFF8;
+@wp-black: #222;
+
+.animation (@parameter) {
+	-webkit-animation: @parameter;
+	-ms-animation: @parameter;
+	animation: @parameter;
+}
+
+#sidebar{
+	position: fixed;
+	top: 0;
+	width: 10%;
+	height: 100%;
+	padding-top: 2%;
+	background-color: @wp-black;
+}
+
+#main{
+	padding-top: 2%;
+	margin-left: 12%;
+	width: 86%;
+	p#title {
+		font-size: 2rem;
+	}
+	#grid {
+		height: 80vh;
+	}
+}
+
+.view-frame.ng-enter {
+	.animation(0.5s fadeIn);
+}
+
+.view-frame.ng-leave {
+	.animation(0.5s fadeOut);
+}
