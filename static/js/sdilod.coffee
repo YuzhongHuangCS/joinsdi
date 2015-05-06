@@ -37,8 +37,8 @@ sdilodCtrl.controller 'statCtrl', ['$scope', ($scope)->
 
 ]
 
-sdilodCtrl.controller 'submitCtrl', ['$scope', ($scope)->
-
+sdilodCtrl.controller 'submitCtrl', ['$scope', 'Submit', ($scope, Submit)->
+	$scope.submits = Submit.query()
 ]
 sdilodCtrl.controller 'visitorCtrl', ['$scope', 'Visitor', ($scope, Visitor)->
 	$scope.gridOptions =

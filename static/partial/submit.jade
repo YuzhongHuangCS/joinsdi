@@ -1,1 +1,65 @@
-p Submit
+p#title 报名表中心
+.ui.grid.stackable
+	.ui.segment.row(ng-repeat='submit in submits')
+		.column.three.wide
+			img(ng-src='{{"/joinsdi/sdilod/avatar/" + submit.avatar + "?name=" + submit.name}}')
+		.thirteen.wide.column
+			table.info
+				tr
+					th 姓名：
+					td {{submit.name}}
+					th 学号：
+					td {{submit.num}}
+					th 出生日期：
+					td {{submit.birthday}}
+					th 性别：
+					td {{submit.gender}}
+				tr
+					th 大类：
+					td {{submit.category}}
+					th 专业：
+					td {{submit.major}}
+					th 均绩：
+					td {{submit.gpa}}
+					th 排名：
+					td {{submit.rank}}
+				tr
+					th 手机：
+					td {{submit.phone}}
+					th 电子邮箱：
+					td {{submit.email}}
+					th 寝室：
+					td(colspan=3) {{submit.dormitory}}
+				tr
+					th 备注：
+					td(colspan=3) {{submit.remark}}
+					th 社交帐号：
+					td(colspan=3) {{submit.social}}
+				tr
+					th WorkShop：
+					td(colspan=2 ng-repeat='workshop in submit.workshop') {{workshop}}
+				tr
+					th 上传编号：
+					td {{submit.ID}}
+					th 上传时间：
+					td {{submit.timestamp}}
+					th 访客编号：
+					td {{submit.visitorID}}
+					th 访问次数：
+					td {{submit.count}}
+				tr
+					th 首次访问时间：
+					td {{submit.first}}
+					th 末次访问时间：
+					td {{submit.last}}
+					th 下载报名表时间：
+					td {{submit.download}}
+					th 来源网站：
+					td {{submit.refer}}
+				tr
+					th UserAgent：
+					td(colspan=7) {{submit.ua}}
+				tr
+					th 报名表：
+					td
+						a(href='{{"/joinsdi/sdilod/apply/" + submit.apply + "?name=" + submit.name}}') 下载链接
