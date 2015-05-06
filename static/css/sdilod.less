@@ -1,10 +1,8 @@
 @charset "utf-8";
 
-@blue: #35BDB2;
-@wp-blue: #0074A2;
-@green: #20AF74;
-@bg-green: #EDFFF8;
-@wp-black: #222;
+@red: #D95C5C;
+@green: #00b5ad;
+@black: #222;
 
 .animation (@parameter) {
 	-webkit-animation: @parameter;
@@ -18,7 +16,12 @@
 	width: 10%;
 	height: 100%;
 	padding-top: 2%;
-	background-color: @wp-black;
+	background-color: @black;
+	.menu {
+		a.item.active {
+			border-left: 2px solid @green;
+		}
+	}
 }
 
 #main{

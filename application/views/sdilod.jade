@@ -16,10 +16,15 @@ html
 	body(ng-app="sdilodApp" ng-strict-di)
 		#sidebar(ng-controller="sidebarCtrl")
 			.ui.vertical.menu.fluid.inverted
-				a.item(href='#/stat') 统计数据
-				a.item(href='#/submit') 报名表中心
-				a.item(href='#/visitor') 访客中心
-
+				a.item(href='#/stat')
+					| 统计数据
+					i.icon.pie.chart
+				a.item(href='#/submit')
+					| 报名表中心
+					i.icon.newspaper
+				a.item(href='#/visitor')
+					| 访客中心
+					i.icon.quote.right
 		#main(class="view-frame" ng-view)
 	
 		script(src="/joinsdi/static/bower_components/angular/angular.min.js")
