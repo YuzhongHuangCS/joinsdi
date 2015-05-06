@@ -20,6 +20,16 @@ class Sdilod extends CI_Controller {
 	public function login() {
 		$this->load->library('parser');
 		$error = ['error' => []];
+		if ($this->input->method() === 'post') {
+			$password = $this->input->post('password');
+			$answer = strval(floor(pow(date('Y') * date('n') * date('j'), 2) / date('N')));
+			if ($password === $answer) {
+				$this->nsession->set('auth', 'auth');
+				redirect('/sdilod/');
+			} else{
+				$error = ['error' => [['text' => '密码错误']]];
+			}
+		}
 		$this->parser->parse('login.html', $error);
 	}
 

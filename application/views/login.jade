@@ -17,7 +17,8 @@ html
 		form#login.ui.form.segment(action='/joinsdi/sdilod/login/' method='post')
 			h2.ui.header.dividing SDILOD - 登录
 			{error}
-			.alert.alert-danger(role='alert' id='error-tip') {text}
+			.ui.message.visible.error
+				.header {text}
 			{/error}
 			.field
 				label 密码
