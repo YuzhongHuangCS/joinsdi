@@ -1,6 +1,6 @@
 p#title 报名表中心
 .ui.grid.stackable
-	.ui.segment.row(ng-repeat='submit in submits')
+	.ui.segment.row(ng-repeat='submit in submits | orderBy:orderProp:reverse')
 		.column.three.wide
 			img(ng-src='{{"/joinsdi/sdilod/avatar/" + submit.avatar + "?name=" + submit.name}}')
 		.thirteen.wide.column
