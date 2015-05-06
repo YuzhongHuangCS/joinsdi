@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 05, 2015 at 01:53 AM
+-- Generation Time: May 06, 2015 at 09:06 PM
 -- Server version: 10.0.17-MariaDB-0ubuntu1
 -- PHP Version: 5.6.4-4ubuntu6
 
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `visitor` (
 -- Indexes for table `submit`
 --
 ALTER TABLE `submit`
- ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`), ADD KEY `visitorID` (`visitorID`);
 
 --
 -- Indexes for table `visitor`
