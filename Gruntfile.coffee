@@ -7,6 +7,7 @@ module.exports = (grunt)->
 					'application/views/upload.html': 'application/views/upload.jade'
 					'application/views/mail/submit.html': 'application/views/mail/submit.jade'
 					'application/views/bsie.html': 'application/views/bsie.jade'
+					'application/views/login.html': 'application/views/login.jade'
 		coffee:
 			all:
 				files:
@@ -18,9 +19,10 @@ module.exports = (grunt)->
 					ieCompat: false
 				files:
 					'static/css/style.css': 'static/css/style.less'
+					'static/css/login.css': 'static/css/login.less'
 		watch:
 			jade:
-				files: ['application/views/home.jade', 'application/views/upload.jade', 'application/views/mail/submit.jade', 'application/views/bsie.jade']
+				files: ['application/views/home.jade', 'application/views/upload.jade', 'application/views/mail/submit.jade', 'application/views/bsie.jade', 'application/views/login.jade']
 				tasks: ['jade']
 			coffee:
 				files: ['static/js/script.coffee']

@@ -1,0 +1,25 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible' content='IE=edge, chrome=1')
+		meta(name='renderer' content='webkit')
+		meta(name='viewport' content='width=device-width, initial-scale=1, user-scalable=no')
+		meta(name='mobile-web-app-capable' content='yes')
+		meta(name='apple-mobile-web-app-capable' content='yes')
+		title SDILOD - 设计创新班2014级招生
+		link(rel='stylesheet' href='/joinsdi/static/bower_components/semantic-ui/dist/semantic.min.css')
+		link(rel='stylesheet' href='/joinsdi/static/css/login.css')
+		link(rel='icon' type='image/png' sizes='256x256' href='/joinsdi/static/img/logo.png')
+
+	body
+		img#logo(src='/joinsdi/static/img/logo-landscape.png')
+		form#login.ui.form.segment(action='/joinsdi/sdilod/login/' method='post')
+			h2.ui.header.dividing SDILOD - 登录
+			{error}
+			.alert.alert-danger(role='alert' id='error-tip') {text}
+			{/error}
+			.field
+				label 密码
+				input(type='password' name='password' placeholder='请输入密码' required autofocus)
+			button.ui.submit.button.green(type="submit") 登录

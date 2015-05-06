@@ -8,15 +8,15 @@ html
 		meta(name='mobile-web-app-capable' content='yes')
 		meta(name='apple-mobile-web-app-capable' content='yes')
 		title 上传报名表 - 设计创新班2014级招生
-		link(rel='stylesheet' href='static/bower_components/semantic-ui/dist/semantic.min.css')
-		link(rel='stylesheet' href='static/bower_components/jquery-ui/jquery-ui.min.css')
-		link(rel='stylesheet' href='static/bower_components/animate.css/animate.min.css')
-		link(rel='stylesheet' href='static/css/style.css')
-		link(rel='icon' type='image/png' sizes='256x256' href='static/img/logo.png')
+		link(rel='stylesheet' href='/joinsdi/static/bower_components/semantic-ui/dist/semantic.min.css')
+		link(rel='stylesheet' href='/joinsdi/static/bower_components/jquery-ui/jquery-ui.min.css')
+		link(rel='stylesheet' href='/joinsdi/static/bower_components/animate.css/animate.min.css')
+		link(rel='stylesheet' href='/joinsdi/static/css/style.css')
+		link(rel='icon' type='image/png' sizes='256x256' href='/joinsdi/static/img/logo.png')
 
 	body
 		#jumbotron
-			img#logo(src='static/img/box_open.png')
+			img#logo(src='/joinsdi/static/img/box_open.png')
 			p#slogan /点/燃/一/根/火/柴/
 
 		#container.responsive
@@ -84,12 +84,12 @@ html
 						.row.two.column
 							#avatar.column.field.file
 								h3 个人照片
-								img.ui.image.small.rounded.preview(src='static/img/avatar.png')
+								img.ui.image.small.rounded.preview(src='/joinsdi/static/img/avatar.png')
 								input.select(type='file' name='avatar')
 								p JPG / PNG / GIF格式， 小于10MB
 							#apply.column.field.file
 								h3 报名表
-								img.ui.image.small.rounded.preview(src='static/img/apply.png')
+								img.ui.image.small.rounded.preview(src='/joinsdi/static/img/apply.png')
 								input.select(type='file' name='apply')
 								p PDF / ZIP / RAR / 7Z格式， 小于100MB
 			#step3.step
@@ -115,7 +115,7 @@ html
 
 			.ui.button.fluid.huge.red#submit 提交报名表
 
-		img#footer(src='static/img/logo-landscape.png')
+		img#footer(src='/joinsdi/static/img/logo-landscape.png')
 
 		.ui.modal.small#error
 			i.close.icon
@@ -136,7 +136,7 @@ html
 			.actions
 
 		canvas#flame
-		script(src='static/bower_components/jquery/dist/jquery.min.js')
-		script(src='static/bower_components/jquery-ui/jquery-ui.min.js')
-		script(src='static/bower_components/semantic-ui/dist/semantic.min.js')
-		script(src='static/js/script.js')
+		script(src='/joinsdi/static/bower_components/jquery/dist/jquery.min.js')
+		script(src='/joinsdi/static/bower_components/jquery-ui/jquery-ui.min.js')
+		script(src='/joinsdi/static/bower_components/semantic-ui/dist/semantic.min.js')
+		script(src='/joinsdi/static/js/script.js')

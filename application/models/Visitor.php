@@ -24,4 +24,10 @@ class Visitor extends CI_Model {
 		$sql = 'UPDATE `visitor` SET `download` = CURRENT_TIMESTAMP WHERE `ID` = ?';
 		return $this->db->query($sql, $ID);
 	}
+
+	public function query() {
+		$sql = 'SELECT * FROM `visitor`';
+		return $this->db->query($sql)->result_array();
+	}
+
 }

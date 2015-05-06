@@ -12,7 +12,7 @@ html
 			body {
 				margin: 0;
 				height: 100%;
-				background: url(static/img/bsie.jpg) no-repeat fixed center;
+				background: url(/joinsdi/static/img/bsie.jpg) no-repeat fixed center;
 				background-size: cover;
 				font-family: "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
 				overflow: hidden;
@@ -50,12 +50,12 @@ html
 			p#line1 您还在使用上古浏览器，这不太好吧:(
 			hr
 			p#line2
-				a(href='download') 下载报名表
+				a(href='/joinsdi/download') 下载报名表
 			p#line3 记得在上传报名表之前升级到一个现代浏览器哦
 			p#line4 我们推荐使用Chrome/Firefox/IE11浏览器来访问我们的网站
 		#black
 
-		script(src='static/bower_components/jquery-1/dist/jquery.min.js')
+		script(src='/joinsdi/static/bower_components/jquery-1/dist/jquery.min.js')
 		script.
 			$(function() {
 				$('#black').animate({'opacity': '0.8'}, 'slow');

@@ -123,7 +123,7 @@ bindHandler = ->
 				return modalAlert('报名表不符合要求', '报名表太大了，不要超过100MB哦！')
 
 			if file.name.substring(file.name.lastIndexOf('.') + 1).toLowerCase() in ['pdf', 'zip', 'rar', '7z']
-				$('#apply > img.preview').attr('src', 'static/img/logo.png')
+				$('#apply > img.preview').attr('src', '/joinsdi/static/img/logo.png')
 			else
 				return modalAlert('报名表不符合要求', '报名表格式不对，请上传PDF / ZIP / RAR / 7Z格式的报名表。')
 

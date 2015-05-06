@@ -8,24 +8,24 @@ html
 		meta(name='mobile-web-app-capable' content='yes')
 		meta(name='apple-mobile-web-app-capable' content='yes')
 		title 点燃一根火柴 - 设计创新班2014级招生
-		link(rel='stylesheet' href='static/bower_components/semantic-ui/dist/semantic.min.css')
-		link(rel='stylesheet' href='static/css/style.css')
-		link(rel='icon' type='image/png' sizes='256x256' href='static/img/logo.png')
+		link(rel='stylesheet' href='/joinsdi/static/bower_components/semantic-ui/dist/semantic.min.css')
+		link(rel='stylesheet' href='/joinsdi/static/css/style.css')
+		link(rel='icon' type='image/png' sizes='256x256' href='/joinsdi/static/img/logo.png')
 
 	body
 		#brand
-			img#logo(src='static/img/box_open.png')
+			img#logo(src='/joinsdi/static/img/box_open.png')
 			p#slogan /点/燃/一/根/火/柴/
 
 		#action
 			.ui.buttons
-				a(href='download')
+				a(href='/joinsdi/download')
 					.ui.button.animated.vertical
 						.content.visible 下载报名表
 						.content.hidden
 							i.icon.arrow.down
 				.or
-				a(href='upload')
+				a(href='/joinsdi/upload')
 					.ui.button.animated.vertical.red.reverse
 						.content.visible 上传报名表
 						.content.hidden
@@ -34,9 +34,9 @@ html
 		#uyan_frame.responsive
 			script(src='http://v2.uyan.cc/code/uyan.js?uid=1899814')
 
-		img#footer(src='static/img/logo-landscape.png')
+		img#footer(src='/joinsdi/static/img/logo-landscape.png')
 
 		canvas#flame
-		script(src='static/bower_components/jquery/dist/jquery.min.js')
-		script(src='static/bower_components/semantic-ui/dist/semantic.min.js')
-		script(src='static/js/script.js')
+		script(src='/joinsdi/static/bower_components/jquery/dist/jquery.min.js')
+		script(src='/joinsdi/static/bower_components/semantic-ui/dist/semantic.min.js')
+		script(src='/joinsdi/static/js/script.js')
