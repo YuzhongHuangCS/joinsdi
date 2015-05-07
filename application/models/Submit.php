@@ -31,6 +31,8 @@ class Submit extends CI_Model {
 	}
 
 	public function query() {
+		$this->load->library('encryption');
+
 		$sql = 'SELECT `submit`.`ID`, `visitorID`, `timestamp`, `name`, `num`, `birthday`, `gender`, `category`, `major`, `gpa`, `rank`, `phone`, `email`, `dormitory`, `remark`, `social`, `workshop`, `avatar`, `apply`, `duplicate`, `count`, `first`, `last`, `download`, `refer`, `ua` FROM `submit` LEFT JOIN `visitor` ON `submit`.`visitorID` = `visitor`.`ID`';
 		$result =  $this->db->query($sql)->result_array();
 
@@ -38,6 +40,8 @@ class Submit extends CI_Model {
 			$result[$index]['workshop'] = array_map(function($date){
 				return $date;
 			}, explode(',', $submit['workshop']));
+			$result[$index]['avatar'] = '/joinsdi/download/avatar/' . base64_encode($this->encryption->encrypt($submit['avatar'] . '_' . $submit['name']));
+			$result[$index]['apply'] = '/joinsdi/download/apply/' . base64_encode($this->encryption->encrypt($submit['apply'] . '_' . $submit['name']));
 		}
 
 		return $result;

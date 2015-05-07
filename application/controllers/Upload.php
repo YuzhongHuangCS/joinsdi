@@ -79,8 +79,8 @@ class Upload extends Track {
 			return ['date' => $date];
 		}, explode(',', $data['workshop']));
 
-		$data['avatar'] = 'http://www.idi.zju.edu.cn/joinsdi/download/avatar/' . base64_encode($this->encryption->encrypt($data['avatar'] . '_' . $data['name']));
-		$data['apply'] = 'http://www.idi.zju.edu.cn/joinsdi/download/apply/' . base64_encode($this->encryption->encrypt($data['apply'] . '_' . $data['name']));
+		$data['avatar'] = '/joinsdi/download/avatar/' . base64_encode($this->encryption->encrypt($data['avatar'] . '_' . $data['name']));
+		$data['apply'] = '/joinsdi/download/apply/' . base64_encode($this->encryption->encrypt($data['apply'] . '_' . $data['name']));
 
 		$this->email->from('hyzme@zju.edu.cn', '设计创新班2014级招生');
 		$this->email->reply_to('sdi2015@163.com');
