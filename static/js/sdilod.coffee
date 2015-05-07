@@ -25,7 +25,7 @@ sdilodApp.config(['$compileProvider', ($compileProvider)->
 ])
 
 # controller module
-sdilodCtrl = angular.module('sdilodCtrl', ['ui.grid'])
+sdilodCtrl = angular.module('sdilodCtrl', ['ui.grid', 'ui.grid.edit'])
 sdilodCtrl.controller 'sidebarCtrl', ['$scope', '$location', ($scope, $location)->
 	$scope.$on '$routeChangeSuccess', ->
 		for item in document.querySelectorAll('a.item')
