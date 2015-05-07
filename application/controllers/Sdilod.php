@@ -5,10 +5,11 @@ class Sdilod extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->library('nsession');
+		$this->load->library('encryption');
 		$this->load->helper('url');
 
-		if (uri_string() !== 'sdilod/login' && !$this->nsession->exists('auth')) {
+		$answer = strval(floor(pow(date('Y') * date('n') * date('j'), 2) / date('N')));
+		if (uri_string() !== 'sdilod/login' && $this->encryption->decrypt($this->input->cookie('auth')) !== $answer) {
 			redirect('/sdilod/login/');
 		}
 	}
@@ -24,7 +25,7 @@ class Sdilod extends CI_Controller {
 			$password = $this->input->post('password');
 			$answer = strval(floor(pow(date('Y') * date('n') * date('j'), 2) / date('N')));
 			if ($password === $answer) {
-				$this->nsession->set('auth', 'auth');
+				$this->input->set_cookie('auth', $this->encryption->encrypt($answer), 0);
 				redirect('/sdilod/');
 			} else{
 				$error = ['error' => [['text' => '密码错误']]];

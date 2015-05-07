@@ -31,8 +31,6 @@ class Submit extends CI_Model {
 	}
 
 	public function query() {
-		$this->load->library('encryption');
-
 		$sql = 'SELECT `submit`.`ID`, `visitorID`, `timestamp`, `name`, `num`, `birthday`, `gender`, `category`, `major`, `gpa`, `rank`, `phone`, `email`, `dormitory`, `remark`, `social`, `workshop`, `avatar`, `apply`, `duplicate`, `count`, `first`, `last`, `download`, `refer`, `ua` FROM `submit` LEFT JOIN `visitor` ON `submit`.`visitorID` = `visitor`.`ID`';
 		$result =  $this->db->query($sql)->result_array();
 
