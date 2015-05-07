@@ -31,7 +31,20 @@ class Submit extends CI_Model {
 	}
 
 	public function query() {
-		$sql = 'SELECT `submit`.`ID`, `visitorID`, `timestamp`, `name`, `num`, `birthday`, `gender`, `category`, `major`, `gpa`, `rank`, `phone`, `email`, `dormitory`, `remark`, `social`, `workshop`, `avatar`, `apply`, `duplicate`, `count`, `first`, `last`, `download`, `refer`, `ua` FROM `submit` LEFT JOIN `visitor` ON `submit`.`visitorID` = `visitor`.`ID`';
+		$sql = 'SELECT * FROM `submit`';
+		return $this->db->query($sql)->result_array();
+	}
+
+	public function valid() {
+		return $this->_checkout(1);
+	}
+
+	public function invalid() {
+		return $this->_checkout(0);
+	}
+
+	private function _checkout($flag) {
+		$sql = 'SELECT `submit`.`ID`, `visitorID`, `timestamp`, `name`, `num`, `birthday`, `gender`, `category`, `major`, `gpa`, `rank`, `phone`, `email`, `dormitory`, `remark`, `social`, `workshop`, `avatar`, `apply`, `count`, `first`, `last`, `download`, `refer`, `ua` FROM `submit` LEFT JOIN `visitor` ON `submit`.`visitorID` = `visitor`.`ID` WHERE `valid` = ' . $flag;
 		$result =  $this->db->query($sql)->result_array();
 
 		foreach ($result as $index => $submit) {

@@ -33,9 +33,14 @@ class Sdilod extends CI_Controller {
 		$this->parser->parse('login.html', $error);
 	}
 
-	public function submit() {
+	public function valid() {
 		$this->load->model('submit');
-		$this->output->set_json($this->submit->query());
+		$this->output->set_json($this->submit->valid());
+	}
+
+	public function invalid() {
+		$this->load->model('submit');
+		$this->output->set_json($this->submit->invalid());
 	}
 
 	public function visitor() {

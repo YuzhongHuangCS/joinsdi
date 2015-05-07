@@ -15,6 +15,9 @@ sdilodApp.config(['$routeProvider', ($routeProvider)->
 	).when('/visitor'
 		templateUrl: '/joinsdi/static/partial/visitor.html'
 		controller: 'visitorCtrl'
+	).when('/recycle'
+		templateUrl: '/joinsdi/static/partial/submit.html'
+		controller: 'recycleCtrl'
 	).otherwise(
 		redirectTo: '/stat'
 	)
@@ -37,19 +40,32 @@ sdilodCtrl.controller 'statCtrl', ['$scope', ($scope)->
 
 ]
 
-sdilodCtrl.controller 'submitCtrl', ['$scope', 'Submit', ($scope, Submit)->
+sdilodCtrl.controller 'submitCtrl', ['$scope', 'Valid', ($scope, Valid)->
+	$scope.title = '报名表中心'
 	$scope.orderProp = 'ID'
 	$scope.reverse = 1
 	$scope.reverseStr = '1'
-	$scope.submits = Submit.query()
+	$scope.submits = Valid.query()
 
 	$scope.$watch 'reverseStr', (newValue, oldValue)->
 		$scope.reverse = parseInt(newValue)
 ]
+
 sdilodCtrl.controller 'visitorCtrl', ['$scope', 'Visitor', ($scope, Visitor)->
 	$scope.gridOptions =
 		enableFiltering: true
 		data: Visitor.query()
+]
+
+sdilodCtrl.controller 'recycleCtrl', ['$scope', 'InValid', ($scope, InValid)->
+	$scope.title = '已删除报名表'
+	$scope.orderProp = 'ID'
+	$scope.reverse = 1
+	$scope.reverseStr = '1'
+	$scope.submits = InValid.query()
+
+	$scope.$watch 'reverseStr', (newValue, oldValue)->
+		$scope.reverse = parseInt(newValue)
 ]
 
 # service module
@@ -58,8 +74,12 @@ sdilodService.factory('Stat', ['$resource', ($resource)->
 	$resource('/joinsdi/sdilod/stat')
 ])
 
-sdilodService.factory('Submit', ['$resource', ($resource)->
-	$resource('/joinsdi/sdilod/submit')
+sdilodService.factory('Valid', ['$resource', ($resource)->
+	$resource('/joinsdi/sdilod/valid')
+])
+
+sdilodService.factory('InValid', ['$resource', ($resource)->
+	$resource('/joinsdi/sdilod/invalid')
 ])
 
 sdilodService.factory('Visitor', ['$resource', ($resource)->
