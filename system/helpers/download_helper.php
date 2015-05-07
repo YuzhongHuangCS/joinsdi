@@ -79,7 +79,7 @@ if ( ! function_exists('force_download'))
 		}
 		$encoded_name = rawurlencode($filename);
 
-		header('Cache-control: public');
+		header('Cache-Control: public');
 		header('Content-Type: '.$mime);
 		header('Content-Transfer-Encoding: binary');
 		header("Content-Disposition: attachment; filename=\"{$encoded_name}\"; filename*=utf-8''{$encoded_name}");

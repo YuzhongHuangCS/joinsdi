@@ -2,7 +2,7 @@ p#title 报名表中心
 .ui.grid.stackable
 	.ui.segment.row(ng-repeat='submit in submits | orderBy:orderProp:reverse')
 		.column.three.wide
-			img(ng-src='{{submit.avatar}}')
+			img(ng-src='/joinsdi/avatar/{{submit.avatar}}')
 		.thirteen.wide.column
 			table.info
 				tr
@@ -62,4 +62,4 @@ p#title 报名表中心
 				tr
 					th 报名表：
 					td
-						a(href='{{submit.apply}}') 下载链接
+						a(href='/joinsdi/sdilod/apply/{{submit.apply}}?name={{submit.name}}') 下载链接
