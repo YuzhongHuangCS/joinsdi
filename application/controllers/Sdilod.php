@@ -43,6 +43,22 @@ class Sdilod extends CI_Controller {
 		$this->output->set_json($this->submit->invalid());
 	}
 
+	public function enable() {
+		$this->load->model('submit');
+		$ID = $this->input->json('ID');
+
+		$result = $this->submit->enable($ID);
+		$this->output->set_status_header($result ? 200 : 403);
+	}
+
+	public function disable() {
+		$this->load->model('submit');
+		$ID = $this->input->json('ID');
+
+		$result = $this->submit->disable($ID);
+		$this->output->set_status_header($result ? 200 : 403);
+	}
+
 	public function visitor() {
 		$this->load->model('visitor');
 		$this->output->set_json($this->visitor->query());

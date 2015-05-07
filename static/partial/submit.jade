@@ -90,5 +90,8 @@ p#title {{title}}
 					td(colspan=7) {{submit.ua}}
 				tr
 					th 报名表：
-					td
-						a(href='/joinsdi/sdilod/apply/{{submit.apply}}?name={{submit.name}}') 下载链接
+					td(colspan=3)
+						a.ui.button.tiny.teal(href='/joinsdi/sdilod/apply/{{submit.apply}}?name={{submit.name}}')下载链接
+					th 操作：
+					td(colspan=3)
+						button.ui.button.tiny.red(ng-click='action()') {{actionText}}

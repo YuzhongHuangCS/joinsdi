@@ -49,6 +49,17 @@ sdilodCtrl.controller 'submitCtrl', ['$scope', 'Valid', ($scope, Valid)->
 
 	$scope.$watch 'reverseStr', (newValue, oldValue)->
 		$scope.reverse = parseInt(newValue)
+
+	$scope.actionText = '删除报名表'
+	$scope.action = ->
+		if confirm("确认删除上传编号为#{this.submit.ID}，姓名为#{this.submit.name}的报名表？")
+			ID = this.submit.ID
+			Valid.disable(this.submit).$promise.then ->
+				alert('删除成功')
+				$scope.submits = $scope.submits.filter (submit)->
+					return submit.ID != ID
+			, ->
+				alert('删除失败')
 ]
 
 sdilodCtrl.controller 'visitorCtrl', ['$scope', 'Visitor', ($scope, Visitor)->
@@ -66,6 +77,17 @@ sdilodCtrl.controller 'recycleCtrl', ['$scope', 'InValid', ($scope, InValid)->
 
 	$scope.$watch 'reverseStr', (newValue, oldValue)->
 		$scope.reverse = parseInt(newValue)
+
+	$scope.actionText = '恢复报名表'
+	$scope.action = ->
+		if confirm("确认恢复上传编号为#{this.submit.ID}，姓名为#{this.submit.name}的报名表？")
+			ID = this.submit.ID
+			InValid.enable(this.submit).$promise.then ->
+				alert('恢复成功')
+				$scope.submits = $scope.submits.filter (submit)->
+					return submit.ID != ID
+			, ->
+				alert('恢复失败')
 ]
 
 # service module
@@ -75,11 +97,17 @@ sdilodService.factory('Stat', ['$resource', ($resource)->
 ])
 
 sdilodService.factory('Valid', ['$resource', ($resource)->
-	$resource('/joinsdi/sdilod/valid')
+	$resource '/joinsdi/sdilod/valid', {},
+		disable:
+			url: '/joinsdi/sdilod/disable'
+			method: 'POST'
 ])
 
 sdilodService.factory('InValid', ['$resource', ($resource)->
-	$resource('/joinsdi/sdilod/invalid')
+	$resource '/joinsdi/sdilod/invalid', {},
+		enable:
+			url: '/joinsdi/sdilod/enable'
+			method: 'POST'
 ])
 
 sdilodService.factory('Visitor', ['$resource', ($resource)->

@@ -43,6 +43,16 @@ class Submit extends CI_Model {
 		return $this->_checkout(0);
 	}
 
+	public function disable($ID) {
+		$sql = 'UPDATE `submit` SET `valid` = 0 WHERE `ID` = ?';
+		return $this->db->query($sql, $ID);
+	}
+
+	public function enable($ID) {
+		$sql = 'UPDATE `submit` SET `valid` = 1 WHERE `ID` = ?';
+		return $this->db->query($sql, $ID);
+	}
+
 	private function _checkout($flag) {
 		$sql = 'SELECT `submit`.`ID`, `visitorID`, `timestamp`, `name`, `num`, `birthday`, `gender`, `category`, `major`, `gpa`, `rank`, `phone`, `email`, `dormitory`, `remark`, `social`, `workshop`, `avatar`, `apply`, `count`, `first`, `last`, `download`, `refer`, `ua` FROM `submit` LEFT JOIN `visitor` ON `submit`.`visitorID` = `visitor`.`ID` WHERE `valid` = ' . $flag;
 		$result =  $this->db->query($sql)->result_array();
