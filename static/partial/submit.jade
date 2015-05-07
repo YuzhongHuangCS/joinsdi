@@ -1,32 +1,32 @@
 p#title 报名表中心
-#control
-	.ui.input
-		label 搜索：
-			input(ng-model='keyword' placeholder='关键词')
-		label.middle 共： {{(submits | filter:keyword).length}}份
-		label.middle 排序属性：
-			select.black(ng-model='orderProp')
-				option(value='name') 姓名
-				option(value='num') 学号
-				option(value='birthday') 生日
-				option(value='gender') 性别
-				option(value='category') 大类
-				option(value='major') 专业
-				option(value='gpa') 均绩
-				option(value='rank') 排名
-				option(value='dormitory') 宿舍
-				option(value='workshop') WorkShop
-				option(value='ID') 上传编号
-				option(value='timestamp') 上传时间
-				option(value='visitorID') 访客编号
-				option(value='count') 访问次数
-				option(value='first') 首次访问时间
-				option(value='last') 末次访问时间
-				option(value='download') 下载表格时间
-		label.middle 次序：
-			select(ng-model='reverseStr')
-				option(value='1') 降序
-				option(value='0') 升序
+#controlWrap
+	#control
+		.ui.input
+			label 搜索：
+				input(ng-model='keyword' placeholder='关键词')
+			label.middle 共： {{(submits | filter:keyword).length}}份
+			label.middle 排序属性：
+				select(ng-model='orderProp')
+					option(value='name') 姓名
+					option(value='num') 学号
+					option(value='birthday') 生日
+					option(value='gender') 性别
+					option(value='category') 大类
+					option(value='major') 专业
+					option(value='gpa') 均绩
+					option(value='rank') 排名
+					option(value='dormitory') 宿舍
+					option(value='workshop') WorkShop
+					option(value='ID') 上传编号
+					option(value='visitorID') 访客编号
+					option(value='count') 访问次数
+					option(value='first') 首次访问时间
+					option(value='last') 末次访问时间
+					option(value='download') 下载表格时间
+			label.middle 次序：
+				select(ng-model='reverseStr')
+					option(value='1') 降序
+					option(value='0') 升序
 
 .ui.grid.stackable
 	.ui.segment.row(ng-repeat='submit in submits | filter:keyword | orderBy:orderProp:reverse')

@@ -4,7 +4,7 @@
 window.$ = angular.element
 
 # app module
-sdilodApp = angular.module('sdilodApp', ['ngRoute', 'ngAnimate', 'sdilodCtrl', 'sdilodService'])
+sdilodApp = angular.module('sdilodApp', ['ngRoute', 'sdilodCtrl', 'sdilodService'])
 sdilodApp.config(['$routeProvider', ($routeProvider)->
 	$routeProvider.when('/stat'
 		templateUrl: '/joinsdi/static/partial/stat.html'
@@ -38,7 +38,7 @@ sdilodCtrl.controller 'statCtrl', ['$scope', ($scope)->
 ]
 
 sdilodCtrl.controller 'submitCtrl', ['$scope', 'Submit', ($scope, Submit)->
-	$scope.orderProp = 'timestamp'
+	$scope.orderProp = 'ID'
 	$scope.reverse = 1
 	$scope.reverseStr = '1'
 	$scope.submits = Submit.query()

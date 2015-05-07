@@ -35,17 +35,21 @@
 	#grid {
 		height: 80vh;
 	}
-	#control {
+	#controlWrap {
 		position: fixed;
 		top: 0;
-		left: 25%;
-		width: 50%;
+		left: 0;
+		width: 100%;
+		z-index: 10;
+	}
+	#control {
+		display: table;
+		margin: 0 auto;
+		padding: 0.5rem;
 		background-color: white;
 		box-shadow: 0 0 0.5rem @grey;
 		border-bottom-right-radius: 0.5rem;
 		border-bottom-left-radius: 0.5rem;
-		z-index: 10;
-		padding: 0.5rem;
 		label.middle {
 			margin-left: 1rem;
 			line-height: 2.5rem;
@@ -57,12 +61,4 @@
 			line-height: 2rem;
 		}
 	}
-}
-
-.view-frame.ng-enter {
-	.animation(0.5s fadeIn);
-}
-
-.view-frame.ng-leave {
-	.animation(0.5s fadeOut);
 }
