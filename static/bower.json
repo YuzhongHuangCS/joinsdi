@@ -11,6 +11,7 @@
 		"angular-route": "x",
 		"angular-resource": "x",
 		"angular-animate": "x",
-		"angular-ui-grid": "x"
+		"angular-ui-grid": "x",
+		"Chart.js": "x"
 	}
 }

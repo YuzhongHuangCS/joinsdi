@@ -36,8 +36,75 @@ sdilodCtrl.controller 'sidebarCtrl', ['$scope', '$location', ($scope, $location)
 		$(document.querySelector('a.item[href="#' + $location.path() + '"]')).addClass('active')
 ]
 
-sdilodCtrl.controller 'statCtrl', ['$scope', ($scope)->
+sdilodCtrl.controller 'statCtrl', ['$scope', 'Stat', ($scope, Stat)->
 
+	Stat.get().$promise.then (body)->
+		Calendar(body['calendar'])
+		Aggr(body['aggr'])
+		Refer(body['refer'])
+
+	Calendar = (data)->
+		uv = []
+		dl = []
+		up = []
+		for _, day of data
+			uv.push(day.uv)
+			dl.push(day.dl)
+			up.push(day.up)
+
+		calendar =
+			labels: Object.keys(data)
+			datasets: [{
+				fillColor: 'rgba(23, 238, 172, 0.5)'
+				strokeColor: 'rgba(220, 220, 220, 1)'
+				pointColor: 'rgba(220, 220, 220, 1)'
+				pointStrokeColor: '#FFF'
+				data: uv
+			}, {
+				fillColor: 'rgba(248, 38, 157, 0.5)'
+				strokeColor: 'rgba(151, 187, 205, 1)'
+				pointColor: 'rgba(151, 187, 205, 1)'
+				pointStrokeColor: '#FFF'
+				data: dl
+			}, {
+				fillColor: 'rgba(255, 0, 0, 0.5)'
+				strokeColor: 'rgba(151, 187, 205, 1)'
+				pointColor: 'rgba(151, 187, 205, 1)'
+				pointStrokeColor: '#FFF'
+				data: up
+			}]
+
+		new Chart(document.querySelector('#calendar').getContext('2d')).Line(calendar)
+
+	Aggr = (data)->
+		$scope.aggr = data
+
+		count = []
+		for _, item of data
+			count.push(item)
+
+		aggr =
+			labels: Object.keys(data),
+			datasets: [{
+				fillColor: 'rgba(176, 106, 160, 0.5)'
+				strokeColor: 'rgba(220, 220, 220, 1)'
+				data: count
+			}]
+
+		new Chart(document.querySelector('#aggr').getContext("2d")).Bar(aggr)
+
+	Refer = (data)->
+		$scope.refer = data
+		refer = []
+
+		for src in data
+			src.color = "rgba(#{Math.floor(Math.random()*256)}, #{Math.floor(Math.random()*256)}, #{Math.floor(Math.random()*256)} ,0.5)"
+			src.refer = '直接访问' if src.refer == ''
+			refer.push
+				value: src.count
+				color: src.color
+
+		new Chart(document.querySelector('#refer').getContext('2d')).Doughnut(refer)
 ]
 
 sdilodCtrl.controller 'submitCtrl', ['$scope', 'Valid', ($scope, Valid)->

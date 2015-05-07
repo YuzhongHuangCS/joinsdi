@@ -32,40 +32,22 @@ class Stat extends CI_Model {
 		$calendar = [];
 
 		foreach ($range as $date) {
-			$year = $date->format('Y');
-			$month = $date->format('m');
-			$day = $date->format('d');
-
-			if (!isset($calendar[$year])) {
-				$calendar[$year] = [];
-			}
-			if (!isset($calendar[$year][$month])) {
-				$calendar[$year][$month] = [];
-			}
-			if (!isset($calendar[$year][$month][$day])) {
-				$calendar[$year][$month][$day] = [
-					'uv' => 0,
-					'dl' => 0,
-					'up' => 0,
-				];
-			}
+			$calendar[$date->format('d')] = [
+				'uv' => 0,
+				'dl' => 0,
+				'up' => 0,
+			];
 		}
 
 		$sql = 'SELECT `first`, `download` FROM `visitor`';
 		$result = $this->db->query($sql)->result_array();
 		foreach ($result as $row) {
 			$date = new DateTime($row['first']);
-			$year = $date->format('Y');
-			$month = $date->format('m');
-			$day = $date->format('d');
-			$calendar[$year][$month][$day]['uv']++;
+			$calendar[$date->format('d')]['uv']++;
 
 			if($row['download'] !== '0000-00-00 00:00:00'){
 				$date = new DateTime($row['download']);
-				$year = $date->format('Y');
-				$month = $date->format('m');
-				$day = $date->format('d');
-				$calendar[$year][$month][$day]['dl']++;
+				$calendar[$date->format('d')]['dl']++;
 			}
 		}
 
@@ -73,10 +55,7 @@ class Stat extends CI_Model {
 		$result = $this->db->query($sql)->result_array();
 		foreach ($result as $row) {
 			$date = new DateTime($row['timestamp']);
-			$year = $date->format('Y');
-			$month = $date->format('m');
-			$day = $date->format('d');
-			$calendar[$year][$month][$day]['up']++;
+			$calendar[$date->format('d')]['up']++;
 		}
 
 		return $calendar;
