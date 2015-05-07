@@ -40,7 +40,11 @@ sdilodCtrl.controller 'statCtrl', ['$scope', ($scope)->
 sdilodCtrl.controller 'submitCtrl', ['$scope', 'Submit', ($scope, Submit)->
 	$scope.orderProp = 'timestamp'
 	$scope.reverse = 1
+	$scope.reverseStr = '1'
 	$scope.submits = Submit.query()
+
+	$scope.$watch 'reverseStr', (newValue, oldValue)->
+		$scope.reverse = parseInt(newValue)
 ]
 sdilodCtrl.controller 'visitorCtrl', ['$scope', 'Visitor', ($scope, Visitor)->
 	$scope.gridOptions =
