@@ -91,7 +91,7 @@ sdilodCtrl.controller 'statCtrl', ['$scope', 'Stat', ($scope, Stat)->
 				data: count
 			}]
 
-		new Chart(document.querySelector('#aggr').getContext("2d")).Bar(aggr)
+		new Chart(document.querySelector('#aggr').getContext('2d')).Bar(aggr)
 
 	Refer = (data)->
 		$scope.refer = data

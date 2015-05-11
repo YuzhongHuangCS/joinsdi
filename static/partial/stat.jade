@@ -13,21 +13,21 @@ p#title 统计数据
 			canvas#aggr
 		.four.wide.column
 			.ui.vertical.menu.fluid
-				.item.active totalPV: {{aggr.totalPV}}
+				.item.border TotalPV: {{aggr.totalPV}}
 					p 招生页面被访问的总次数, 刷新一次就加一
-				.item.active totalUV: {{aggr.totalUV}}
+				.item.border TotalUV: {{aggr.totalUV}}
 					p 访问招生页面的总用户数, 一个浏览器算一个用户
-				.item.active totalDL: {{aggr.totalDL}}
+				.item.border TotalDL: {{aggr.totalDL}}
 					p 下载报名表的总用户数, 同一浏览器多次下载不累加
-				.item.active todayNewUV: {{aggr.todayNewUV}}
+				.item.border TodayNewUV: {{aggr.todayNewUV}}
 					p 在今天第一次访问招生页面的用户数
-				.item.active todayDL: {{aggr.todayDL}}
+				.item.border TodayDL: {{aggr.todayDL}}
 					p 今天报名表的下载次数
-				.item.active todayUV: {{aggr.todayUV}}
+				.item.border TodayUV: {{aggr.todayUV}}
 					p 今天访问招生页面的用户数
 	.row
 		.twelve.wide.column
 			canvas#refer
 		.four.wide.column
 			.ui.vertical.menu.fluid
-				.item.active(ng-repeat='src in refer' ng-style='{"color": src.color, "border-left": "0.5rem solid " + src.color}') {{src.refer}}: {{src.count}}
+				.item(ng-repeat='src in refer' ng-style='{"color": src.color, "border-left": "0.5rem solid " + src.color}') {{src.refer}}: {{src.count}}
