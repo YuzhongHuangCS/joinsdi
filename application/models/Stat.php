@@ -58,7 +58,21 @@ class Stat extends CI_Model {
 			$calendar[$date->format('d')]['up']++;
 		}
 
-		return $calendar;
+		$view = [
+			'label' => [],
+			'uv' => [],
+			'dl' => [],
+			'up' => [],
+		];
+
+		foreach ($calendar as $day => $stat) {
+			$view['label'][] = $day;
+			$view['uv'][] = $stat['uv'];
+			$view['dl'][] = $stat['dl'];
+			$view['up'][] = $stat['up'];
+		}
+
+		return $view;
 	}
 
 	public function aggr() {

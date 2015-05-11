@@ -44,34 +44,26 @@ sdilodCtrl.controller 'statCtrl', ['$scope', 'Stat', ($scope, Stat)->
 		Refer(body['refer'])
 
 	Calendar = (data)->
-		uv = []
-		dl = []
-		up = []
-		for _, day of data
-			uv.push(day.uv)
-			dl.push(day.dl)
-			up.push(day.up)
-
 		calendar =
-			labels: Object.keys(data)
+			labels: data.label
 			datasets: [{
 				fillColor: 'rgba(23, 238, 172, 0.5)'
 				strokeColor: 'rgba(220, 220, 220, 1)'
 				pointColor: 'rgba(220, 220, 220, 1)'
 				pointStrokeColor: '#FFF'
-				data: uv
+				data: data.uv
 			}, {
 				fillColor: 'rgba(248, 38, 157, 0.5)'
 				strokeColor: 'rgba(151, 187, 205, 1)'
 				pointColor: 'rgba(151, 187, 205, 1)'
 				pointStrokeColor: '#FFF'
-				data: dl
+				data: data.dl
 			}, {
 				fillColor: 'rgba(255, 0, 0, 0.5)'
 				strokeColor: 'rgba(151, 187, 205, 1)'
 				pointColor: 'rgba(151, 187, 205, 1)'
 				pointStrokeColor: '#FFF'
-				data: up
+				data: data.up
 			}]
 
 		new Chart(document.querySelector('#calendar').getContext('2d')).Line(calendar)
